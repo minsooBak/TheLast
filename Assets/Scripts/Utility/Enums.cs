@@ -3,7 +3,8 @@ namespace Enums
     public enum MapType
     {
         Village,
-        Dungeon
+        Dungeon,
+        None
     }
 
     public enum SceneState

@@ -4,7 +4,7 @@ using Enums;
 
 public class IntroScene : IBaseScene
 {
-    public MapType Type => throw new System.NotImplementedException();
+    public MapType Type => MapType.None;
 
     public void Init()
     {
