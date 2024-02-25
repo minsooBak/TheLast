@@ -11,7 +11,7 @@ namespace Enums
     {
         IntroScene,
         LodingScene,
-        CharacterSelectScene,
+        CharaterSelectScene,
         VillageScene,
         DungeonScene
     }
