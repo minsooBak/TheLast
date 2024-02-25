@@ -6,6 +6,5 @@ public class DungeonScene : IBaseScene
 
     public void Init()
     {
-        throw new System.NotImplementedException();
     }
 }

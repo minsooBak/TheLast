@@ -7,7 +7,7 @@ public class ResourceManager : ScriptableObject
     {
         var obj = Resources.Load<GameObject>(path);
         Assert.IsNotNull(obj, $"Prefab Load Faill : {path}");
-         GameObject result = Instantiate(obj);
+        GameObject result = Instantiate(obj);
         return result;
     }
     public GameObject Instantiate(string path, Transform parent)
