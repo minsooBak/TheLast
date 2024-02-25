@@ -6,6 +6,5 @@ public class VillageScene : IBaseScene
 
     public void Init()
     {
-        throw new System.NotImplementedException();
     }
 }

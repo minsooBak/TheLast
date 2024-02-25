@@ -19,12 +19,14 @@ public class UIManager : ScriptableObject
             }
         }
 
-        if (_uiCanvas == null)
-        {
-            _uiCanvas = Instantiate(resource.Instantiate("UICanvas")).transform;
-        }
+        //if (_uiCanvas == null)
+        //{
+        //    _uiCanvas = Instantiate(resource.Instantiate("UICanvas")).transform;
+        //}
 
-        T ui = resource.Instantiate(typeof(T).Name) as T;
+        string path = $"Prefabs/UI/{typeof(T).Name}";
+
+        T ui = resource.Instantiate(path).GetComponent<T>();
         _uiBases.Add(ui);
 
         return ui;
