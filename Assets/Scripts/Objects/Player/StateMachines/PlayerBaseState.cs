@@ -103,8 +103,11 @@ public class PlayerBaseState : IState
     private void Move()
     {
         Vector3 movementDirection = GetMovementDirection();
-        Rotate(movementDirection);
+        Vector3 cameraDirection = GetCameraDirection();
+        Rotate(cameraDirection);
         Move(movementDirection);
+        if (stateMachine.MovementInput != Vector2.zero)
+            VirtualCameraController.instace.MoveCameraBackward();
         if (stateMachine.Isrunning && stateMachine.MovementInput != Vector2.zero)
         {
             StartAnimation(stateMachine.Player.AnimationData.RunParameterHash);
@@ -115,11 +118,14 @@ public class PlayerBaseState : IState
         }
     }
 
-
+    //캐릭터 이동시 방향은 무조건 전방 마우스 오른쪽 클릭 시 좌우버튼은 왼쪽 오른쪽 이동 클릭 안하는 경우 회전
     private Vector3 GetMovementDirection()
     {
-        Vector3 foward = stateMachine.MainCameraTransform.forward;
-        Vector3 right = stateMachine.MainCameraTransform.right;
+        //변경해봄
+        //Vector3 foward = stateMachine.MainCameraTransform.forward;
+        //Vector3 right = stateMachine.MainCameraTransform.right;
+        Vector3 foward = stateMachine.Player.transform.forward;
+        Vector3 right = stateMachine.Player.transform.right;
         foward.y = 0;
         right.y = 0;
 
@@ -127,6 +133,15 @@ public class PlayerBaseState : IState
         right.Normalize();
 
         return foward * stateMachine.MovementInput.y + right * stateMachine.MovementInput.x;
+
+    }
+    private Vector3 GetCameraDirection()
+    {
+        //변경해봄
+        Vector3 cameraFoward = stateMachine.Player.transform.position - VirtualCameraController.instace.v_CameraTarget.position;
+        cameraFoward.y = 0;
+        return cameraFoward;
+
     }
     private void Move(Vector3 movementDirection)
     {
@@ -148,10 +163,12 @@ public class PlayerBaseState : IState
 
     private void Rotate(Vector3 movementDirection)
     {
-        if (movementDirection != Vector3.zero)
+        if (VirtualCameraController.instace.isVirtualCameraOn&&!Input.GetMouseButton(0)&&Input.GetMouseButton(1))
         {
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
-            stateMachine.Player.transform.rotation = Quaternion.Slerp(stateMachine.Player.transform.rotation, targetRotation, stateMachine.RotationDamping * Time.deltaTime);
+            //이것도 바꿔봄
+            //stateMachine.Player.transform.rotation = Quaternion.Slerp(stateMachine.Player.transform.rotation, targetRotation, stateMachine.RotationDamping * Time.deltaTime);
+            stateMachine.Player.transform.rotation = targetRotation;
         }
     }
 
