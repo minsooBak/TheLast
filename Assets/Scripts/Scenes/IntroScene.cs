@@ -23,6 +23,8 @@ public class IntroScene : IBaseScene
             ScenesManager scenesManager = GameManager.ScenesManager;
             Assert.IsTrue(GameObject.Find("IntroUI").TryGetComponent(out IntroUI introUI));
             introUI.AddListener(()=> { scenesManager.ChangeScene(SceneState.VillageScene); });
+            GameManager.DataBases.TryGetDataBase(out ItemDataBase data);
+            Debug.Log(data.GetData(10002001).Name);
         }
     }
 }
