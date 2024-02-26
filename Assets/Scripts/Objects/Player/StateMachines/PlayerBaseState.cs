@@ -118,12 +118,9 @@ public class PlayerBaseState : IState
         }
     }
 
-    //캐릭터 이동시 방향은 무조건 전방 마우스 오른쪽 클릭 시 좌우버튼은 왼쪽 오른쪽 이동 클릭 안하는 경우 회전
+    //캐릭터 이동시 방향은 플레이어 전방 
     private Vector3 GetMovementDirection()
-    {
-        //변경해봄
-        //Vector3 foward = stateMachine.MainCameraTransform.forward;
-        //Vector3 right = stateMachine.MainCameraTransform.right;
+    {        
         Vector3 foward = stateMachine.Player.transform.forward;
         Vector3 right = stateMachine.Player.transform.right;
         foward.y = 0;
@@ -137,18 +134,29 @@ public class PlayerBaseState : IState
     }
     private Vector3 GetCameraDirection()
     {
-        //변경해봄
+        //카메라 벡터 =  플레이어 위치 - 카메라 위치
         Vector3 cameraFoward = stateMachine.Player.transform.position - VirtualCameraController.instace.v_CameraTarget.position;
         cameraFoward.y = 0;
         return cameraFoward;
-
+        
     }
     private void Move(Vector3 movementDirection)
     {
         float movementSpeed = GetMovementSpeed();
-        stateMachine.Player.Controller.Move(
+        if (stateMachine.MovementInput.y != 0|| VirtualCameraController.instace.isVirtualCameraOn) //앞뒤로 이동중, 카메라이동중에는 플레이어 좌우 이동 가능
+        {
+            stateMachine.Player.Controller.Move(
             ((movementDirection * movementSpeed) + stateMachine.Player.ForceReceiver.Movement) * Time.deltaTime
             );
+        }
+        else if(stateMachine.MovementInput.x != 0) //이동중이 아니거나 카메라 고정 시 플레이어 좌우 회전
+        {
+            float playerRot = stateMachine.Player.transform.rotation.eulerAngles.y+ stateMachine.MovementInput.x;
+            Debug.Log("playerRot: " + playerRot);
+            Quaternion targetRotation = Quaternion.Euler(0, playerRot, 0);
+            stateMachine.Player.transform.rotation = targetRotation;
+        }
+ 
     }
     protected void ForceMove()
     {
@@ -161,13 +169,12 @@ public class PlayerBaseState : IState
         return movementSpeed;
     }
 
-    private void Rotate(Vector3 movementDirection)
+    private void Rotate(Vector3 cameraDirection)
     {
-        if (VirtualCameraController.instace.isVirtualCameraOn&&!Input.GetMouseButton(0)&&Input.GetMouseButton(1))
+        //카메라 이동모드에서 마우스 좌측 = 플레이서 회전 없이 카메라만 회전, 마우스 우측 = 카메라 회전방향으로 플레이어 회전
+        if (VirtualCameraController.instace.isVirtualCameraOn && !Input.GetMouseButton(0) && Input.GetMouseButton(1))
         {
-            Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
-            //이것도 바꿔봄
-            //stateMachine.Player.transform.rotation = Quaternion.Slerp(stateMachine.Player.transform.rotation, targetRotation, stateMachine.RotationDamping * Time.deltaTime);
+            Quaternion targetRotation = Quaternion.LookRotation(cameraDirection);
             stateMachine.Player.transform.rotation = targetRotation;
         }
     }
