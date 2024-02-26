@@ -60,7 +60,6 @@ public class ChracterHealthSystem : MonoBehaviour
             //if (enemy.cur_hp == 0)
             //    OnDie?.Invoke();
         }
-
     }
     public void UseMp(float skillmp)
     {
