@@ -1,10 +1,11 @@
 using Enums;
+using UnityEngine.Assertions;
+using UnityEngine;
 
 public class VillageScene : IBaseScene
 {
-    public MapType Type => MapType.Village;
 
-    public void Init()
+    public override void Init()
     {
     }
 }
