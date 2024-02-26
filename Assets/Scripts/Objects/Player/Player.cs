@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public PlayerInput Input { get; private set; }
     public CharacterController Controller { get; private set; }
     public ForceReceiver ForceReceiver { get; private set; }
+    public PlayerInfo playerInfo { get; private set; }
+    public PlayerInfoHandler playerInfoHandler { get; private set; }
 
     private PlayerStateMachine stateMachine;
 
@@ -27,15 +29,17 @@ public class Player : MonoBehaviour
         Input = GetComponent<PlayerInput>();
         Controller = GetComponent<CharacterController>();
         ForceReceiver = GetComponent<ForceReceiver>();
+        playerInfoHandler = GetComponent<PlayerInfoHandler>();
 
+        playerInfo = new PlayerInfo();
         stateMachine = new PlayerStateMachine(this);
-
     }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         stateMachine.ChangeState(stateMachine.IdleState);
+        Debug.Log(playerInfo.Hp);
     }
 
     private void Update()
