@@ -4,7 +4,9 @@ using Enums;
 
 public class IntroScene : IBaseScene
 {
-    public override void Init()
+    public MapType Type => MapType.None;
+
+    public void Init()
     {
         //초기 UI생성
         ResourceManager resourceManager = GameManager.ResourceManager;

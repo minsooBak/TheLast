@@ -4,10 +4,11 @@ using UnityEngine.Assertions;
 using UnityEngine.SceneManagement;
 using Enums;
 
-public abstract class IBaseScene
+public interface IBaseScene
 {
+    public abstract MapType Type { get; }
     public abstract void Init();
-    public virtual void Exit()
+    public virtual void Exit() 
     {
         GameManager.ResourceManager.UnloadUnusedAssets();
     }
@@ -21,6 +22,7 @@ public class ScenesManager : ScriptableObject
     private IBaseScene _lateScene;
     private int _lodingSceneNumber = (int)SceneState.LodingScene;
 
+    public MapType GetCurrnetType { get { return _currentScene.Type; } }
     public SceneState CurrentState { get; private set; } = SceneState.IntroScene;
 
     private void Awake()
@@ -47,8 +49,7 @@ public class ScenesManager : ScriptableObject
 
     private void ChangScene(Scene scene, LoadSceneMode mode)
     {
-        if (scene.buildIndex != (int)CurrentState) return;
         _lateScene?.Exit();
-        _currentScene?.Init();
+        _currentScene.Init();
     }
 }

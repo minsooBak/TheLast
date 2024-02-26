@@ -2,7 +2,9 @@ using Enums;
 
 public class DungeonScene : IBaseScene
 {
-    public override void Init()
+    public MapType Type => MapType.Dungeon;
+
+    public void Init()
     {
     }
 }

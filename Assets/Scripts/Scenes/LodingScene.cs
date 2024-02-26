@@ -2,7 +2,9 @@ using Enums;
 
 public class LodingScene : IBaseScene
 {
-    public override void Init()
+    public MapType Type => MapType.None;
+
+    public void Init()
     {
     }
 }

@@ -2,7 +2,10 @@ using Enums;
 
 public class CharaterSelectScene : IBaseScene
 {
-    public override void Init()
+    public MapType Type => MapType.None;
+
+    public void Init()
     {
+        throw new System.NotImplementedException();
     }
 }
