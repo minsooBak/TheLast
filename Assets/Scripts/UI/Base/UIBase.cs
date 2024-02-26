@@ -4,7 +4,7 @@ public class UIBase : MonoBehaviour
 {
     private Canvas canvas;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         canvas = GetComponent<Canvas>();
     }

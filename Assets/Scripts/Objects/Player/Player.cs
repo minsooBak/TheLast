@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public PlayerInfoHandler playerInfoHandler { get; private set; }
 
     private PlayerStateMachine stateMachine;
+    
 
     private void Awake()
     {
@@ -37,7 +38,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         stateMachine.ChangeState(stateMachine.IdleState);
         Debug.Log(playerInfo.Hp);
     }
