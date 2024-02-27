@@ -4,11 +4,26 @@ using UnityEngine;
 using Enums;
 public class TestScript : MonoBehaviour
 {
-    void Start()
+    private IInteractable _interactObject;
+    private void Update()
     {
-        if (GameManager.ScenesManager.CurrentState != SceneState.DungeonScene)
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            GameManager.ScenesManager.ChangeScene(SceneState.DungeonScene);
+            _interactObject?.Interaction();
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Interactable"))
+        {
+            _interactObject = other.GetComponent<IInteractable>();
+            _interactObject?.InteractEnter();
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        _interactObject?.InteractExit();
+        _interactObject = null;
     }
 }
