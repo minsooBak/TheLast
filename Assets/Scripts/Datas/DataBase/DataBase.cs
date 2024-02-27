@@ -9,7 +9,7 @@ interface IDataBaseable
 
 public abstract class DataBase<T> : ScriptableObject, IDataBaseable
 {
-    protected Dictionary<int, T> _data;
+    protected Dictionary<int, T> _data = new Dictionary<int, T>();
 
     protected abstract void Load();
 
