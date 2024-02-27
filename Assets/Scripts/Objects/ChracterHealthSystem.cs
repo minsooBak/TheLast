@@ -14,7 +14,7 @@ public class ChracterHealthSystem : MonoBehaviour
     private int enemyHash;
     private Player player;
     private Enemy enemy;
-    //public event Action OnDie;
+    public event Action OnDie;
     //public event Action OnSkill;
     //public event Action NotEnoughMana;
 

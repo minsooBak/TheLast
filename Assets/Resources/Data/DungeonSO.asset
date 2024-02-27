@@ -15,13 +15,16 @@ MonoBehaviour:
   DungeonDatas:
   - _level: 1
     _id: 10000001
-    _gold: 100
-    _spawnCount: 4
+    _gold: 10000
+    _exp: 160
+    _spawnCount: 16
   - _level: 2
     _id: 10000002
-    _gold: 200
-    _spawnCount: 6
+    _gold: 15000
+    _exp: 196
+    _spawnCount: 14
   - _level: 3
     _id: 10000003
-    _gold: 300
-    _spawnCount: 8
+    _gold: 20000
+    _exp: 240
+    _spawnCount: 12

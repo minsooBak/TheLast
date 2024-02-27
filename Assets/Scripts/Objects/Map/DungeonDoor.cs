@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class DungeonDoor : MonoBehaviour , IInteractable
+public class DungeonDoor : MonoBehaviour
 {
     private Animator _ani;
     private int _dungeonDoorOpen = Animator.StringToHash("DungeonDoorOpen");
@@ -16,17 +14,12 @@ public class DungeonDoor : MonoBehaviour , IInteractable
     {
         _ani.Play(_dungeonDoorOpen);
     }
-    public void InteractEnter()
+    public void DoorClose()
     {
-        return;
+        _ani.Play(_dungeonDoorClose);
     }
-
-    public void InteractExit()
+    public void DoorOpen()
     {
-        return;
-    }
-
-    public void Interaction()
-    {
+        _ani.Play(_dungeonDoorOpen);
     }
 }

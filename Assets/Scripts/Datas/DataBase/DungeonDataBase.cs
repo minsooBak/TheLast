@@ -26,6 +26,7 @@ public class DungeonData
 
     // 일단 기본 보상으로 gold로 설정
     [SerializeField] private int _gold;
+    [SerializeField] private int _exp;
     [SerializeField] private int _spawnCount;
 
     public int Level { get { return _level; } }
