@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChracterHealthSystem : MonoBehaviour
+public class CharacterHealthSystem : MonoBehaviour
 {
     //[SerializeField] private float m_hp;
     //[SerializeField] private float m_mp;
@@ -14,8 +14,8 @@ public class ChracterHealthSystem : MonoBehaviour
     private int enemyHash;
     private Player player;
     private Enemy enemy;
-    //public event Action OnDie;
-    //public event Action OnSkill;
+    public event Action OnDie;
+    public event Action OnSkill;
     //public event Action NotEnoughMana;
 
 
@@ -25,15 +25,17 @@ public class ChracterHealthSystem : MonoBehaviour
         playerHash = "Player".GetHashCode();
         enemyHash = "Enemy".GetHashCode();
         Init();
+        TakeDamage(10f);
+        TakeDamage(10f);
     }
 
     private void Init()
     {
         if (playerHash == characterType)
         {
-            //player = GetComponent<Player>();
-            //player.cur_hp = player.m_hp;
-            //player.cur_mp = player.m_mp;
+            player = GetComponent<Player>();
+            player.playerInfo.Hp = player.playerInfo.MaxHp = 100;
+            player.playerInfo.Mp = player.playerInfo.MaxMp;
         }
         if (enemyHash == characterType)
         {
@@ -46,11 +48,12 @@ public class ChracterHealthSystem : MonoBehaviour
     {
         if (playerHash == characterType)
         {
-            //if (player.cur_hp == 0) return;
-            //player.cur_hp = Mathf.Min(player.m_hp, Mathf.Max(player.cur_hp - damage, 0));
+            if (player.playerInfo.Hp == 0) return;
+            player.playerInfo.Hp = Mathf.Min(player.playerInfo.MaxHp, Mathf.Max(player.playerInfo.Hp - damage, 0));
+            Debug.Log(player.playerInfo.Hp);
 
-            //if (player.cur_hp == 0)
-            //    OnDie?.Invoke();
+            if (player.playerInfo.Hp == 0)
+                OnDie?.Invoke();
         }
         if (enemyHash == characterType)
         {
@@ -85,4 +88,5 @@ public class ChracterHealthSystem : MonoBehaviour
             //OnSkill?.Invoke();
         }
     }
-}
+} 
+    
