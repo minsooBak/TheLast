@@ -32,7 +32,7 @@ public class DungeonMainRoom : MonoBehaviour
         {
             GameObject enemy = GameManager.ResourceManager.Instantiate($"Prefabs/Enemys/{_manager.enemyData.Name}");
             enemy.transform.position = GetRandomPosition();
-            if (enemy.TryGetComponent(out ChracterHealthSystem health))
+            if (enemy.TryGetComponent(out CharacterHealthSystem health))
             {
                 health.OnDie += EnemyDie;
             }          
