@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     public LayerMask targetLayer;
     public Transform target;
     private EnemyStateMachine stateMachine;
+
     private void Start()
     {
         Controller = GetComponent<CharacterController>();
