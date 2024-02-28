@@ -2,23 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInfoHandler : MonoBehaviour
+public class CharacterSelectData : MonoBehaviour
 {
     private PlayerStatusDB statusDB;
-    private PlayerLevelDB levelDB;
-
-    private PlayerStatusInfo statusInfo;
-    private PlayerLevelInfo levelInfo;
-    private Player player;
-
+    private CharacterSelectUI selectUI;
     private byte _id = 1;
 
     private void Awake()
     {
         statusDB = new PlayerStatusDB();
-        levelDB = new PlayerLevelDB();
-
-        player = GetComponent<Player>();
+        selectUI = GetComponent<CharacterSelectUI>();
     }
     private void Start()
     {
@@ -40,8 +33,5 @@ public class PlayerInfoHandler : MonoBehaviour
         player.playerInfo.StatLuk = statusInfo._luk;
         player.playerInfo.Jump = statusInfo._jump;
         player.playerInfo.Speed = statusInfo._speed;
-    }
-    private void UpdateLevel()
-    {
     }
 }
