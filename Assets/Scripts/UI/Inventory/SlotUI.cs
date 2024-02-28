@@ -7,27 +7,76 @@ public class SlotUI : MonoBehaviour
     [SerializeField] private Image _icon;
     [SerializeField] private TextMeshProUGUI _amountText;
     [SerializeField] private Image _highlight;
+    private RectTransform _rectTransform;
+    public int Index { get; private set; }
+    public ItemEntity Item { get; private set; }
+    public int Amount { get; private set; } = 1;
+    public Transform IconTransform { get { return _icon.transform; } }
+    public bool IsMaxAmount { get { return Amount == Item.MaxAmount; } }
 
-    public void SetIcon(Sprite icon)
+    public void Init(int index)
     {
-        _icon.sprite = icon;
-        if (icon != null)
-            _icon.enabled = true;
+        Index = index;
+    }
+
+    public void IconReset()
+    {
+        _icon.transform.SetParent(transform);
+        _rectTransform.anchoredPosition = Vector2.zero;
+    }
+
+    public void Awake()
+    {
+        _rectTransform = _icon.GetComponent<RectTransform>();
+    }
+
+    public bool HasItem() { return _icon.enabled; } 
+
+    public Sprite Icon {
+        get 
+        { 
+            return _icon.sprite;
+        } 
+        private set 
+        {
+            _icon.sprite = value; 
+            if (value == null) _icon.enabled = false;
+            else _icon.enabled = true;
+        } 
+    }
+
+    public void SetItem(ItemEntity item)
+    {
+        Item = item;
+        if (item != null)
+            Icon = item.Sprite;
         else
-            _icon.enabled = false;
+            Icon = null;
     }
 
     public void SetAmount(int amount)
     {
-        if (amount == 0)
+        Amount = amount;
+        if (Amount <= 1)
         {
             _amountText.enabled = false;
             return;
         }
 
         if (!_amountText.enabled) _amountText.enabled = true;
+        _amountText.text = Amount.ToString();
+    }
 
-        _amountText.text = amount.ToString();
+    public void AddAmount()
+    {
+        if (++Amount <= 1)
+        {
+            _amountText.enabled = false;
+            return;
+        }
+
+        if (!_amountText.enabled) _amountText.enabled = true;
+        _amountText.text = Amount.ToString();
     }
 
     public void SetColor(Color color)

@@ -30,16 +30,18 @@ public class ItemEntity
     public int Speed;
     public string Description;
     public string ItemPath;
+    public int MaxAmount;
+
+    private Sprite _sprite;
 
     public Sprite Sprite
     {
         get
         {
-            if (Sprite == null)
-                Sprite = Resources.Load<Sprite>($"Sprite/{ItemPath}");
-            return Sprite;
+            if (_sprite == null)
+                _sprite = Resources.Load<Sprite>($"Icon/{ItemPath}");
+            return _sprite;
         }
-        private set { Sprite = value; }
     }
 
     public GameObject DropItem
@@ -58,4 +60,5 @@ public enum ItemType
 {
     Weapon,
     Armor,
+    Consume
 }

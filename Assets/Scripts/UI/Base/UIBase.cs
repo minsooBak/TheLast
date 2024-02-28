@@ -2,25 +2,18 @@ using UnityEngine;
 
 public class UIBase : MonoBehaviour
 {
-    private Canvas canvas;
-
-    protected virtual void Awake()
-    {
-        canvas = GetComponent<Canvas>();
-    }
-
     public bool IsActive()
     {
-        return canvas.enabled;
+        return gameObject.activeSelf;
     }
 
     public void Active()
     {
-        canvas.enabled = true;
+        gameObject.SetActive(true);
     }
 
     public void Disable()
     {
-        canvas.enabled = false;
+        gameObject.SetActive(false);
     }
 }
