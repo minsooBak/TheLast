@@ -78,9 +78,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Skill4",
+                    "name": "Interaction",
                     "type": "Button",
-                    "id": "02b1a3ae-4225-4a2f-9b56-99c940792cb5",
+                    "id": "72898c32-d3aa-45d6-901c-516c6b2ec6fd",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -168,7 +168,7 @@
                 {
                     "name": "",
                     "id": "6f3335c7-6fd3-482f-bcd2-f1eee47c1b8b",
-                    "path": "<Keyboard>/1",
+                    "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -179,7 +179,7 @@
                 {
                     "name": "",
                     "id": "d42b8317-aa93-4e3b-9f04-9d7893e69fc4",
-                    "path": "<Keyboard>/2",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -190,7 +190,7 @@
                 {
                     "name": "",
                     "id": "34db1fe1-9ab6-433f-a56e-337c6f341700",
-                    "path": "<Keyboard>/3",
+                    "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -200,19 +200,8 @@
                 },
                 {
                     "name": "",
-                    "id": "e69fbc52-8b0e-4a3a-aedc-df4087f30d46",
-                    "path": "<Keyboard>/4",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Skill4",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c96e293f-a56b-4789-9eb2-02c4ec11b26f",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -228,6 +217,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6a143e15-3cb9-457d-aa58-b7dddfbc89bc",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

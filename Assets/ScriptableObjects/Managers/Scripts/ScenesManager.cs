@@ -22,9 +22,10 @@ public class ScenesManager : ScriptableObject
     private int _lodingSceneNumber = (int)SceneState.LodingScene;
 
     public SceneState CurrentState { get; private set; } = SceneState.IntroScene;
-
+    
     private void Awake()
     {
+        
         SceneManager.sceneLoaded += ChangScene;
         for(int i = 0; i < _scenes.Length; i++)
         {
