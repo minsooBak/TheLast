@@ -9,6 +9,15 @@ public class ItemDataInfoUI : UIBase
     [SerializeField] private TextMeshProUGUI _statText;
     [SerializeField] private TextMeshProUGUI _description;
     private StringBuilder _sb = new(200);
+    private RectTransform _rectTransform;
+    private float screenRight;
+    private float screenBottom;
+    public void Awake()
+    {
+        _rectTransform = GetComponent<RectTransform>();
+        screenRight = Screen.width;
+        screenBottom = Screen.height;
+    }
 
     public void Init(ItemEntity item)
     {
@@ -19,17 +28,18 @@ public class ItemDataInfoUI : UIBase
 
     private void OnDisable()
     {
+        _statText.text = string.Empty;
         LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)transform);
     }
 
     private void Update()
     {
         transform.position = Input.mousePosition;
+
     }
 
     private void StatText(ItemEntity item)
     {
-        _statText.text = string.Empty;
         if (item.ItemType == ItemType.Consume) return;
 
         CheckStat(item.HP, "HP");
