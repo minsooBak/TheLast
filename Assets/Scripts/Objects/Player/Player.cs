@@ -51,6 +51,7 @@ public class Player : MonoBehaviour
     {
         stateMachine.HandleInput();
         stateMachine.Update();
+        healthSystem.TakeDamage(15f);
     }
     private void FixedUpdate()
     {

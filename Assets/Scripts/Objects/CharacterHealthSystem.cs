@@ -21,9 +21,9 @@ public class CharacterHealthSystem : MonoBehaviour
 
     private void Start()
     {
-        characterType = gameObject.tag.GetHashCode();
-        playerHash = "Player".GetHashCode();
-        enemyHash = "Enemy".GetHashCode();
+        characterType = Utility.GetHashWithTag(gameObject);
+        playerHash = Utility.GetHashWithString("Player");
+        enemyHash = Utility.GetHashWithString("Enemy");
         Init();
         TakeDamage(10f);
         TakeDamage(10f);
@@ -34,7 +34,7 @@ public class CharacterHealthSystem : MonoBehaviour
         if (playerHash == characterType)
         {
             player = GetComponent<Player>();
-            player.playerInfo.Hp = player.playerInfo.MaxHp = 100;
+            player.playerInfo.Hp = player.playerInfo.MaxHp;
             player.playerInfo.Mp = player.playerInfo.MaxMp;
         }
         if (enemyHash == characterType)

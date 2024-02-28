@@ -46,4 +46,13 @@ public static class Utility
     {
         return File.Exists(_dataPath + path);
     }
+
+    public static int GetHashWithString(string path)
+    {
+        return path.GetHashCode();
+    }
+    public static int GetHashWithTag(GameObject path)
+    {
+        return path.tag.GetHashCode();
+    }
 }
