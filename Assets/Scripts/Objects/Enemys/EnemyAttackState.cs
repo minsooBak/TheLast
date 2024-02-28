@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class EnemyAttackState : IState
 {
-    protected EnemyStateMachine stateMachine;
+    private EnemyStateMachine _stateMachine;
     public EnemyAttackState(EnemyStateMachine stateMachine)
     {
-        this.stateMachine = stateMachine;
+        _stateMachine = stateMachine;
     }   
     public void Enter()
     {
         Debug.Log("AttackEnter");
+        _stateMachine.ChangeState(_stateMachine.IdleState);
     }
 
     public void Exit()
@@ -31,6 +32,5 @@ public class EnemyAttackState : IState
 
     public void Update()
     {
-        throw new System.NotImplementedException();
     }
 }

@@ -16,12 +16,14 @@ public class Enemy : MonoBehaviour
     public LayerMask targetLayer;
     public Transform target;
     private EnemyStateMachine stateMachine;
+    public StateMachine StateMachin => stateMachine;
 
     private void Start()
     {
         Controller = GetComponent<CharacterController>();
         Agent = GetComponent<NavMeshAgent>();
         stateMachine = new EnemyStateMachine(this);
+        stateMachine.ChangeState(stateMachine.IdleState);
     }
 
     private void Update()
@@ -55,6 +57,10 @@ public class Enemy : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, targetingRadius);
 
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
     }
 }

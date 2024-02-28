@@ -16,12 +16,13 @@ public class EnemyMoveState : IState
     }
     public void Enter()
     {
-        _enemy.Agent?.SetDestination(_enemy.target.position);
+        _agent?.SetDestination(_enemy.target.position);
         Debug.Log("MoveEnter");
     }
 
     public void Exit()
     {
+        _agent.ResetPath();
         Debug.Log("MoveExit");
     }
 
@@ -41,16 +42,14 @@ public class EnemyMoveState : IState
         
         if (enemy)
         {
-            _agent.SetDestination(_enemy.target.position);
+            _agent.SetDestination(_enemy.target.position); 
             if(_enemy.Agent.remainingDistance > _agent.stoppingDistance)
             {
                 _enemy.Controller.Move(_agent.velocity * Time.deltaTime);
-
+                return;
             }
-        }
-        if(!enemy && _agent.remainingDistance <= _agent.stoppingDistance)
-        {
-            _stateMachine.ChangeState(_stateMachine.IdleState);
-        }
+        }        
+
+        _stateMachine.ChangeState(_stateMachine.IdleState);
     }
 }
