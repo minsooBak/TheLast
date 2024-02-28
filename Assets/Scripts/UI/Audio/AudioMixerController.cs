@@ -9,9 +9,8 @@ public class AudioMixerController : UIBase
     [SerializeField] private Slider _bgmSlider;
     [SerializeField] private Slider _sfxSlider;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
         _masterSlider.onValueChanged.AddListener(SetMasterVolume);
         _bgmSlider.onValueChanged.AddListener(SetBGMVolume);
         _sfxSlider.onValueChanged.AddListener(SetSFXVolume);
