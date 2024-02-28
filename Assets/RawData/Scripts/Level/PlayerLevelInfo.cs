@@ -7,8 +7,8 @@ public class PlayerLevelInfo
 {
     public byte _level;
     public float _exp;
-    public float _hp;
-    public float _mp;
+    public float _maxHp;
+    public float _maxMp;
     public float _adef;
     public float _mdef;
     public float _str;

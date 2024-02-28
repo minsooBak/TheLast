@@ -5,21 +5,32 @@ using UnityEngine;
 public class PlayerLevelDB
 {
     private Dictionary<int, PlayerLevelInfo> _level = new();
+    private List<PlayerLevelInfo> _levelInfo;
 
-    public PlayerLevelDB()
+    public PlayerLevelDB(byte _id)
     {
         var res = Resources.Load<PlayerBaseLevel>("Data/PlayerBaseLevel");
         var levelSo = Object.Instantiate(res);
-        var enriries = levelSo.MagicianLevel;
 
-        if (enriries == null || enriries.Count <= 0)
+        switch (_id)
+        {
+            case 1:
+                _levelInfo = levelSo.MagicianLevel;
+                break;
+            case 2:
+                _levelInfo = levelSo.MagicianLevel;
+                break;
+        }
+
+        if (_levelInfo == null || _levelInfo.Count <= 0)
         {
             return;
         }
-             var entityCount = enriries.Count;
-        for (int i = 0; i < entityCount; i++)
+        var _levelInfoCount = _levelInfo.Count;
+
+        for (int i = 0; i < _levelInfoCount; i++)
         {
-            var level = enriries[i];
+            var level = _levelInfo[i];
 
             if (_level.ContainsKey(level._level))
             {
@@ -38,5 +49,10 @@ public class PlayerLevelDB
             return _level[level];
         }
         return null;
+    }
+
+    public int GetLevelCount()
+    {
+        return _levelInfo.Count;
     }
 }
