@@ -104,6 +104,7 @@ public class InventoryUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             _curSlot = null;
             return;
         }
+        info.Disable();
         _curSlot.IconTransform.SetParent(transform);
         _startPos = _curSlot.IconTransform.position;
         _endPos = eventData.position;
@@ -168,8 +169,8 @@ public class InventoryUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     public void OnPointerEnter(PointerEventData eventData)
     {
         GameObject obj = eventData.pointerCurrentRaycast.gameObject;
-        if (obj == null || !obj.TryGetComponent(out _curSlot) || _curSlot.Item == null) return;
-        info.Init(_curSlot.Item);
+        if (obj == null || !obj.TryGetComponent(out SlotUI slot) || slot.Item == null) return;
+        info.Init(slot.Item);
         info.Active();
     }
 
