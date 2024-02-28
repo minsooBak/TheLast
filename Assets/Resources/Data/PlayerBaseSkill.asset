@@ -1,0 +1,288 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda3eed90c0b89640a58b013c4b97c8a, type: 3}
+  m_Name: PlayerBaseSkill
+  m_EditorClassIdentifier: 
+  MagicianSkill:
+  - _id: 101
+    _name: "\uC5D0\uB108\uC9C0\uBCFC\uD2B8"
+    _description: "\uB9C8\uB825\uC744 \uC3D8\uB294 \uB9C8\uBC95\uC0AC\uC758 \uAE30\uBCF8
+      \uACF5\uACA9\uC785\uB2C8\uB2E4"
+    _Level1: 1
+    _Level2: 1.5
+    _Level3: 2
+    _damageType: 'physical '
+    _skillType: 'ActiveAttack '
+    _skillPoint: 1
+    _coolDown: 1
+    _upgrade: 1
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 102
+    _name: "\uD30C\uC774\uC5B4\uBCFC"
+    _description: "\uB9C8\uB825\uC744 \uBD88\uB85C \uBCC0\uD658\uD574 \uC3D8\uB294
+      \uB9C8\uBC95\uC785\uB2C8\uB2E4"
+    _Level1: 2
+    _Level2: 2.4
+    _Level3: 3
+    _damageType: 'Magic '
+    _skillType: 'ActiveAttack '
+    _skillPoint: 2
+    _coolDown: 2.5
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 103
+    _name: "\uC544\uC774\uC2A4\uC2A4\uD53C\uC5B4"
+    _description: "\uB9C8\uB825\uC73C\uB85C \uC5BC\uC74C\uCC3D\uC73C\uB85C \uB9CC\uB4E4\uC5B4
+      \uC3D8\uB294 \uB9C8\uBC95\uC785\uB2C8\uB2E4"
+    _Level1: 1.8
+    _Level2: 2.2
+    _Level3: 2.4
+    _damageType: 'Magic '
+    _skillType: 'ActiveAttack '
+    _skillPoint: 2
+    _coolDown: 2.5
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 104
+    _name: "\uB9C8\uB825\uD3ED\uD314"
+    _description: "\uB9C8\uB825\uC744 \uD3ED\uD314\uC2DC\uCF1C \uC77C\uC815\uAD6C\uC5ED\uC5D0
+      \uB370\uBBF8\uC9C0\uB97C \uC785\uD799\uB2C8\uB2E4"
+    _Level1: 2.3
+    _Level2: 2.7
+    _Level3: 3.1
+    _damageType: 'physical '
+    _skillType: 'ActiveAttack '
+    _skillPoint: 2
+    _coolDown: 2.5
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 105
+    _name: "\uB300\uACA9\uBCC0"
+    _description: "\uB9C8\uB825\uC744 \uB545\uC73C\uB85C \uD758\uB824\uBCF4\uB0B4
+      \uD3ED\uD314\uD558\uAC8C \uD558\uB294 \uB9C8\uBC95\uC785\uB2C8\uB2E4"
+    _Level1: 2.5
+    _Level2: 3
+    _Level3: 3.5
+    _damageType: 'physical '
+    _skillType: 'ActiveAttack '
+    _skillPoint: 3
+    _coolDown: 3
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 106
+    _name: "\uBA54\uD14C\uC624"
+    _description: "\uD558\uB298\uC5D0\uC11C \uBA54\uD14C\uC624\uB97C \uB5A8\uC5B4\uD2B8\uB824
+      \uB300\uADDC\uBAA8 \uB370\uBBF8\uC9C0\uB97C \uC785\uD799\uB2C8\uB2E4"
+    _Level1: 4
+    _Level2: 4.5
+    _Level3: 5
+    _damageType: 'Magic '
+    _skillType: 'ActiveAttack '
+    _skillPoint: 5
+    _coolDown: 15
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 107
+    _name: "\uBE14\uB9AC\uC790\uB4DC"
+    _description: "\uC8FC\uBCC0\uC774 \uB2E4 \uC5BC\uC5B4\uBD99\uC744 \uB9CC\uD07C\uC758
+      \uBE14\uB9AC\uC790\uB4DC\uB97C \uC18C\uD658\uD569\uB2C8\uB2E4"
+    _Level1: 3.5
+    _Level2: 3.7
+    _Level3: 3.9
+    _damageType: 'Magic '
+    _skillType: 'ActiveAttack '
+    _skillPoint: 5
+    _coolDown: 15
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 108
+    _name: "\uD751\uB9C8\uBC95"
+    _description: "\uAD81\uADF9\uC758 \uB9C8\uBC95"
+    _Level1: 6
+    _Level2: 8
+    _Level3: 10
+    _damageType: 'Magic '
+    _skillType: 'ActiveAttack '
+    _skillPoint: 10
+    _coolDown: 30
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 201
+    _name: "\uB9C8\uB098\uC2E4\uB4DC"
+    _description: "\uCCB4\uB825\uB300\uC2E0 \uB9C8\uB825\uC73C\uB85C \uB370\uBBF8\uC9C0
+      \uC785\uC2B5\uB2C8\uB2E4"
+    _Level1: 150
+    _Level2: 100
+    _Level3: 50
+    _damageType: exclusion
+    _skillType: 'ActiveBuff '
+    _skillPoint: 1
+    _coolDown: 0
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 202
+    _name: "\uB9E4\uC9C1\uC544\uBA38"
+    _description: "\uC77C\uC815\uC2DC\uAC04\uB3D9\uC548 \uBB3C\uB9AC\uBC29\uC5B4\uB825\uACFC
+      \uB9C8\uBC95\uBC29\uC5B4\uB825\uC774 \uC99D\uAC00\uD569\uB2C8\uB2E4"
+    _Level1: 2
+    _Level2: 4
+    _Level3: 6
+    _damageType: exclusion
+    _skillType: 'ActiveBuff '
+    _skillPoint: 1
+    _coolDown: 30
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 203
+    _name: "\uB9C8\uB825\uBC29\uBCBD"
+    _description: "\uC77C\uC815 \uB370\uBBF8\uC9C0\uB97C \uC548\uBC1B\uC2B5\uB2C8\uB2E4"
+    _Level1: 3
+    _Level2: 5
+    _Level3: 7
+    _damageType: exclusion
+    _skillType: 'ActiveBuff '
+    _skillPoint: 2
+    _coolDown: 30
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 204
+    _name: "\uB9C8\uB098\uC99D\uD3ED"
+    _description: "\uC2A4\uD0AC\uC758 \uC7AC\uC0AC\uC6A9\uC2DC\uAC04\uC774 \uC904\uC5B4\uB4ED\uB2C8\uB2E4"
+    _Level1: 10
+    _Level2: 20
+    _Level3: 30
+    _damageType: exclusion
+    _skillType: 'ActiveBuff '
+    _skillPoint: 2
+    _coolDown: 30
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 205
+    _name: "\uAD50\uAC10"
+    _description: "\uC8FC\uBCC0\uC758 \uB9C8\uB098\uB97C \uD761\uC218\uD569\uB2C8\uB2E4"
+    _Level1: 50
+    _Level2: 75
+    _Level3: 100
+    _damageType: exclusion
+    _skillType: 'ActiveBuff '
+    _skillPoint: 3
+    _coolDown: 60
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 206
+    _name: "\uB77C\uC774\uD2B8\uB2DD\uC544\uBA38"
+    _description: "\uC8FC\uBCC0\uC5D0 \uC624\uB294 \uC801\uC5D0\uAC8C \uB370\uBBF8\uC9C0\uB97C
+      \uC90D\uB2C8\uB2E4"
+    _Level1: 1
+    _Level2: 2
+    _Level3: 3
+    _damageType: 'Magic '
+    _skillType: 'ActiveBuff '
+    _skillPoint: 4
+    _coolDown: 60
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 207
+    _name: "\uC544\uC774\uC2A4\uC544\uBA38"
+    _description: "\uC8FC\uBCC0\uC758 \uC801\uB4E4\uC744 \uB290\uB824\uC9C0\uAC8C
+      \uD569\uB2C8\uB2E4"
+    _Level1: 1
+    _Level2: 1.5
+    _Level3: 2
+    _damageType: exclusion
+    _skillType: 'ActiveBuff '
+    _skillPoint: 4
+    _coolDown: 60
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  - _id: 208
+    _name: "\uACFC\uBD80\uD654"
+    _description: "\uB370\uBBF8\uC9C0\uAC00 \uC99D\uAC00\uD558\uB294 \uB300\uC2E0
+      \uC77C\uC815\uC2DC\uAC04\uB3D9\uC548 \uB9C8\uBC95\uC744 \uC4F8 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4"
+    _Level1: 2
+    _Level2: 3.5
+    _Level3: 5
+    _damageType: exclusion
+    _skillType: 'ActiveBuff '
+    _skillPoint: 7
+    _coolDown: 120
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/Magician/
+    _spritePath: Images/Skill/Magician/
+  OrcWarriorsSkill:
+  - _id: 101
+    _name: 
+    _description: 
+    _Level1: 0
+    _Level2: 0
+    _Level3: 0
+    _damageType: 'physical '
+    _skillType: 'ActiveAttack '
+    _skillPoint: 0
+    _coolDown: 0
+    _upgrade: 0
+    _prefabPath: Prefabs/Skill/OrcWarriors/
+    _spritePath: Images/Skill/OrcWarriors/
+  - _id: 102
+    _name: 
+    _description: 
+    _Level1: 0
+    _Level2: 0
+    _Level3: 0
+    _damageType: 'Magic '
+    _skillType: 'ActiveBuff '
+    _skillPoint: 0
+    _coolDown: 0
+    _upgrade: 0
+    _prefabPath: 
+    _spritePath: 
+  - _id: 201
+    _name: 
+    _description: 
+    _Level1: 0
+    _Level2: 0
+    _Level3: 0
+    _damageType: exclusion
+    _skillType: 
+    _skillPoint: 0
+    _coolDown: 0
+    _upgrade: 0
+    _prefabPath: 
+    _spritePath: 
+  - _id: 202
+    _name: 
+    _description: 
+    _Level1: 0
+    _Level2: 0
+    _Level3: 0
+    _damageType: 
+    _skillType: 
+    _skillPoint: 0
+    _coolDown: 0
+    _upgrade: 0
+    _prefabPath: 
+    _spritePath: 

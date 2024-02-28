@@ -6,19 +6,23 @@ public class PlayerInfo
     //Player Status
     private string playerName;
     private string job;
-    private float exp;
+    private short level = 1;
+    private float exp = 0;
     //health
     private float hp;
-    private float Maxhp;
+    private float maxHp;
     private float mp;
-    private float Maxmp;
+    private float maxMp;
     //defense
-    private float adef;
-    private float mdef;
+    private float aDef;
+    private float mDef;
     //stat
     private float statStr;
     private float statInt;
     private float statLuk;
+    //point
+    private int statPoint;
+    private int skillPoint;
     //move
     private float jump;
     private float speed;
@@ -26,13 +30,14 @@ public class PlayerInfo
     //Status Property
     public string PlayerName { get { return playerName; } set { playerName = value; } }
     public string Job { get { return job; } set { job = value; } }
+    public short Level { get { return level; } set { level = value; } }
     public float Exp { get { return exp; } set { exp = value; } }
     public float Hp { get { return hp; } set { hp = value; } }
-    public float MaxHp { get { return Maxhp; } set { Maxhp = value; } }
+    public float MaxHp { get { return maxHp; } set { maxHp = value; } }
     public float Mp { get { return mp; } set { mp = value; } }
-    public float MaxMp { get { return Maxmp; } set { Maxmp = value; } }
-    public float Adef { get { return adef; } set { adef = value; } }
-    public float Mdef { get { return mdef; } set { mdef = value; } }
+    public float MaxMp { get { return maxMp; } set { maxMp = value; } }
+    public float ADef { get { return aDef; } set { aDef = value; } }
+    public float MDef { get { return mDef; } set { mDef = value; } }
     public float StatStr { get { return statStr; } set { statStr = value; } }
     public float StatInt { get { return statInt; } set { statInt = value; } }
     public float StatLuk { get { return statLuk; } set { statLuk = value; } }
