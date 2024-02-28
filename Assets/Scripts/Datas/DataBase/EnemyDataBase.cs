@@ -32,8 +32,7 @@ public class EnemyData
     [SerializeField] private int _itemID;
 
     public int ID { get { return _id; } }
-    public string Name { get { return _path; } }
-    public float MaxHP { get { return _hp; } }
+    public string Name { get { return _path; } }   
     public float HP { get { return _hp; } }
     public float Attack { get { return _attack; } }
     public float Defense { get { return _df; } }

@@ -6,6 +6,7 @@ public class PlayerAttackState : PlayerBaseState
 {
     public PlayerAttackState(PlayerStateMachine playerStateMachine) : base(playerStateMachine)
     {
+
     }
 
     public override void Enter()
