@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enums;
-public class TestScript : MonoBehaviour
+using System;
+
+public class PlayerInteraction : MonoBehaviour
 {
+    private PlayerInput _input;
     private IInteractable _interactObject;
-    private void Update()
+
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            _interactObject?.Interaction();
-        }
+        _input = GetComponent<PlayerInput>();
+        _input.PlayerActions.Interaction.started += Interaction;
     }
 
+    private void Interaction(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        _interactObject?.Interaction();
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Interactable"))

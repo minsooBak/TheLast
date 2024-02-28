@@ -5,6 +5,6 @@ public class DungeonScene : IBaseScene
 {
     public override void Init()
     {
-        //TODO 던전레벨을 준다
+        //TODO 던전을 생성한다
     }
 }

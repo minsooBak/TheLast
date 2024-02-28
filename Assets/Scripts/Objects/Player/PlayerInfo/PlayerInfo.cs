@@ -38,4 +38,5 @@ public class PlayerInfo
     public float StatLuk { get { return statLuk; } set { statLuk = value; } }
     public float Jump { get { return jump; } set { jump = value; } }
     public float Speed { get { return speed; } set { speed = value; } }
+
 }

@@ -24,7 +24,6 @@ public class DungeonMainRoom : MonoBehaviour
             SpawnEnemy();
         }
     }
-
     private void SpawnEnemy()
     {
         int spawnCount = _manager.dungeonData.SpawnCount / _manager.roomCount;
@@ -53,7 +52,6 @@ public class DungeonMainRoom : MonoBehaviour
         DoorOpen();
         enabled = false;
     }
-
     private Vector3 GetRandomPosition()
     {
         int randomIndex = Random.Range(0, _enemySpawnPos.Length);

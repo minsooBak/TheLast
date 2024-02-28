@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class DungeonInfo : MonoBehaviour, IInteractable
 {
-    [SerializeField] private TextMesh _text;
+    [SerializeField] private TextMeshPro _text;
 
     public void InteractEnter()
     {
@@ -19,5 +19,6 @@ public class DungeonInfo : MonoBehaviour, IInteractable
     public void Interaction()
     {
         // TODO 던전Info UI창 띄우기
+        Debug.Log("INFO");
     }
 }

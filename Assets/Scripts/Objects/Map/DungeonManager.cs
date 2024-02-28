@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class DungeonManager : MonoBehaviour
 {
-    // 이 값을 어떻게 할까
-    public static int Level = 1;
     private DungeonDataBase _dungeonDB;
     private EnemyDataBase _enemyDB;
 
@@ -20,13 +18,16 @@ public class DungeonManager : MonoBehaviour
     {
         GameManager.DataBases.TryGetDataBase(out _dungeonDB);
         GameManager.DataBases.TryGetDataBase(out _enemyDB);
-
-        // 이값은 어디서 값을 가져와야 될까?
-        _level = Level;
+        _level = PlayerPrefs.GetInt("DungeonLevel", 1);
 
         dungeonData = _dungeonDB.GetData(_level);
 
         int spawnedEnemyID = dungeonData.ID;
         enemyData = _enemyDB.GetData(spawnedEnemyID);
+    }
+    public void LevelUp()
+    {
+        ++_level;
+        PlayerPrefs.SetInt("DungeonLevel", _level);
     }
 }
