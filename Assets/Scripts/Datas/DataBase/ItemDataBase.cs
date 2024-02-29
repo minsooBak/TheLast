@@ -39,7 +39,7 @@ public class ItemEntity
         get
         {
             if (_sprite == null)
-                _sprite = Resources.Load<Sprite>($"Icon/{ItemPath}");
+                _sprite = Resources.Load<Sprite>($"Icon/Item/{ItemPath}");
             return _sprite;
         }
     }
