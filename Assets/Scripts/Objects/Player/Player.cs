@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public ForceReceiver ForceReceiver { get; private set; }
     public PlayerInfo playerInfo { get; private set; }
     public PlayerInfoHandler playerInfoHandler { get; private set; }
+    public CharacterHealthSystem healthSystem { get; private set; }
 
     private PlayerStateMachine stateMachine;
     
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
         Controller = GetComponent<CharacterController>();
         ForceReceiver = GetComponent<ForceReceiver>();
         playerInfoHandler = GetComponent<PlayerInfoHandler>();
+        healthSystem = GetComponent<CharacterHealthSystem>();
 
         playerInfo = new PlayerInfo();
         stateMachine = new PlayerStateMachine(this);
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
     {
         //Cursor.lockState = CursorLockMode.Locked;
         stateMachine.ChangeState(stateMachine.IdleState);
+        healthSystem.OnDie += Dead;
         Debug.Log(playerInfo.Hp);
     }
 
@@ -50,5 +53,9 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         stateMachine.PhysicsUpdate();
+    }
+    public void Dead()
+    {
+        Debug.Log("PlayerDie");
     }
 }
