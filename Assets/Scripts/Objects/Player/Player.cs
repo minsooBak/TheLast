@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public PlayerInfo playerInfo { get; private set; }
     public PlayerInfoHandler playerInfoHandler { get; private set; }
     public CharacterHealthSystem healthSystem { get; private set; }
+    public PlayerSkillHandler skillHandler { get; private set; }
 
     private PlayerStateMachine stateMachine;
     
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
         ForceReceiver = GetComponent<ForceReceiver>();
         playerInfoHandler = GetComponent<PlayerInfoHandler>();
         healthSystem = GetComponent<CharacterHealthSystem>();
+        skillHandler = GetComponent<PlayerSkillHandler>();
 
         playerInfo = new PlayerInfo();
         stateMachine = new PlayerStateMachine(this);

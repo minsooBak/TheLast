@@ -24,13 +24,12 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBGM(AudioClip clip, Vector3 position, float minDir, float maxDir)
     {
-        {
-            AudioSource source = _bgmPooling.GetObject(position).GetComponent<AudioSource>();
-            source.clip = clip;
-            source.minDistance = minDir;
-            source.maxDistance = maxDir;
-            source.Play();
-        }
+        AudioSource source = _bgmPooling.GetObject(position).GetComponent<AudioSource>();
+        _bgmPooling.ReturnObject(source.gameObject);
+        source.clip = clip;
+        source.minDistance = minDir;
+        source.maxDistance = maxDir;
+        source.Play();
     }
 
     public void PlaySFX(AudioClip clip, Vector3 position, float minDir, float maxDir)
@@ -40,4 +39,5 @@ public class SoundManager : MonoBehaviour
         source.maxDistance = maxDir;
         source.PlayOneShot(clip);
     }
+
 }
