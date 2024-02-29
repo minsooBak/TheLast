@@ -150,7 +150,6 @@ public class PlayerBaseState : IState
         else if(stateMachine.MovementInput.x != 0) //이동중이 아니거나 카메라 고정 시 플레이어 좌우 회전
         {
             float playerRot = stateMachine.Player.transform.rotation.eulerAngles.y+ stateMachine.MovementInput.x;
-            Debug.Log("playerRot: " + playerRot);
             Quaternion targetRotation = Quaternion.Euler(0, playerRot, 0);
             stateMachine.Player.transform.rotation = targetRotation;
         }

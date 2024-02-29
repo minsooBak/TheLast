@@ -61,11 +61,8 @@ public class VirtualCameraController : MonoBehaviour
             playerFoward.y = 0;
             rad = cameraFoward.magnitude;
             crossProduct = Vector3.Cross(cameraFoward.normalized, playerFoward.normalized);
-            Debug.Log("Cross: " + crossProduct);
             dotProduct = Vector3.Dot(cameraFoward.normalized, playerFoward.normalized);
-            Debug.Log("Dot: " + dotProduct);
             angle =Vector3.Angle(cameraFoward.normalized, playerFoward.normalized)*(crossProduct.y>=0?1:-1);
-            Debug.Log("Angle: " + angle);
             if (dotProduct < 0)
             {
                 if(crossProduct.y < 0)
