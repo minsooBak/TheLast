@@ -18,7 +18,7 @@ public class PlayerLevelDB
                 _levelInfo = levelSo.MagicianLevel;
                 break;
             case 2:
-                _levelInfo = levelSo.MagicianLevel;
+                _levelInfo = levelSo.OrcWarriorsLevel;
                 break;
         }
 

@@ -16,11 +16,13 @@ public class CharacterHealthSystem : MonoBehaviour
     private Enemy enemy;
     public event Action OnDie;
     public event Action OnSkill;
+    public PlayerInfo playerInfo;
     //public event Action NotEnoughMana;
 
 
     private void Start()
     {
+        playerInfo = GameManager.PlayerManager.PlayerInfoManager.PlayerInfo;
         characterType = Utility.GetHashWithTag(gameObject);
         playerHash = Utility.GetHashWithString("Player");
         enemyHash = Utility.GetHashWithString("Enemy");
@@ -34,8 +36,8 @@ public class CharacterHealthSystem : MonoBehaviour
         if (playerHash == characterType)
         {
             player = GetComponent<Player>();
-            player.playerInfo.Hp = player.playerInfo.MaxHp;
-            player.playerInfo.Mp = player.playerInfo.MaxMp;
+            playerInfo.Hp = playerInfo.MaxHp;
+            playerInfo.Mp = playerInfo.MaxMp;
         }
         if (enemyHash == characterType)
         {
@@ -48,11 +50,11 @@ public class CharacterHealthSystem : MonoBehaviour
     {
         if (playerHash == characterType)
         {
-            if (player.playerInfo.Hp == 0) return;
-            player.playerInfo.Hp = Mathf.Min(player.playerInfo.MaxHp, Mathf.Max(player.playerInfo.Hp - damage, 0));
-            Debug.Log(player.playerInfo.Hp);
+            if (playerInfo.Hp == 0) return;
+            playerInfo.Hp = Mathf.Min(playerInfo.MaxHp, Mathf.Max(playerInfo.Hp - damage, 0));
+            Debug.Log(playerInfo.Hp);
 
-            if (player.playerInfo.Hp == 0)
+            if (playerInfo.Hp == 0)
                 OnDie?.Invoke();
         }
         if (enemyHash == characterType)
