@@ -11,6 +11,7 @@ public class AudioMixerController : UIBase
 
     private void Awake()
     {
+        GetVolume();
         _masterSlider.onValueChanged.AddListener(SetMasterVolume);
         _bgmSlider.onValueChanged.AddListener(SetBGMVolume);
         _sfxSlider.onValueChanged.AddListener(SetSFXVolume);
@@ -29,5 +30,19 @@ public class AudioMixerController : UIBase
     private void SetSFXVolume(float volume)
     {
         _audioMixer.SetFloat("SFX", Mathf.Log10(volume) * 20);
+    }
+
+    private void GetVolume()
+    {
+        _masterSlider.value = PlayerPrefs.HasKey("MasterVolume") ? PlayerPrefs.GetFloat("MasterVolume") : 1;
+        _bgmSlider.value = PlayerPrefs.HasKey("BGMVolume") ? PlayerPrefs.GetFloat("BGMVolume") : 1;
+        _sfxSlider.value = PlayerPrefs.HasKey("SFXVolume") ? PlayerPrefs.GetFloat("SFXVolume") : 1;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetFloat("MasterVolume", _masterSlider.value);
+        PlayerPrefs.SetFloat("BGMVolume", _bgmSlider.value);
+        PlayerPrefs.SetFloat("SFXVolume", _sfxSlider.value);
     }
 }
