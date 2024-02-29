@@ -67,6 +67,6 @@ public class PlayerSkillHandler : MonoBehaviour
     }
     public void SkillSolt1()
     {
-
+        GameObject instance = Instantiate(Resources.Load("",typeof(GameObject))) as GameObject;
     }
 }

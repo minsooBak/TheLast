@@ -25,7 +25,7 @@ MonoBehaviour:
     _skillPoint: 1
     _coolDown: 1
     _upgrade: 1
-    _prefabPath: Prefabs/Skill/Magician/
+    _prefabPath: Prefabs/Skill/Magician/Energy Volt
     _spritePath: Images/Skill/Magician/
   - _id: 102
     _name: "\uD30C\uC774\uC5B4\uBCFC"

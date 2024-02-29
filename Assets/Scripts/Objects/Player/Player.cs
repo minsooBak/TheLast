@@ -14,13 +14,11 @@ public class Player : MonoBehaviour
     public PlayerInput Input { get; private set; }
     public CharacterController Controller { get; private set; }
     public ForceReceiver ForceReceiver { get; private set; }
-    public PlayerInfo playerInfo { get; private set; }
-    public PlayerInfoHandler playerInfoHandler { get; private set; }
     public CharacterHealthSystem healthSystem { get; private set; }
     public PlayerSkillHandler skillHandler { get; private set; }
 
     private PlayerStateMachine stateMachine;
-    
+    public byte id = 1;
 
     private void Awake()
     {
@@ -31,20 +29,16 @@ public class Player : MonoBehaviour
         Input = GetComponent<PlayerInput>();
         Controller = GetComponent<CharacterController>();
         ForceReceiver = GetComponent<ForceReceiver>();
-        playerInfoHandler = GetComponent<PlayerInfoHandler>();
         healthSystem = GetComponent<CharacterHealthSystem>();
         skillHandler = GetComponent<PlayerSkillHandler>();
 
-        playerInfo = new PlayerInfo();
         stateMachine = new PlayerStateMachine(this);
     }
 
     private void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
         stateMachine.ChangeState(stateMachine.IdleState);
         healthSystem.OnDie += Dead;
-        Debug.Log(playerInfo.Hp);
     }
 
     private void Update()

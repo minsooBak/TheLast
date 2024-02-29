@@ -5,7 +5,7 @@ using UnityEngine;
 public class BaseSkill : MonoBehaviour
 {
     protected float speed = 10f;
-    protected float damage = 10f;
+    protected float damage;
 
     protected Rigidbody rigidbody;
     protected Player player;
@@ -18,6 +18,7 @@ public class BaseSkill : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").GetComponent<Player>();
         target = player.skillHandler.target;
+        
     }
     protected void FixedUpdate()
     {
@@ -37,7 +38,7 @@ public class BaseSkill : MonoBehaviour
         if (collision.gameObject.layer == 8)
         {
             healthSystem = collision.gameObject.GetComponent<CharacterHealthSystem>();
-            healthSystem.TakeDamage(10f);
+            healthSystem.TakeDamage(damage);
         }
     }
 }
