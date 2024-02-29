@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyIdleState : IState
 {
     private EnemyStateMachine _stateMachine;
-    private Enemy _enemy; 
+    private Enemy _enemy;
+    private string idleParameterName = "Idle";
     public EnemyIdleState(EnemyStateMachine stateMachine)
     {
         _stateMachine = stateMachine;
@@ -14,7 +15,7 @@ public class EnemyIdleState : IState
     public void Enter()
     {
         _enemy.Controller?.Move(Vector3.zero);
-
+        //_stateMachine.Enemy.Animator.SetBool(idleParameterName, true);
         //TODO Idle 애니메이션 off
         Debug.Log("IdleEnter");
     }
@@ -22,6 +23,7 @@ public class EnemyIdleState : IState
     public void Exit()
     {
         //TODO Idle 애니메이션 off
+        //_stateMachine.Enemy.Animator.SetBool(idleParameterName, false);
         Debug.Log("IdleExit");
     }
 

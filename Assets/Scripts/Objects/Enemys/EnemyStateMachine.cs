@@ -16,7 +16,7 @@ public class EnemyStateMachine : StateMachine
 
         IdleState = new EnemyIdleState(this);
         MoveState = new EnemyMoveState(this);
-        AttackState = new EnemyAttackState(this);        
+        AttackState = new EnemyAttackState(this);
     }
 
 }

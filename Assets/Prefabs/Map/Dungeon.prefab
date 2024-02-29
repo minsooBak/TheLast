@@ -21417,7 +21417,6 @@ GameObject:
   m_Component:
   - component: {fileID: 222606583099623792}
   - component: {fileID: 2464827375879143624}
-  - component: {fileID: 18465018667099370}
   m_Layer: 0
   m_Name: Dungeon
   m_TagString: Untagged
@@ -21447,7 +21446,7 @@ Transform:
   - {fileID: 7172742189578182291}
   - {fileID: 8736337032344561729}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2464827375879143624
 MonoBehaviour:
@@ -21477,33 +21476,6 @@ MonoBehaviour:
     _exp: 0
     _itemID: 0
   roomCount: 2
---- !u!54 &18465018667099370
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3803137395981928162}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &3809735049650338735
 GameObject:
   m_ObjectHideFlags: 0

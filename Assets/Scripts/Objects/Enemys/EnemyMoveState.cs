@@ -8,6 +8,7 @@ public class EnemyMoveState : IState
     private EnemyStateMachine _stateMachine;
     private Enemy _enemy;
     private NavMeshAgent _agent;
+    private string moveParameterName = "Move";
     public EnemyMoveState(EnemyStateMachine stateMachine)
     {
         _stateMachine = stateMachine;
@@ -16,41 +17,42 @@ public class EnemyMoveState : IState
     }
     public void Enter()
     {
-        _enemy.Agent?.SetDestination(_enemy.target.position);
+        _agent?.SetDestination(_enemy.target.position);
+        _stateMachine.Enemy.Animator.SetBool(moveParameterName, true);
         Debug.Log("MoveEnter");
     }
 
     public void Exit()
     {
+        _agent.ResetPath();
+        _stateMachine.Enemy.Animator.SetBool(moveParameterName, false);
         Debug.Log("MoveExit");
     }
 
     public void HandleInput()
     {
-        
+
     }
 
     public void PhysicsUpdate()
     {
-        
+
     }
 
     public void Update()
     {
         Transform enemy = _enemy.DetectPlayer();
-        
+
         if (enemy)
         {
             _agent.SetDestination(_enemy.target.position);
-            if(_enemy.Agent.remainingDistance > _agent.stoppingDistance)
+            if (_enemy.Agent.remainingDistance > _agent.stoppingDistance)
             {
                 _enemy.Controller.Move(_agent.velocity * Time.deltaTime);
-
+                return;
             }
         }
-        if(!enemy && _agent.remainingDistance <= _agent.stoppingDistance)
-        {
-            _stateMachine.ChangeState(_stateMachine.IdleState);
-        }
+
+        _stateMachine.ChangeState(_stateMachine.IdleState);
     }
 }
