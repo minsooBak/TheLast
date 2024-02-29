@@ -10,10 +10,13 @@ public class ItemDataInfoUI : UIBase
     [SerializeField] private TextMeshProUGUI _description;
     private StringBuilder _sb = new(200);
     private RectTransform _rectTransform;
-
+    private float screenRight;
+    private float screenBottom;
     public void Awake()
     {
         _rectTransform = GetComponent<RectTransform>();
+        screenRight = Screen.width;
+        screenBottom = Screen.height;
     }
 
     public void Init(ItemEntity item)
@@ -32,19 +35,7 @@ public class ItemDataInfoUI : UIBase
     private void Update()
     {
         transform.position = Input.mousePosition;
-        Rect baseRect = _rectTransform.rect;
 
-        float x = transform.position.x + baseRect.xMax;
-        if (x > Screen.width)
-        {
-            transform.position += new Vector3(Screen.width - x, 0);
-        }
-
-        float y = transform.position.y + baseRect.yMin;
-        if (y < 0)
-        {
-            transform.position += new Vector3(0, -y); 
-        }
     }
 
     private void StatText(ItemEntity item)
