@@ -6,7 +6,7 @@ using UnityEngine;
 public class Entry : MonoBehaviour, IInteractable
 {
     [SerializeField] private TextMeshPro _text;
-
+    [SerializeField] private Enums.SceneState _sceneState;
     public void InteractEnter()
     {
         _text.gameObject.SetActive(true);
@@ -20,6 +20,6 @@ public class Entry : MonoBehaviour, IInteractable
     public void Interaction()
     {
         // TODO 던전Info UI창 띄우기
-        GameManager.ScenesManager.ChangeScene(Enums.SceneState.DungeonScene);
+        GameManager.ScenesManager.ChangeScene(_sceneState);
     }
 }
