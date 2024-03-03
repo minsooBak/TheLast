@@ -15,13 +15,13 @@ public class EnemyAttackState : IState
     public void Enter()
     {
         Debug.Log("AttackEnter");
-        _stateMachine.Enemy.Animator.SetBool(attackParameterName, true);
+        _stateMachine.Enemy.Animator.SetTrigger(attackParameterName);
     }
 
     public void Exit()
     {
         Debug.Log("AttackExit");
-        _stateMachine.Enemy.Animator.SetBool(attackParameterName, false);
+       
     }
 
     public void HandleInput()
@@ -36,13 +36,5 @@ public class EnemyAttackState : IState
 
     public void Update()
     {
-        Transform enemy = _enemy.DetectPlayer();
-        if (enemy)
-        {
-            if (!_enemy.IsAvaliableAttack)
-            {
-                _stateMachine.ChangeState(_stateMachine.IdleState);
-            }
-        }
     }
 }

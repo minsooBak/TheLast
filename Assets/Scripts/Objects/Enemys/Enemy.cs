@@ -16,21 +16,21 @@ public class Enemy : MonoBehaviour
     public CharacterController Controller { get; private set; }
     public NavMeshAgent Agent { get; private set; }
     public Animator Animator { get; private set; }
-    public CharacterHealthSystem healthSystem { get; private set; }
+    public CharacterHealthSystem HealthSystem { get; private set; }
     public LayerMask targetLayer;
     public Transform target;
     private EnemyStateMachine stateMachine;
-    public StateMachine StateMachin => stateMachine;
+    public EnemyStateMachine StateMachine => stateMachine;
 
     [field: Header("data")]
     public float MaxHp { get; set; }
     public float Hp { get; set; }
-    private void Start()
+    private void Awake()
     {
         Controller = GetComponent<CharacterController>();
         Agent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<Animator>();
-        healthSystem = GetComponent<CharacterHealthSystem>();
+        HealthSystem = GetComponent<CharacterHealthSystem>();
         stateMachine = new EnemyStateMachine(this);
         stateMachine.ChangeState(stateMachine.IdleState);
     }
