@@ -11,7 +11,7 @@ public class InputData
     public int intUpPoint;
     public int lukUpPoint;
 }
-public class PlayerInfoManager
+public class PlayerInfoManager :MonoBehaviour
 {
     public PlayerInfoManager()
     {
@@ -27,7 +27,7 @@ public class PlayerInfoManager
     private PlayerStatusInfo statusInfo;
     private PlayerLevelInfo levelInfo;
     private InputData inputData;
-
+    public UserData userData;// CharacterSelectScene에서 넘긴 데이터
     private int StatusPoint = 3;
 
     public PlayerInfo PlayerInfo { get; private set; }
@@ -35,8 +35,14 @@ public class PlayerInfoManager
     {
         PlayerInfo = new PlayerInfo();
         statusDB = new PlayerStatusDB();
-        levelDB = new PlayerLevelDB(default);
-        CreateCharacterStatus(default);
+
+        
+        userData = new UserData();//수정
+    }
+    public void Init2()
+    {
+        levelDB = new PlayerLevelDB(userData.statusId);
+        CreateCharacterStatus(userData.statusId);
     }
     private void CreateCharacterStatus(byte _id)
     {
@@ -79,10 +85,10 @@ public class PlayerInfoManager
                 PlayerInfo.IntUpPoint = inputData.intUpPoint;
                 PlayerInfo.LukUpPoint = inputData.lukUpPoint;
 
-                int Point = (i * StatusPoint) - (int)(PlayerInfo.StatStr 
-                    + PlayerInfo.StatInt 
+                int Point = (i * StatusPoint) - (int)(PlayerInfo.StatStr
+                    + PlayerInfo.StatInt
                     + PlayerInfo.StatLuk);
-                
+
                 PlayerInfo.StatPoint = Point;
             }
         }

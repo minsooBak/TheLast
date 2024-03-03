@@ -6,10 +6,9 @@ public class PlayerManager : ScriptableObject
 {
     public SkillManager SkillManager { get; private set; }
     public PlayerInfoManager PlayerInfoManager { get; private set; }
-    
-    private void Awake()
+    public PlayerManager()
     {
-
+        PlayerInfoManager = new PlayerInfoManager();
     }
     public void Init()
     {
