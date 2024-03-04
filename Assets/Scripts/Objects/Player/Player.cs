@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public ForceReceiver ForceReceiver { get; private set; }
     public CharacterHealthSystem healthSystem { get; private set; }
     public PlayerSkillHandler skillHandler { get; private set; }
+    public VirtualCameraController VirtualCameraController { get; private set; }
 
     private PlayerStateMachine stateMachine;
     public byte id = 1;
@@ -27,6 +28,7 @@ public class Player : MonoBehaviour
 
         Rigidbody = GetComponent<Rigidbody>();
         Animator = GetComponentInChildren<Animator>();
+        VirtualCameraController = GetComponentInChildren<VirtualCameraController>();
         Input = GetComponent<PlayerInput>();
         Controller = GetComponent<CharacterController>();
         ForceReceiver = GetComponent<ForceReceiver>();
