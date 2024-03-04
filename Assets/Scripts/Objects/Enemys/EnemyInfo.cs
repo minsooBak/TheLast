@@ -8,6 +8,7 @@ public class EnemyInfo
     [field : SerializeField] public float MaxHp { get; set; }
     [field: SerializeField] public float Hp { get; set; }
     [field: SerializeField] public float MoveSpeed { get; set; }
+    [field: SerializeField] public float Attack { get; set; }
     [field: SerializeField] public float TargetingRadius { get; set; }
     [field: SerializeField] public float AttackRange { get; set; }
     public void SetData(int id)
@@ -16,6 +17,7 @@ public class EnemyInfo
         EnemyData Data = enemyDataBase.GetData(id);
         MaxHp = Data.HP;
         Hp = Data.HP;
+        Attack = Data.Attack;
         MoveSpeed = 1.0f;
         TargetingRadius = 10.0f;
         AttackRange = 1.5f;

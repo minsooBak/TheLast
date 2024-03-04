@@ -50,7 +50,7 @@ public class ItemEntity
         get
         {
             if (DropItem == null)
-                DropItem = Resources.Load<GameObject>($"Prefab/{ItemPath}");
+                DropItem = Resources.Load<GameObject>($"Prefab/Item/{ItemPath}");
             return DropItem;
         }
         private set { DropItem = value; }
