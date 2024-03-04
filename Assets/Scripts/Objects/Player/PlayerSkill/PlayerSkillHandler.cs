@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Playables;
 using UnityEngine.UI;
 using UnityEngine.Windows;
@@ -18,8 +19,6 @@ public class PlayerSkillHandler : MonoBehaviour
     Player player;
     private PlayerInput playerInput;
 
-    private int skillSlotCount;
-    private Button[] skillButton;
     private GameObject skillSlot;
 
     private PlayerSkill skillInfo;
@@ -30,13 +29,17 @@ public class PlayerSkillHandler : MonoBehaviour
 
     MagicianSkill magicianSkill;
 
+    private byte slot0ID;
+    private byte slot1ID;
+    private byte slot2ID;
+    private byte slot3ID;
+
     private void Awake()
     {
         playerInfo = GameManager.PlayerManager.PlayerInfoManager.PlayerInfo;
         skillInfo = GameManager.PlayerManager.SkillManager.PlayerSkill;
         skillDB = GameManager.PlayerManager.SkillManager.skillData;
         player = GetComponent<Player>();
-        skillSlot = GameObject.Find("SkillSlot");
         switch (GameManager.PlayerManager.PlayerInfoManager.userData.statusId)
         {
             case 1:
@@ -49,16 +52,8 @@ public class PlayerSkillHandler : MonoBehaviour
     }
     private void Start()
     {
-        skillSlotCount = skillSlot.transform.childCount;
 
-        skillButton = skillSlot.GetComponentsInChildren<Button>();
 
-        for (int i = 0; i < skillButton.Length; i++)
-        {
-
-            int temp = i;
-            skillButton[i].onClick.AddListener(() => SkillLevelUp(temp));
-        }
     }
     private void Update()
     {
@@ -102,231 +97,35 @@ public class PlayerSkillHandler : MonoBehaviour
     }
     public void SkillSolt1()
     {
-        magicianSkill.EnergyVolt(attackPoint);
+        magicianSkill.SkillSelect(slot0ID, target, transform, attackPoint);
     }
     public void SkillSolt2()
     {
-       magicianSkill.FireBall(attackPoint);
+        magicianSkill.SkillSelect(slot1ID, target, transform, attackPoint);
     }
     public void SkillSolt3()
     {
-        magicianSkill.Blizzard(transform);
+        magicianSkill.SkillSelect(slot2ID, target, transform, attackPoint);
     }
     public void SkillSolt4()
     {
-        magicianSkill.Meteors(target.transform,transform);
+        magicianSkill.SkillSelect(slot3ID, target, transform, attackPoint);
     }
-
-    public void SkillLevelUp(int num)
+    public void SkillSoltChange(byte id,byte slotsNum)
     {
-        switch (num)
+        switch (slotsNum)
         {
+            case 0:
+                slot0ID = id;
+                break;
             case 1:
-                if (skillInfo.playerSkillInfo[101] > 3
-                    && playerInfo.SkillPoint <= skillDB.GetData(101)._skillPoint)
-                {
-                    skillInfo.playerSkillInfo[101] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(101)._skillPoint;
-                }
-                else
-                {
-
-                }
+                slot1ID = id;
                 break;
             case 2:
-                if (skillInfo.playerSkillInfo[102] > 3
-                    && playerInfo.SkillPoint <= skillDB.GetData(102)._skillPoint
-                    && skillInfo.playerSkillInfo[101] >= 1)
-                {
-                    skillInfo.playerSkillInfo[102] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(102)._skillPoint;
-                }
-                else
-                {
-
-                }
+                slot2ID = id;
                 break;
             case 3:
-                if (skillInfo.playerSkillInfo[103] > 3
-                    && playerInfo.SkillPoint <= skillDB.GetData(103)._skillPoint
-                    && skillInfo.playerSkillInfo[101] >= 1)
-                {
-                    skillInfo.playerSkillInfo[103] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(103)._skillPoint;
-                }
-                else
-                {
-
-                }
-                break;
-            case 4:
-                if (skillInfo.playerSkillInfo[104] > 3
-                && playerInfo.SkillPoint <= skillDB.GetData(104)._skillPoint
-                && skillInfo.playerSkillInfo[101] >= 1)
-                {
-                    skillInfo.playerSkillInfo[104] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(104)._skillPoint;
-                }
-                else
-                {
-
-                }
-                break;
-            case 5:
-                if (skillInfo.playerSkillInfo[105] > 3
-                && playerInfo.SkillPoint <= skillDB.GetData(105)._skillPoint
-                && skillInfo.playerSkillInfo[104] >= 1)
-                {
-                    skillInfo.playerSkillInfo[105] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(105)._skillPoint;
-                }
-                else
-                {
-
-                }
-                break;
-            case 6:
-                if (skillInfo.playerSkillInfo[106] > 3
-                && playerInfo.SkillPoint <= skillDB.GetData(106)._skillPoint
-                && skillInfo.playerSkillInfo[102] >= 1)
-                {
-                    skillInfo.playerSkillInfo[106] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(106)._skillPoint;
-                }
-                else
-                {
-
-                }
-                break;
-            case 7:
-                if (skillInfo.playerSkillInfo[107] > 3
-                && playerInfo.SkillPoint <= skillDB.GetData(107)._skillPoint
-                && skillInfo.playerSkillInfo[103] >= 1)
-                {
-                    skillInfo.playerSkillInfo[107] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(107)._skillPoint;
-                }
-                else
-                {
-
-                }
-                break;
-            case 8:
-                if (skillInfo.playerSkillInfo[108] > 3
-                && playerInfo.SkillPoint <= skillDB.GetData(108)._skillPoint
-                && skillInfo.playerSkillInfo[105] >= 1
-                && skillInfo.playerSkillInfo[106] >= 1
-                && skillInfo.playerSkillInfo[107] >= 1)
-                {
-                    skillInfo.playerSkillInfo[108] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(108)._skillPoint;
-                }
-                else
-                {
-
-                }
-                break;
-            case 9:
-                if (skillInfo.playerSkillInfo[201] > 3
-                && playerInfo.SkillPoint <= skillDB.GetData(201)._skillPoint)
-                {
-                    skillInfo.playerSkillInfo[201] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(201)._skillPoint;
-                }
-                else
-                {
-
-                }
-                break;
-            case 10:
-                if (skillInfo.playerSkillInfo[202] > 3
-                && playerInfo.SkillPoint <= skillDB.GetData(202)._skillPoint
-                && skillInfo.playerSkillInfo[201] >= 1)
-                {
-                    skillInfo.playerSkillInfo[202] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(202)._skillPoint;
-                }
-                else
-                {
-
-                }
-                break;
-            case 11:
-                if (skillInfo.playerSkillInfo[203] > 3
-                && playerInfo.SkillPoint <= skillDB.GetData(203)._skillPoint
-                && skillInfo.playerSkillInfo[202] >= 1)
-                {
-                    skillInfo.playerSkillInfo[203] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(203)._skillPoint;
-                }
-                else
-                {
-
-                }
-                break;
-            case 12:
-                if (skillInfo.playerSkillInfo[204] > 3
-                && playerInfo.SkillPoint <= skillDB.GetData(204)._skillPoint)
-                {
-                    skillInfo.playerSkillInfo[204] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(204)._skillPoint;
-                }
-                else
-                {
-
-                }
-                break;
-            case 13:
-                if (skillInfo.playerSkillInfo[205] > 3
-                && playerInfo.SkillPoint <= skillDB.GetData(205)._skillPoint
-                && skillInfo.playerSkillInfo[204] >= 1)
-                {
-                    skillInfo.playerSkillInfo[205] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(205)._skillPoint;
-                }
-                else
-                {
-
-                }
-                break;
-            case 14:
-                if (skillInfo.playerSkillInfo[206] > 3
-                && playerInfo.SkillPoint <= skillDB.GetData(206)._skillPoint
-                && skillInfo.playerSkillInfo[203] >= 1)
-                {
-                    skillInfo.playerSkillInfo[206] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(206)._skillPoint;
-                }
-                else
-                {
-
-                }
-                break;
-            case 15:
-                if (skillInfo.playerSkillInfo[207] > 3
-                && playerInfo.SkillPoint <= skillDB.GetData(207)._skillPoint
-                && skillInfo.playerSkillInfo[203] >= 1)
-                {
-                    skillInfo.playerSkillInfo[207] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(207)._skillPoint;
-                }
-                else
-                {
-
-                }
-                break;
-            case 16:
-                if (skillInfo.playerSkillInfo[208] > 3
-                && playerInfo.SkillPoint <= skillDB.GetData(208)._skillPoint
-                && skillInfo.playerSkillInfo[205] >= 1)
-                {
-                    skillInfo.playerSkillInfo[208] += 1;
-                    playerInfo.SkillPoint -= skillDB.GetData(208)._skillPoint;
-                }
-                else
-                {
-
-                }
+                slot3ID = id;
                 break;
         }
     }

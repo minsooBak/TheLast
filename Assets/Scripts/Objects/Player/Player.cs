@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.UI;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -20,6 +22,11 @@ public class Player : MonoBehaviour
     public VirtualCameraController VirtualCameraController { get; private set; }
 
     private PlayerStateMachine stateMachine;
+    private PlayerInfo _playerInfo;
+    public TextMeshProUGUI hpText;
+    public TextMeshProUGUI mpText;
+    public Slider hpSlider;
+    public Slider mpSlider;
     public byte id = 1;
 
     private void Awake()
@@ -36,6 +43,7 @@ public class Player : MonoBehaviour
         skillHandler = GetComponent<PlayerSkillHandler>();
 
         stateMachine = new PlayerStateMachine(this);
+        _playerInfo = GameManager.PlayerManager.PlayerInfoManager.PlayerInfo;
     }
 
     private void Start()
@@ -46,7 +54,12 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(UnityEngine.Input.GetKeyDown(KeyCode.I))
+        hpText.text = _playerInfo.Hp.ToString() + " / " + _playerInfo.MaxHp.ToString();
+        mpText.text = _playerInfo.Mp.ToString() + " / " + _playerInfo.MaxMp.ToString();
+        hpSlider.value = _playerInfo.Hp / _playerInfo.MaxHp;
+        mpSlider.value = _playerInfo.Mp / _playerInfo.MaxMp;
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.I))
         {
             var invenUI = GameManager.UIManager.GetUI<InventoryUI>();
             if (invenUI.IsActive())
@@ -61,6 +74,14 @@ public class Player : MonoBehaviour
                 skillUI.Disable();
             else
                 skillUI.Active();
+        }
+        else if(UnityEngine.Input.GetKeyDown(KeyCode.P))
+        {
+            var infoUI = GameManager.UIManager.GetUI<PlayerInfoUI>();
+            if (infoUI.IsActive())
+                infoUI.Disable();
+            else
+                infoUI.Active();
         }
 
         stateMachine.HandleInput();

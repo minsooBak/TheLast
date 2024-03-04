@@ -29,7 +29,7 @@ public class PlayerInfoManager
     private void CreateCharacterStatus(byte _id)
     {
         statusInfo = statusDB.GetData(_id);
-
+        PlayerInfo.PlayerName = userData.characterName;
         PlayerInfo.Job += statusInfo._job;
         PlayerInfo.Hp += statusInfo._hp;
         PlayerInfo.MaxHp += statusInfo._hp;
@@ -55,7 +55,9 @@ public class PlayerInfoManager
 
                 PlayerInfo.Level = (short)i;
 
+                PlayerInfo.Hp += levelInfo._maxHp;
                 PlayerInfo.MaxHp += levelInfo._maxHp;
+                PlayerInfo.Mp += levelInfo._maxMp;
                 PlayerInfo.MaxMp += levelInfo._maxMp;
                 PlayerInfo.ADef += levelInfo._adef;
                 PlayerInfo.MDef += levelInfo._mdef;
@@ -75,6 +77,12 @@ public class PlayerInfoManager
             }
         }
     }
+
+    public float GetMaxExp()
+    {
+        return levelDB.GetData(PlayerInfo.Level + 1)._exp;
+    }
+
     public void AddExp(float exp)
     {
         PlayerInfo.Exp += exp;
