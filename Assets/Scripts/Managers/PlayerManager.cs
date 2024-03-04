@@ -9,13 +9,13 @@ public class PlayerManager : ScriptableObject
     
     private void Awake()
     {
-
+        Init();
     }
     public void Init()
     {
         PlayerInfoManager = new PlayerInfoManager();
+        SkillManager = new SkillManager();
     }
-
 }
 public class PlayerData
 {

@@ -25,8 +25,8 @@ public class PlayerInfo
     private int intUpPoint = 0; //저장
     private int lukUpPoint = 0; //저장
     //point
-    private int statPoint;
-    private int skillPoint;
+    private int statPoint = 0;
+    private int skillPoint = 0;
     //move
     private float jump;
     private float speed;
