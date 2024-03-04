@@ -7,14 +7,36 @@ public class SkillManager
     public PlayerSkillDB skillData;
     public PlayerSkill PlayerSkill { get; private set; }
 
-    private byte id = 1;
-    public SkillManager() 
+    private Player player;
+
+    public void Init(UserData data)
     {
-        Init();
+        skillData = new PlayerSkillDB(data.statusId);
+        PlayerSkill = new PlayerSkill(data.playerData.skillData);
     }
-    private void Init()
+
+    public SkillData GetData()
     {
-        skillData = new PlayerSkillDB(id);
-        PlayerSkill = new PlayerSkill();
+        var data = PlayerSkill.playerSkillInfo;
+        SkillData skillData = new SkillData
+        {
+            ids = new(data.Count),
+            numbers = new(data.Count)
+        };
+
+        foreach (var skill in data)
+        {
+            skillData.ids.Add(skill.Key);
+            skillData.numbers.Add(skill.Value);
+        }
+
+        return skillData;
     }
+}
+
+[System.Serializable]
+public class SkillData
+{
+    public List<byte> ids;
+    public List<byte> numbers;
 }

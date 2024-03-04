@@ -13,13 +13,10 @@ public class InputData
 }
 public class PlayerInfoManager
 {
-    public PlayerInfoManager()
+    public PlayerInfoManager(UserData data)
     {
+        userData = data;
         Init();
-        if (Utility.IsExistsFile(default))
-        {
-            //로드
-        }
     }
     private PlayerStatusDB statusDB;
     private PlayerLevelDB levelDB;
@@ -27,17 +24,16 @@ public class PlayerInfoManager
     private PlayerStatusInfo statusInfo;
     private PlayerLevelInfo levelInfo;
     private InputData inputData;
-
+    public UserData userData;// CharacterSelectScene에서 넘긴 데이터
     private int StatusPoint = 3;
-    private byte _id = 1;
 
     public PlayerInfo PlayerInfo { get; private set; }
     private void Init()
     {
         PlayerInfo = new PlayerInfo();
         statusDB = new PlayerStatusDB();
-        levelDB = new PlayerLevelDB(_id);
-        CreateCharacterStatus(_id);
+        levelDB = new PlayerLevelDB(userData.statusId);
+        CreateCharacterStatus(userData.statusId);
     }
     private void CreateCharacterStatus(byte _id)
     {
@@ -80,14 +76,10 @@ public class PlayerInfoManager
                 PlayerInfo.IntUpPoint = inputData.intUpPoint;
                 PlayerInfo.LukUpPoint = inputData.lukUpPoint;
 
-                PlayerInfo.StatStr += PlayerInfo.StrUpPoint;
-                PlayerInfo.StatInt += PlayerInfo.IntUpPoint;
-                PlayerInfo.StatLuk += PlayerInfo.LukUpPoint;
-
-                int Point = (i * StatusPoint) - (int)(PlayerInfo.StatStr 
-                    + PlayerInfo.StatInt 
+                int Point = (i * StatusPoint) - (int)(PlayerInfo.StatStr
+                    + PlayerInfo.StatInt
                     + PlayerInfo.StatLuk);
-                
+
                 PlayerInfo.StatPoint = Point;
             }
         }

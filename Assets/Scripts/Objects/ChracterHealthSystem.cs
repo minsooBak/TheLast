@@ -41,9 +41,8 @@ public class CharacterHealthSystem : MonoBehaviour
         }
         if (enemyHash == characterType)
         {
-            //enemy = GetComponent<Enemy>();
-            //enemy.cur_hp = enemy.m_hp;
-            //enemy.cur_mp = enemy.m_mp;
+            enemy = GetComponent<Enemy>();
+            enemy.Data.Hp = enemy.Data.MaxHp;
         }
     }
     public void TakeDamage(float damage)
@@ -59,11 +58,12 @@ public class CharacterHealthSystem : MonoBehaviour
         }
         if (enemyHash == characterType)
         {
-            //if (enemy.cur_hp == 0) return;
-            //enemy.cur_hp = Mathf.Min(player.m_hp, Mathf.Max(enemy.cur_hp - damage, 0));
+            if (enemy.Data.Hp == 0) return;
+            enemy.Data.Hp = Mathf.Min(enemy.Data.MaxHp, Mathf.Max(enemy.Data.Hp - damage, 0));
+            Debug.Log(enemy.Data.Hp);
 
-            //if (enemy.cur_hp == 0)
-            //    OnDie?.Invoke();
+            if (enemy.Data.Hp <= 0)
+                OnDie?.Invoke();
         }
 
     }

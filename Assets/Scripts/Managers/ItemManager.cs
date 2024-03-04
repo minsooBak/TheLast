@@ -13,7 +13,8 @@ public class ItemManager
 
     public void Init(InvenData invenData)
     {
-        _playerInfoManager = GameManager.PlayerManager.PlayerInfoManager;
+        if (invenData == null) return;
+
         _inventoryItemData = new(invenData.slotDatas.Count);
 
         foreach (SlotData slot in invenData.slotDatas)
@@ -25,6 +26,7 @@ public class ItemManager
         {
             _equipItemData.Add(equip.type, equip.item);
         }
+        _playerInfoManager = GameManager.PlayerManager.PlayerInfoManager;
 
     }
 
@@ -51,8 +53,36 @@ public class ItemManager
         }
     }
 
-}
+    public InvenData GetData()
+    {
+        InvenData data = new InvenData
+        {
+            slotDatas = new(_inventoryItemData.Count),
+            equipDatas = new(_equipItemData.Count)
+        };
+        foreach(var item in _inventoryItemData)
+        {
+            SlotData slotData = new SlotData
+            {
+                index = item.Key,
+                item = item.Value
+            };
+            data.slotDatas.Add(slotData);
+        }
+        foreach (var equip in _equipItemData)
+        {
+            EquipData equipData = new EquipData
+            {
+                type = equip.Key,
+                item = equip.Value
+            };
+            data.equipDatas.Add(equipData);
+        }
+        return data;
+    }
 
+}
+[System.Serializable]
 public class InvenData
 {
     public List<SlotData> slotDatas;

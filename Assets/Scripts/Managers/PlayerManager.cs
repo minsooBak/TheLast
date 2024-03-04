@@ -7,20 +7,35 @@ public class PlayerManager
     public SkillManager SkillManager { get; private set; }
     public PlayerInfoManager PlayerInfoManager { get; private set; }
     public ItemManager ItemManager { get; private set; }
-
-    public PlayerManager()
+    
+    public void Init(UserData userData)
     {
-        Init();
-    }
-
-    public void Init()
-    {
-        PlayerInfoManager = new PlayerInfoManager();
+        PlayerInfoManager = new PlayerInfoManager(userData);
         ItemManager = new ItemManager();
         SkillManager = new SkillManager();
+        userData.playerData ??= new();
+        ItemManager.Init(userData.playerData.invenData);
+        SkillManager.Init(userData);
     }
+
+    public void SettingData()
+    {
+        if (SkillManager == null) return;
+
+        PlayerData data = new PlayerData
+        {
+            skillData = SkillManager.GetData(),
+            invenData = ItemManager.GetData()
+        };
+
+        PlayerInfoManager.userData.playerData = data;
+    }
+
 }
+
+[System.Serializable]
 public class PlayerData
 {
-
+    public InvenData invenData;
+    public SkillData skillData;
 }

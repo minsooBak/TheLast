@@ -43,12 +43,12 @@ public class EnemyMoveState : IState
     {
         Transform enemy = _enemy.DetectPlayer();
 
-        if (enemy)
+        if (enemy&&!_enemy.IsAvaliableAttack) // Idle스테이트로 안바껴서 공격을 안함
         {
             _agent.SetDestination(_enemy.target.position);
             if (_enemy.Agent.remainingDistance > _agent.stoppingDistance)
             {
-                _enemy.Controller.Move(_agent.velocity * Time.deltaTime);
+                _enemy.Controller.Move(_agent.velocity * _enemy.Data.MoveSpeed * Time.deltaTime);
                 return;
             }
         }
