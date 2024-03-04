@@ -3679,6 +3679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   v_CameraTarget: {fileID: 1952593395385422275}
+  vCamera: {fileID: 5403725189676573641}
   playerTransform: {fileID: 2757223646460405109}
   VirtualCamera: {fileID: 0}
   isVirtualCameraOn: 0

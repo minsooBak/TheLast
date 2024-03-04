@@ -25,22 +25,30 @@ public class PlayerSkillHandler : MonoBehaviour
     private PlayerSkill skillInfo;
     private PlayerSkillDB skillDB;
     private PlayerInfo playerInfo;
+
     public Transform attackPoint;
+
+    MagicianSkill magicianSkill;
 
     private void Awake()
     {
         playerInfo = GameManager.PlayerManager.PlayerInfoManager.PlayerInfo;
         skillInfo = GameManager.PlayerManager.SkillManager.PlayerSkill;
         skillDB = GameManager.PlayerManager.SkillManager.skillData;
-
+        player = GetComponent<Player>();
         skillSlot = GameObject.Find("SkillSlot");
+        switch (GameManager.PlayerManager.PlayerInfoManager.userData.statusId)
+        {
+            case 1:
+                magicianSkill = new MagicianSkill();
+                break;
+            case 2:
+
+                break;
+        }
     }
     private void Start()
     {
-        player = GetComponent<Player>();
-        playerInput = player.Input;
-        playerInput.PlayerActions.Attack.started += OnAttack;
-
         skillSlotCount = skillSlot.transform.childCount;
 
         skillButton = skillSlot.GetComponentsInChildren<Button>();
@@ -58,10 +66,6 @@ public class PlayerSkillHandler : MonoBehaviour
         {
             OnMouseClicked();
         }
-        if (target != null)
-        {
-            Debug.Log(target.transform.position);
-        }
         if (monsterTarget)
         {
             target = null;
@@ -77,7 +81,6 @@ public class PlayerSkillHandler : MonoBehaviour
         if (Physics.Raycast(ray, out _hit, 100.0f, _mask))
         {
             target = _hit.transform.gameObject;
-            Debug.Log(target);
         }
         else
         {
@@ -97,26 +100,21 @@ public class PlayerSkillHandler : MonoBehaviour
             doubleClickedTime = Time.time;
         }
     }
-    public void OnAttack(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void SkillSolt1()
     {
-        Debug.Log("SkillSolt1");
-        string i = skillDB.GetData(101)._prefabPath;
-        GameManager.ResourceManager.Instantiate(i, attackPoint);
+        magicianSkill.EnergyVolt(attackPoint);
     }
     public void SkillSolt2()
     {
-        Debug.Log("SkillSolt2");
-        GameObject instance = Instantiate(Resources.Load("", typeof(GameObject))) as GameObject;
+       magicianSkill.FireBall(attackPoint);
     }
     public void SkillSolt3()
     {
-        Debug.Log("SkillSolt3");
-        GameObject instance = Instantiate(Resources.Load("", typeof(GameObject))) as GameObject;
+        magicianSkill.Blizzard(transform);
     }
     public void SkillSolt4()
     {
-        Debug.Log("SkillSolt4");
-        GameObject instance = Instantiate(Resources.Load("", typeof(GameObject))) as GameObject;
+        magicianSkill.Meteors(attackPoint);
     }
 
     public void SkillLevelUp(int num)
@@ -124,7 +122,7 @@ public class PlayerSkillHandler : MonoBehaviour
         switch (num)
         {
             case 1:
-                if (skillInfo.playerSkillInfo[101] > 3 
+                if (skillInfo.playerSkillInfo[101] > 3
                     && playerInfo.SkillPoint <= skillDB.GetData(101)._skillPoint)
                 {
                     skillInfo.playerSkillInfo[101] += 1;
@@ -136,7 +134,7 @@ public class PlayerSkillHandler : MonoBehaviour
                 }
                 break;
             case 2:
-                if (skillInfo.playerSkillInfo[102] > 3 
+                if (skillInfo.playerSkillInfo[102] > 3
                     && playerInfo.SkillPoint <= skillDB.GetData(102)._skillPoint
                     && skillInfo.playerSkillInfo[101] >= 1)
                 {
@@ -216,7 +214,7 @@ public class PlayerSkillHandler : MonoBehaviour
             case 8:
                 if (skillInfo.playerSkillInfo[108] > 3
                 && playerInfo.SkillPoint <= skillDB.GetData(108)._skillPoint
-                && skillInfo.playerSkillInfo[105] >= 1 
+                && skillInfo.playerSkillInfo[105] >= 1
                 && skillInfo.playerSkillInfo[106] >= 1
                 && skillInfo.playerSkillInfo[107] >= 1)
                 {

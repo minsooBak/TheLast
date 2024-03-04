@@ -4,12 +4,14 @@ public class PlayerBaseState : IState
 {
     protected PlayerStateMachine stateMachine;
     protected readonly PlayerGroundData groundData;
+    private VirtualCameraController virtualCameraController;
 
 
     public PlayerBaseState(PlayerStateMachine playerStateMachine)
     {
         stateMachine = playerStateMachine;
         groundData = stateMachine.Player.Data.GroundData;
+        virtualCameraController = stateMachine.Player.VirtualCameraController;
     }
     public virtual void Enter()
     {
@@ -48,6 +50,12 @@ public class PlayerBaseState : IState
 
         input.PlayerActions.Attack.performed += OnAttackPerformed;
         input.PlayerActions.Attack.canceled += OnAttackCanceled;
+        input.PlayerActions.Skill1.performed += OnSkill1performed;
+        input.PlayerActions.Skill1.canceled += OnSkill1Canceled;
+        input.PlayerActions.Skill2.performed += OnSkill2performed;
+        input.PlayerActions.Skill2.canceled += OnSkill2Canceled;
+        input.PlayerActions.Skill3.performed += OnSkill3performed;
+        input.PlayerActions.Skill3.canceled += OnSkill3Canceled;
     }
 
 
@@ -62,6 +70,12 @@ public class PlayerBaseState : IState
 
         input.PlayerActions.Attack.performed -= OnAttackPerformed;
         input.PlayerActions.Attack.canceled -= OnAttackCanceled;
+        input.PlayerActions.Skill1.performed -= OnSkill1performed;
+        input.PlayerActions.Skill1.canceled -= OnSkill1Canceled;
+        input.PlayerActions.Skill2.performed -= OnSkill2performed;
+        input.PlayerActions.Skill2.canceled -= OnSkill2Canceled;
+        input.PlayerActions.Skill3.performed -= OnSkill3performed;
+        input.PlayerActions.Skill3.canceled -= OnSkill3Canceled;
     }
 
     protected virtual void OnJumpStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -81,8 +95,36 @@ public class PlayerBaseState : IState
     protected virtual void OnAttackPerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         stateMachine.IsAttacking = true;
+        stateMachine.Player.skillHandler.SkillSolt1();
     }
     protected virtual void OnAttackCanceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        stateMachine.IsAttacking = false;
+    }
+    protected virtual void OnSkill1performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        stateMachine.IsAttacking = true;
+        stateMachine.Player.skillHandler.SkillSolt2();
+    }
+    protected virtual void OnSkill1Canceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        stateMachine.IsAttacking = false;
+    }
+    protected virtual void OnSkill2performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        stateMachine.IsAttacking = true;
+        stateMachine.Player.skillHandler.SkillSolt3();
+    }
+    protected virtual void OnSkill2Canceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        stateMachine.IsAttacking = false;
+    }
+    protected virtual void OnSkill3performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        stateMachine.IsAttacking = true;
+        stateMachine.Player.skillHandler.SkillSolt4();
+    }
+    protected virtual void OnSkill3Canceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         stateMachine.IsAttacking = false;
     }
@@ -105,7 +147,7 @@ public class PlayerBaseState : IState
         Rotate(cameraDirection);
         Move(movementDirection);
         if (stateMachine.MovementInput != Vector2.zero)
-            VirtualCameraController.instace.MoveCameraBackward();
+            virtualCameraController.MoveCameraBackward();
         if (stateMachine.Isrunning && stateMachine.MovementInput != Vector2.zero)
         {
             StartAnimation(stateMachine.Player.AnimationData.RunParameterHash);
@@ -118,22 +160,25 @@ public class PlayerBaseState : IState
 
     //캐릭터 이동시 방향은 플레이어 전방 
     private Vector3 GetMovementDirection()
-    {        
-        Vector3 foward = stateMachine.Player.transform.forward;
-        Vector3 right = stateMachine.Player.transform.right;
-        foward.y = 0;
-        right.y = 0;
+    {
+        if (!stateMachine.Player.Controller.isGrounded) return stateMachine.JumpDirection;
+        else
+        {
+            Vector3 foward = stateMachine.Player.transform.forward;
+            Vector3 right = stateMachine.Player.transform.right;
+            foward.y = 0;
+            right.y = 0;
 
-        foward.Normalize();
-        right.Normalize();
-
-        return foward * stateMachine.MovementInput.y + right * stateMachine.MovementInput.x;
-
+            foward.Normalize();
+            right.Normalize();
+            stateMachine.JumpDirection = foward * stateMachine.MovementInput.y + right * stateMachine.MovementInput.x;
+            return foward * stateMachine.MovementInput.y + right * stateMachine.MovementInput.x;
+        }
     }
     private Vector3 GetCameraDirection()
     {
         //카메라 벡터 =  플레이어 위치 - 카메라 위치
-        Vector3 cameraFoward = stateMachine.Player.transform.position - VirtualCameraController.instace.v_CameraTarget.position;
+        Vector3 cameraFoward = stateMachine.Player.transform.position - virtualCameraController.v_CameraTarget.position;//VirtualCameraController.instace.v_CameraTarget.position;
         cameraFoward.y = 0;
         return cameraFoward;
         
@@ -141,10 +186,11 @@ public class PlayerBaseState : IState
     private void Move(Vector3 movementDirection)
     {
         float movementSpeed = GetMovementSpeed();
-        if (stateMachine.MovementInput.y != 0|| VirtualCameraController.instace.isVirtualCameraOn) //앞뒤로 이동중, 카메라이동중에는 플레이어 좌우 이동 가능
+        stateMachine.Player.Controller.Move((stateMachine.Player.ForceReceiver.Movement) * Time.deltaTime);
+        if (stateMachine.MovementInput.y != 0|| virtualCameraController.isVirtualCameraOn) //앞뒤로 이동중, 카메라이동중에는 플레이어 좌우 이동 가능
         {
             stateMachine.Player.Controller.Move(
-            ((movementDirection * movementSpeed) + stateMachine.Player.ForceReceiver.Movement) * Time.deltaTime
+            ((movementDirection * movementSpeed)+ stateMachine.Player.ForceReceiver.Movement) * Time.deltaTime
             );
         }
         else if(stateMachine.MovementInput.x != 0) //이동중이 아니거나 카메라 고정 시 플레이어 좌우 회전
@@ -169,7 +215,7 @@ public class PlayerBaseState : IState
     private void Rotate(Vector3 cameraDirection)
     {
         //카메라 이동모드에서 마우스 좌측 = 플레이서 회전 없이 카메라만 회전, 마우스 우측 = 카메라 회전방향으로 플레이어 회전
-        if (VirtualCameraController.instace.isVirtualCameraOn && !Input.GetMouseButton(0) && Input.GetMouseButton(1))
+        if (virtualCameraController.isVirtualCameraOn  && !Input.GetMouseButton(0) && Input.GetMouseButton(1))
         {
             Quaternion targetRotation = Quaternion.LookRotation(cameraDirection);
             stateMachine.Player.transform.rotation = targetRotation;
