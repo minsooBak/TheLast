@@ -398,7 +398,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 755269831827837567}
-  - component: {fileID: 1934556868098830604}
   m_Layer: 5
   m_Name: PlayerSkillSlots
   m_TagString: Untagged
@@ -430,19 +429,6 @@ RectTransform:
   m_AnchoredPosition: {x: -215, y: 15}
   m_SizeDelta: {x: 430, y: 100}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1934556868098830604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 232390810730359083}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 822179beb3fc4d8459fdcd8d5d2a6ff6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _handler: {fileID: 6347875365941389628}
 --- !u!1 &323439449361913015
 GameObject:
   m_ObjectHideFlags: 0
@@ -7067,7 +7053,7 @@ Transform:
   - {fileID: 7282897418713487811}
   - {fileID: 8829743980112533528}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6992901675902877522
 GameObject:
