@@ -25,7 +25,7 @@ MonoBehaviour:
     _skillPoint: 1
     _coolDown: 1
     _upgrade: 1
-    _prefabPath: Prefabs/Skill/Magician/Energy Volt
+    _prefabPath: Prefabs/Skill/Magician/EnergyVolt
     _spritePath: Images/Skill/Magician/
   - _id: 102
     _name: "\uD30C\uC774\uC5B4\uBCFC"
@@ -39,7 +39,7 @@ MonoBehaviour:
     _skillPoint: 2
     _coolDown: 2.5
     _upgrade: 0
-    _prefabPath: Prefabs/Skill/Magician/
+    _prefabPath: Prefabs/Skill/Magician/FireBall
     _spritePath: Images/Skill/Magician/
   - _id: 103
     _name: "\uC544\uC774\uC2A4\uC2A4\uD53C\uC5B4"
@@ -53,7 +53,7 @@ MonoBehaviour:
     _skillPoint: 2
     _coolDown: 2.5
     _upgrade: 0
-    _prefabPath: Prefabs/Skill/Magician/
+    _prefabPath: Prefabs/Skill/Magician/IceLance
     _spritePath: Images/Skill/Magician/
   - _id: 104
     _name: "\uB9C8\uB825\uD3ED\uD314"
@@ -67,7 +67,7 @@ MonoBehaviour:
     _skillPoint: 2
     _coolDown: 2.5
     _upgrade: 0
-    _prefabPath: Prefabs/Skill/Magician/
+    _prefabPath: Prefabs/Skill/Magician/EnergyExplosion
     _spritePath: Images/Skill/Magician/
   - _id: 105
     _name: "\uB300\uACA9\uBCC0"
@@ -81,7 +81,7 @@ MonoBehaviour:
     _skillPoint: 3
     _coolDown: 3
     _upgrade: 0
-    _prefabPath: Prefabs/Skill/Magician/
+    _prefabPath: Prefabs/Skill/Magician/Cataclysm
     _spritePath: Images/Skill/Magician/
   - _id: 106
     _name: "\uBA54\uD14C\uC624"
@@ -95,7 +95,7 @@ MonoBehaviour:
     _skillPoint: 5
     _coolDown: 15
     _upgrade: 0
-    _prefabPath: Prefabs/Skill/Magician/
+    _prefabPath: Prefabs/Skill/Magician/Meteors
     _spritePath: Images/Skill/Magician/
   - _id: 107
     _name: "\uBE14\uB9AC\uC790\uB4DC"
@@ -109,7 +109,7 @@ MonoBehaviour:
     _skillPoint: 5
     _coolDown: 15
     _upgrade: 0
-    _prefabPath: Prefabs/Skill/Magician/
+    _prefabPath: Prefabs/Skill/Magician/Blizzard
     _spritePath: Images/Skill/Magician/
   - _id: 108
     _name: "\uD751\uB9C8\uBC95"
@@ -122,7 +122,7 @@ MonoBehaviour:
     _skillPoint: 10
     _coolDown: 30
     _upgrade: 0
-    _prefabPath: Prefabs/Skill/Magician/
+    _prefabPath: Prefabs/Skill/Magician/BlackMagic
     _spritePath: Images/Skill/Magician/
   - _id: 201
     _name: "\uB9C8\uB098\uC2E4\uB4DC"

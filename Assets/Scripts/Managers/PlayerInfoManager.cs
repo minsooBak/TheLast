@@ -138,7 +138,8 @@ public class PlayerInfoManager :MonoBehaviour
     {
         if (PlayerInfo.StatPoint != 0)
         {
-            PlayerInfo.StatStr -= 1;
+            PlayerInfo.StatPoint -= 1;
+            PlayerInfo.StatStr += 1;
             PlayerInfo.StrUpPoint += 1;
         }
     }
@@ -146,7 +147,8 @@ public class PlayerInfoManager :MonoBehaviour
     {
         if (PlayerInfo.StatPoint != 0)
         {
-            PlayerInfo.StatInt -= 1;
+            PlayerInfo.StatPoint -= 1;
+            PlayerInfo.StatInt += 1;
             PlayerInfo.IntUpPoint += 1;
         }
     }
@@ -154,7 +156,8 @@ public class PlayerInfoManager :MonoBehaviour
     {
         if (PlayerInfo.StatPoint != 0)
         {
-            PlayerInfo.StatLuk -= 1;
+            PlayerInfo.StatPoint -= 1;
+            PlayerInfo.StatLuk += 1;
             PlayerInfo.LukUpPoint += 1;
         }
     }

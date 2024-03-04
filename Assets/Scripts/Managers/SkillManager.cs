@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillManager : ScriptableObject
+public class SkillManager
 {
-    protected PlayerSkillDB skillData;
-    protected PlayerSkillInfo skillInfo;
+    public SkillManager() 
+    {
+        Init();
+    }
+
+    public PlayerSkillDB skillData;
+    public PlayerSkill PlayerSkill { get; private set; }
+
     private Player player;
 
-    public byte id;
-    protected void Awake()
-    {
-        
-    }
-    protected void Start()
+    private void Init()
     {
         skillData = new PlayerSkillDB(player.id);
+        PlayerSkill = new PlayerSkill();
     }
 }
