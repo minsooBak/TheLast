@@ -26,7 +26,7 @@ MonoBehaviour:
     _coolDown: 1
     _upgrade: 1
     _prefabPath: Prefabs/Skill/Magician/EnergyVolt
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/EnergyVolt
     _cost: 0
   - _id: 102
     _name: "\uD30C\uC774\uC5B4\uBCFC"
@@ -41,7 +41,7 @@ MonoBehaviour:
     _coolDown: 2.5
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/FireBall
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/FireBall
     _cost: 20
   - _id: 103
     _name: "\uC544\uC774\uC2A4\uC2A4\uD53C\uC5B4"
@@ -56,7 +56,7 @@ MonoBehaviour:
     _coolDown: 2.5
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/IceLance
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/IceLance
     _cost: 15
   - _id: 104
     _name: "\uB9C8\uB825\uD3ED\uD314"
@@ -71,7 +71,7 @@ MonoBehaviour:
     _coolDown: 2.5
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/EnergyExplosion
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/EnergyExplosion
     _cost: 15
   - _id: 105
     _name: "\uB300\uACA9\uBCC0"
@@ -86,7 +86,7 @@ MonoBehaviour:
     _coolDown: 3
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/Cataclysm
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/Cataclysm
     _cost: 50
   - _id: 106
     _name: "\uBA54\uD14C\uC624"
@@ -101,7 +101,7 @@ MonoBehaviour:
     _coolDown: 15
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/Meteors
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/Meteors
     _cost: 75
   - _id: 107
     _name: "\uBE14\uB9AC\uC790\uB4DC"
@@ -116,7 +116,7 @@ MonoBehaviour:
     _coolDown: 15
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/Blizzard
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/Blizzard
     _cost: 75
   - _id: 108
     _name: "\uD751\uB9C8\uBC95"
@@ -130,7 +130,7 @@ MonoBehaviour:
     _coolDown: 30
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/BlackMagic
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/BlackMagic
     _cost: 100
   - _id: 201
     _name: "\uB9C8\uB098\uC2E4\uB4DC"
@@ -145,7 +145,7 @@ MonoBehaviour:
     _coolDown: 0
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/
     _cost: 0
   - _id: 202
     _name: "\uB9E4\uC9C1\uC544\uBA38"
@@ -160,7 +160,7 @@ MonoBehaviour:
     _coolDown: 30
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/
     _cost: 20
   - _id: 203
     _name: "\uB9C8\uB825\uBC29\uBCBD"
@@ -174,7 +174,7 @@ MonoBehaviour:
     _coolDown: 30
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/
     _cost: 50
   - _id: 204
     _name: "\uB9C8\uB098\uC99D\uD3ED"
@@ -188,7 +188,7 @@ MonoBehaviour:
     _coolDown: 30
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/
     _cost: 20
   - _id: 205
     _name: "\uAD50\uAC10"
@@ -202,7 +202,7 @@ MonoBehaviour:
     _coolDown: 60
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/
     _cost: 0
   - _id: 206
     _name: "\uB77C\uC774\uD2B8\uB2DD\uC544\uBA38"
@@ -217,7 +217,7 @@ MonoBehaviour:
     _coolDown: 60
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/
     _cost: 50
   - _id: 207
     _name: "\uC544\uC774\uC2A4\uC544\uBA38"
@@ -232,7 +232,7 @@ MonoBehaviour:
     _coolDown: 60
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/
     _cost: 50
   - _id: 208
     _name: "\uACFC\uBD80\uD654"
@@ -247,7 +247,7 @@ MonoBehaviour:
     _coolDown: 120
     _upgrade: 0
     _prefabPath: Prefabs/Skill/Magician/
-    _spritePath: Images/Skill/Magician/
+    _spritePath: Icon/Skill/Magician/
     _cost: 75
   OrcWarriorsSkill:
   - _id: 101

@@ -42,7 +42,7 @@ public class SkillSlotUI : MonoBehaviour
         if (_skill != null)
         {
             _icon.enabled = true;
-            //_icon.sprite = _skill.Sprite;
+            _icon.sprite = _skill.Sprite;
             SetAmount(skill._upgrade);
         }
         else

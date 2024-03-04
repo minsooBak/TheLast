@@ -35,7 +35,7 @@ RectTransform:
   - {fileID: 8253213838814943297}
   - {fileID: 534586023220938130}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -54,9 +54,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f35428cc321bc943a2614e7c39eb3eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _headerText: {fileID: 0}
   _attackBtn: {fileID: 5246482969738562225}
   slotParent: {fileID: 7524382869458360944}
   _slots: []
+  _infoUI: {fileID: 0}
+  _handler: {fileID: 0}
 --- !u!223 &4420136510877437698
 Canvas:
   m_ObjectHideFlags: 0
@@ -366,7 +369,7 @@ RectTransform:
   - {fileID: 6369783029439872243}
   - {fileID: 4776038755140806512}
   - {fileID: 7223146627662702529}
-  - {fileID: 3646372155220186078}
+  - {fileID: 8423903871499607395}
   - {fileID: 6794229153894088816}
   - {fileID: 5099827240334850120}
   m_Father: {fileID: 7524382869458360944}
@@ -912,7 +915,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1822072808909208717}
-  - {fileID: 7345406445993453550}
+  - {fileID: 2561725655101090131}
   - {fileID: 5548972755369282370}
   - {fileID: 1124397340445787509}
   - {fileID: 1148882376822479718}
@@ -2691,7 +2694,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db5195166879f2f4bb3d4490dc159fe9, type: 3}
---- !u!224 &3646372155220186078 stripped
+--- !u!224 &8423903871499607395 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5079272955872267966, guid: db5195166879f2f4bb3d4490dc159fe9,
     type: 3}
@@ -2815,6 +2818,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillSlot1
       objectReference: {fileID: 0}
+    - target: {fileID: 7000927773789003151, guid: db5195166879f2f4bb3d4490dc159fe9,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 188d00ffd2a18c341a38d8ed6b131b7c,
+        type: 3}
+    - target: {fileID: 7658708194002786366, guid: db5195166879f2f4bb3d4490dc159fe9,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 188d00ffd2a18c341a38d8ed6b131b7c,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3594,7 +3609,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db5195166879f2f4bb3d4490dc159fe9, type: 3}
---- !u!224 &7345406445993453550 stripped
+--- !u!224 &2561725655101090131 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5079272955872267966, guid: db5195166879f2f4bb3d4490dc159fe9,
     type: 3}
