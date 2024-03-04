@@ -149,7 +149,7 @@ public class PlayerBaseState : IState
         Vector3 movementDirection = GetMovementDirection();
         Vector3 cameraDirection = GetCameraDirection();
         Rotate(cameraDirection);
-        Move(movementDirection);
+        if(!stateMachine.Player.isDie) Move(movementDirection);
         if (stateMachine.MovementInput != Vector2.zero)
             virtualCameraController.MoveCameraBackward();
         if (stateMachine.Isrunning && stateMachine.MovementInput != Vector2.zero)
