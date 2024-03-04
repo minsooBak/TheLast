@@ -30,12 +30,11 @@ public class DungeonMainRoom : MonoBehaviour
         _remainEnemy = spawnCount;
         for (int i = 0; i < spawnCount; i++)
         {
-            GameObject enemy = GameManager.ResourceManager.Instantiate($"Prefabs/Enemys/{_manager.enemyData.Name}");
-            enemy.transform.position = GetRandomPosition();
-            if (enemy.TryGetComponent(out CharacterHealthSystem health))
-            {
-                health.OnDie += EnemyDie;
-            }          
+            Enemy enemy = GameManager.ResourceManager.Instantiate(
+                $"Prefabs/Enemys/{_manager.enemyData.Name}", GetRandomPosition())
+                .GetComponent<Enemy>();
+            enemy.SetData(_manager.enemyData.ID);
+            enemy.HealthSystem.OnDie += EnemyDie;     
         }
     }
 

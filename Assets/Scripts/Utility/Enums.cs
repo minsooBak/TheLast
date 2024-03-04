@@ -6,7 +6,8 @@ namespace Enums
         LodingScene,
         CharaterSelectScene,
         VillageScene,
-        DungeonScene
+        DungeonScene,
+        FieldDungeon
     }
 
     public enum ItemType
