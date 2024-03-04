@@ -3,27 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class CharacterSelectData : MonoBehaviour
+public class CharacterDefaultData
 {
     private PlayerStatusDB statusDB;
     private PlayerStatusInfo statusInfo;
-    public List<PlayerStatusInfo> defaultDataList;
-    private CharacterSelectUI selectUI;
+    public List<PlayerStatusInfo> defaultData;
 
-    private void Awake()
+    public void Init()
     {
         statusDB = new PlayerStatusDB();
-        selectUI = GetComponent<CharacterSelectUI>();
-    }
-    private void Start()
-    {
-        defaultDataList = new List<PlayerStatusInfo>();
+        defaultData = new List<PlayerStatusInfo>();
         CreateCharacterStatus(1);
         CreateCharacterStatus(2);
     }
     private void CreateCharacterStatus(byte _id)
     {
         statusInfo = statusDB.GetData(_id);
-        defaultDataList.Add(statusDB.GetData(_id));
+        defaultData.Add(statusDB.GetData(_id));
     }
 }
