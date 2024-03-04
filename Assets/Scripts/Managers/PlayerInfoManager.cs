@@ -16,7 +16,8 @@ public class PlayerInfoManager
     private PlayerStatusInfo statusInfo;
     private PlayerLevelInfo levelInfo;
     public UserData userData;// CharacterSelectScene에서 넘긴 데이터
-    private int StatusPoint = 3;
+    private int statusPoint = 3;
+    private int skillsPoint = 5;
 
     public PlayerInfo PlayerInfo { get; private set; }
     private void Init()
@@ -69,7 +70,7 @@ public class PlayerInfoManager
                 //PlayerInfo.IntUpPoint = PlayerInfo.intUpPoint;
                 //PlayerInfo.LukUpPoint = PlayerInfo.lukUpPoint;
 
-                int Point = (i * StatusPoint) - (PlayerInfo.StrUpPoint
+                int Point = (i * statusPoint) - (PlayerInfo.StrUpPoint
                     + PlayerInfo.IntUpPoint
                     + PlayerInfo.LukUpPoint);
 
@@ -95,8 +96,8 @@ public class PlayerInfoManager
                 if (PlayerInfo.Level != (short)i)
                 {
                     PlayerInfo.Level = (short)i;
-                    PlayerInfo.SkillPoint += StatusPoint;
-                    PlayerInfo.StatPoint += StatusPoint;
+                    PlayerInfo.SkillPoint += skillsPoint;
+                    PlayerInfo.StatPoint += statusPoint;
                     LevelUp();
                 }
             }

@@ -56,7 +56,7 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        hpText.text = _playerInfo.Hp.ToString() + " / " + _playerInfo.MaxHp.ToString();
+        hpText.text = _playerInfo.Hp.ToString("F0") + " / " + _playerInfo.MaxHp.ToString("F0");
         mpText.text = _playerInfo.Mp.ToString() + " / " + _playerInfo.MaxMp.ToString();
         hpSlider.value = _playerInfo.Hp / _playerInfo.MaxHp;
         mpSlider.value = _playerInfo.Mp / _playerInfo.MaxMp;
