@@ -6,8 +6,8 @@ public class PlayerInfo
     //Player Status
     private string playerName; //저장
     private string job;
-    private short level = 1;
-    private float exp = 0; //저장
+    private short level;
+    private float exp; //저장
     //health
     private float hp;
     private float maxHp;

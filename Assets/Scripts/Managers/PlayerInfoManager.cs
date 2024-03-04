@@ -87,7 +87,7 @@ public class PlayerInfoManager
     {
         PlayerInfo.Exp += exp;
 
-        for (int i = 1; i < levelDB.GetLevelCount() - 1; i++)
+        for (int i = 1; i < levelDB.GetLevelCount() + 1; i++)
         {
             if (levelDB.GetData(i)._exp <= PlayerInfo.Exp
                 && PlayerInfo.Exp < levelDB.GetData(i + 1)._exp)
