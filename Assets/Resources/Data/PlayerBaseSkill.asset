@@ -21,7 +21,7 @@ MonoBehaviour:
     _Level2: 1.5
     _Level3: 2
     _damageType: 'physical '
-    _skillType: 'ActiveAttack '
+    _skillType: 0
     _skillPoint: 1
     _coolDown: 1
     _upgrade: 1
@@ -36,7 +36,7 @@ MonoBehaviour:
     _Level2: 2.4
     _Level3: 3
     _damageType: 'Magic '
-    _skillType: 'ActiveAttack '
+    _skillType: 0
     _skillPoint: 2
     _coolDown: 2.5
     _upgrade: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
     _Level2: 2.2
     _Level3: 2.4
     _damageType: 'Magic '
-    _skillType: 'ActiveAttack '
+    _skillType: 0
     _skillPoint: 2
     _coolDown: 2.5
     _upgrade: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
     _Level2: 2.7
     _Level3: 3.1
     _damageType: 'physical '
-    _skillType: 'ActiveAttack '
+    _skillType: 0
     _skillPoint: 2
     _coolDown: 2.5
     _upgrade: 0
@@ -81,7 +81,7 @@ MonoBehaviour:
     _Level2: 3
     _Level3: 3.5
     _damageType: 'physical '
-    _skillType: 'ActiveAttack '
+    _skillType: 0
     _skillPoint: 3
     _coolDown: 3
     _upgrade: 0
@@ -96,7 +96,7 @@ MonoBehaviour:
     _Level2: 4.5
     _Level3: 5
     _damageType: 'Magic '
-    _skillType: 'ActiveAttack '
+    _skillType: 0
     _skillPoint: 5
     _coolDown: 15
     _upgrade: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
     _Level2: 3.7
     _Level3: 3.9
     _damageType: 'Magic '
-    _skillType: 'ActiveAttack '
+    _skillType: 0
     _skillPoint: 5
     _coolDown: 15
     _upgrade: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
     _Level2: 8
     _Level3: 10
     _damageType: 'Magic '
-    _skillType: 'ActiveAttack '
+    _skillType: 0
     _skillPoint: 10
     _coolDown: 30
     _upgrade: 0
@@ -140,7 +140,7 @@ MonoBehaviour:
     _Level2: 100
     _Level3: 50
     _damageType: exclusion
-    _skillType: 'ActiveBuff '
+    _skillType: 1
     _skillPoint: 1
     _coolDown: 0
     _upgrade: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
     _Level2: 4
     _Level3: 6
     _damageType: exclusion
-    _skillType: 'ActiveBuff '
+    _skillType: 1
     _skillPoint: 1
     _coolDown: 30
     _upgrade: 0
@@ -169,7 +169,7 @@ MonoBehaviour:
     _Level2: 5
     _Level3: 7
     _damageType: exclusion
-    _skillType: 'ActiveBuff '
+    _skillType: 1
     _skillPoint: 2
     _coolDown: 30
     _upgrade: 0
@@ -183,7 +183,7 @@ MonoBehaviour:
     _Level2: 20
     _Level3: 30
     _damageType: exclusion
-    _skillType: 'ActiveBuff '
+    _skillType: 1
     _skillPoint: 2
     _coolDown: 30
     _upgrade: 0
@@ -197,7 +197,7 @@ MonoBehaviour:
     _Level2: 75
     _Level3: 100
     _damageType: exclusion
-    _skillType: 'ActiveBuff '
+    _skillType: 1
     _skillPoint: 3
     _coolDown: 60
     _upgrade: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
     _Level2: 2
     _Level3: 3
     _damageType: 'Magic '
-    _skillType: 'ActiveBuff '
+    _skillType: 1
     _skillPoint: 4
     _coolDown: 60
     _upgrade: 0
@@ -227,7 +227,7 @@ MonoBehaviour:
     _Level2: 1.5
     _Level3: 2
     _damageType: exclusion
-    _skillType: 'ActiveBuff '
+    _skillType: 1
     _skillPoint: 4
     _coolDown: 60
     _upgrade: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
     _Level2: 3.5
     _Level3: 5
     _damageType: exclusion
-    _skillType: 'ActiveBuff '
+    _skillType: 1
     _skillPoint: 7
     _coolDown: 120
     _upgrade: 0
@@ -257,7 +257,7 @@ MonoBehaviour:
     _Level2: 0
     _Level3: 0
     _damageType: 'physical '
-    _skillType: 'ActiveAttack '
+    _skillType: 0
     _skillPoint: 0
     _coolDown: 0
     _upgrade: 0
@@ -271,7 +271,7 @@ MonoBehaviour:
     _Level2: 0
     _Level3: 0
     _damageType: 'Magic '
-    _skillType: 'ActiveBuff '
+    _skillType: 1
     _skillPoint: 0
     _coolDown: 0
     _upgrade: 0
@@ -285,7 +285,7 @@ MonoBehaviour:
     _Level2: 0
     _Level3: 0
     _damageType: exclusion
-    _skillType: 
+    _skillType: 0
     _skillPoint: 0
     _coolDown: 0
     _upgrade: 0
@@ -299,7 +299,7 @@ MonoBehaviour:
     _Level2: 0
     _Level3: 0
     _damageType: 
-    _skillType: 
+    _skillType: 0
     _skillPoint: 0
     _coolDown: 0
     _upgrade: 0

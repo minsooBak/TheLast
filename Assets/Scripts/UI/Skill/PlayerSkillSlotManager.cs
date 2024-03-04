@@ -13,16 +13,18 @@ public class PlayerSkillSlotManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && _slots[0].Skill != null)
+        {
+            
+            var id = _slots[0].Skill._id;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && _slots[1].Skill != null)
         {
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        else if (Input.GetKeyDown(KeyCode.Alpha3) && _slots[2].Skill != null)
         {
         }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        else if (Input.GetKeyDown(KeyCode.Alpha4) && _slots[3].Skill != null)
         {
         }
     }
