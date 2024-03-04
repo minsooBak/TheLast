@@ -57,7 +57,7 @@ public class UserData
     public byte statusId;
     public string characterName;
     public int Level;
-    public int exp;
+    public float exp;
     public int stageLv;
     public int gold;
     public PlayerData playerData;
