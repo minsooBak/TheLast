@@ -1,0 +1,188 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.UIElements;
+using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
+public class InputData
+{
+    public byte ID;
+    public float Exp;
+    public int strUpPoint;
+    public int intUpPoint;
+    public int lukUpPoint;
+}
+public class PlayerInfoManager :MonoBehaviour
+{
+    public PlayerInfoManager()
+    {
+        Init();
+        if (Utility.IsExistsFile(default))
+        {
+            //로드
+        }
+    }
+    private PlayerStatusDB statusDB;
+    private PlayerLevelDB levelDB;
+
+    private PlayerStatusInfo statusInfo;
+    private PlayerLevelInfo levelInfo;
+    private InputData inputData;
+    public UserData userData;// CharacterSelectScene에서 넘긴 데이터
+    private int StatusPoint = 3;
+
+    public PlayerInfo PlayerInfo { get; private set; }
+    private void Init()
+    {
+        PlayerInfo = new PlayerInfo();
+        statusDB = new PlayerStatusDB();
+
+        
+        userData = new UserData();//수정
+    }
+    public void Init2()
+    {
+        levelDB = new PlayerLevelDB(userData.statusId);
+        CreateCharacterStatus(userData.statusId);
+    }
+    private void CreateCharacterStatus(byte _id)
+    {
+        statusInfo = statusDB.GetData(_id);
+
+        PlayerInfo.Job += statusInfo._job;
+        PlayerInfo.Hp += statusInfo._hp;
+        PlayerInfo.MaxHp += statusInfo._hp;
+        PlayerInfo.Mp += statusInfo._mp;
+        PlayerInfo.MaxMp += statusInfo._mp;
+        PlayerInfo.ADef += statusInfo._adef;
+        PlayerInfo.MDef += statusInfo._mdef;
+        PlayerInfo.StatStr += statusInfo._str;
+        PlayerInfo.StatInt += statusInfo._int;
+        PlayerInfo.StatLuk += statusInfo._luk;
+        PlayerInfo.Jump += statusInfo._jump;
+        PlayerInfo.Speed += statusInfo._speed;
+    }
+    public void LoadLevel(float exp)
+    {
+        PlayerInfo.Exp += exp;
+        for (int i = 1; i < levelDB.GetLevelCount() - 1; i++)
+        {
+            if (levelDB.GetData(i)._exp <= PlayerInfo.Exp
+                && PlayerInfo.Exp > levelDB.GetData(i + 1)._exp)
+            {
+                levelInfo = levelDB.GetData(PlayerInfo.Level);
+
+                PlayerInfo.Level = (short)i;
+
+                PlayerInfo.MaxHp += levelInfo._maxHp;
+                PlayerInfo.MaxMp += levelInfo._maxMp;
+                PlayerInfo.ADef += levelInfo._adef;
+                PlayerInfo.MDef += levelInfo._mdef;
+                PlayerInfo.StatStr += levelInfo._str;
+                PlayerInfo.StatInt += levelInfo._int;
+                PlayerInfo.StatLuk += levelInfo._luk;
+
+                PlayerInfo.StrUpPoint = inputData.strUpPoint;
+                PlayerInfo.IntUpPoint = inputData.intUpPoint;
+                PlayerInfo.LukUpPoint = inputData.lukUpPoint;
+
+                int Point = (i * StatusPoint) - (int)(PlayerInfo.StatStr
+                    + PlayerInfo.StatInt
+                    + PlayerInfo.StatLuk);
+
+                PlayerInfo.StatPoint = Point;
+            }
+        }
+    }
+    public void AddExp(float exp)
+    {
+        PlayerInfo.Exp += exp;
+
+        for (int i = 1; i < levelDB.GetLevelCount() - 1; i++)
+        {
+            if (levelDB.GetData(i)._exp <= PlayerInfo.Exp
+                && PlayerInfo.Exp > levelDB.GetData(i + 1)._exp)
+            {
+                if (PlayerInfo.Level != (short)i)
+                {
+                    PlayerInfo.Level = (short)i;
+                    PlayerInfo.SkillPoint += StatusPoint;
+                    PlayerInfo.StatPoint += StatusPoint;
+                    LevelUp();
+                }
+            }
+        }
+    }
+    private void LevelUp()
+    {
+        levelInfo = levelDB.GetData(PlayerInfo.Level - 1);
+
+        PlayerInfo.MaxHp -= levelInfo._maxHp;
+        PlayerInfo.MaxMp -= levelInfo._maxMp;
+        PlayerInfo.ADef -= levelInfo._adef;
+        PlayerInfo.MDef -= levelInfo._mdef;
+        PlayerInfo.StatStr -= levelInfo._str;
+        PlayerInfo.StatInt -= levelInfo._int;
+        PlayerInfo.StatLuk -= levelInfo._luk;
+
+        levelInfo = levelDB.GetData(PlayerInfo.Level);
+
+        PlayerInfo.MaxHp += levelInfo._maxHp;
+        PlayerInfo.MaxMp += levelInfo._maxMp;
+        PlayerInfo.ADef += levelInfo._adef;
+        PlayerInfo.MDef += levelInfo._mdef;
+        PlayerInfo.StatStr += levelInfo._str;
+        PlayerInfo.StatInt += levelInfo._int;
+        PlayerInfo.StatLuk += levelInfo._luk;
+    }
+    public void StrUp()
+    {
+        if (PlayerInfo.StatPoint != 0)
+        {
+            PlayerInfo.StatPoint -= 1;
+            PlayerInfo.StatStr += 1;
+            PlayerInfo.StrUpPoint += 1;
+        }
+    }
+    public void IntUp()
+    {
+        if (PlayerInfo.StatPoint != 0)
+        {
+            PlayerInfo.StatPoint -= 1;
+            PlayerInfo.StatInt += 1;
+            PlayerInfo.IntUpPoint += 1;
+        }
+    }
+    public void LukUp()
+    {
+        if (PlayerInfo.StatPoint != 0)
+        {
+            PlayerInfo.StatPoint -= 1;
+            PlayerInfo.StatLuk += 1;
+            PlayerInfo.LukUpPoint += 1;
+        }
+    }
+    public void EquipItem(ItemEntity item)
+    {
+        PlayerInfo.MaxHp += item.HP;
+        PlayerInfo.MaxMp += item.MP;
+        PlayerInfo.ADef += item.ADEF;
+        PlayerInfo.MDef += item.MDEF;
+        PlayerInfo.StatStr += item.STR;
+        PlayerInfo.StatInt += item.INT;
+        PlayerInfo.StatLuk += item.LUK;
+        PlayerInfo.Speed += item.Speed;
+        PlayerInfo.Jump += item.Jump;
+    }
+    public void UnEquipItem(ItemEntity item)
+    {
+        PlayerInfo.MaxHp -= item.HP;
+        PlayerInfo.MaxMp -= item.MP;
+        PlayerInfo.ADef -= item.ADEF;
+        PlayerInfo.MDef -= item.MDEF;
+        PlayerInfo.StatStr -= item.STR;
+        PlayerInfo.StatInt -= item.INT;
+        PlayerInfo.StatLuk -= item.LUK;
+        PlayerInfo.Speed -= item.Speed;
+        PlayerInfo.Jump -= item.Jump;
+    }
+}

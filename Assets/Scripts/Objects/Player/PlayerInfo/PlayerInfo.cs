@@ -4,10 +4,10 @@ using UnityEngine;
 public class PlayerInfo
 {
     //Player Status
-    private string playerName;
+    private string playerName; //저장
     private string job;
     private short level = 1;
-    private float exp = 0;
+    private float exp = 0; //저장
     //health
     private float hp;
     private float maxHp;
@@ -20,9 +20,13 @@ public class PlayerInfo
     private float statStr;
     private float statInt;
     private float statLuk;
+    //stat Up Point
+    private int strUpPoint = 0; //저장
+    private int intUpPoint = 0; //저장
+    private int lukUpPoint = 0; //저장
     //point
-    private int statPoint;
-    private int skillPoint;
+    private int statPoint = 0;
+    private int skillPoint = 0;
     //move
     private float jump;
     private float speed;
@@ -41,6 +45,11 @@ public class PlayerInfo
     public float StatStr { get { return statStr; } set { statStr = value; } }
     public float StatInt { get { return statInt; } set { statInt = value; } }
     public float StatLuk { get { return statLuk; } set { statLuk = value; } }
+    public int StrUpPoint { get { return strUpPoint; } set { strUpPoint = value; } }
+    public int IntUpPoint { get { return intUpPoint; } set { intUpPoint = value; } }
+    public int LukUpPoint { get { return lukUpPoint; } set { lukUpPoint = value; } }
+    public int StatPoint { get { return statPoint; } set { statPoint = value; } }
+    public int SkillPoint { get { return skillPoint; } set { skillPoint = value; } }
     public float Jump { get { return jump; } set { jump = value; } }
     public float Speed { get { return speed; } set { speed = value; } }
 

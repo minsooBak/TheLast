@@ -15,7 +15,7 @@ public class PlayerSkillInfo
     public string _skillType;
     public int _skillPoint;
     public float _coolDown;
-    public int _upgrade;
+    public byte _upgrade;
     public string _prefabPath;
     public string _spritePath;
 }

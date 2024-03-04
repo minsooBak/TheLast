@@ -1,4 +1,5 @@
 using UnityEngine;
+using Enums;
 
 public class ItemDataBase : DataBase<ItemEntity>
 {
@@ -34,6 +35,7 @@ public class ItemEntity
 
     private Sprite _sprite;
 
+    public int Amount { get; set; } = 1;
     public Sprite Sprite
     {
         get
@@ -54,11 +56,4 @@ public class ItemEntity
         }
         private set { DropItem = value; }
     }
-}
-
-public enum ItemType
-{
-    Weapon,
-    Armor,
-    Consume
 }

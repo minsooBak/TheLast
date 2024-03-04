@@ -9,4 +9,11 @@ namespace Enums
         DungeonScene,
         FieldDungeon
     }
+
+    public enum ItemType
+    {
+        Weapon,
+        Armor,
+        Consume
+    }
 }

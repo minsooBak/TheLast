@@ -4908,7 +4908,7 @@ GameObject:
   - component: {fileID: 9067676404346347468}
   - component: {fileID: 7981880051622383171}
   m_Layer: 0
-  m_Name: Energy Volt
+  m_Name: EnergyVolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

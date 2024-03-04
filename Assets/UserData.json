@@ -1,0 +1,20 @@
+{
+    "user": [
+        {
+            "characterSlot": 1,
+            "statusId": 2,
+            "characterName": "록타르오가르​",
+            "Level": 1,
+            "exp": 0,
+            "stageLv": 1
+        },
+        {
+            "characterSlot": 2,
+            "statusId": 1,
+            "characterName": "이상하네​",
+            "Level": 1,
+            "exp": 0,
+            "stageLv": 1
+        }
+    ]
+}

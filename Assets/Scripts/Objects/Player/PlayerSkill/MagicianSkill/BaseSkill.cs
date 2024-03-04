@@ -4,22 +4,40 @@ using UnityEngine;
 
 public class BaseSkill : MonoBehaviour
 {
-    protected float speed = 10f;
-    protected float damage = 10f;
+    protected float speed;
+    protected float damage;
 
     protected Rigidbody rigidbody;
     protected Player player;
     protected CharacterHealthSystem healthSystem;
+    protected PlayerSkillInfo skillInfo;
+    protected SkillManager skillManager;
+    protected PlayerInfo playerInfo;
 
     protected GameObject target;
 
-    protected void Start()
+    protected void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         player = GameObject.Find("Player").GetComponent<Player>();
         target = player.skillHandler.target;
+        skillManager = GameManager.PlayerManager.SkillManager;
+        playerInfo = GameManager.PlayerManager.PlayerInfoManager.PlayerInfo;
     }
-    protected void FixedUpdate()
+
+    protected virtual void Start()
+    {
+        skillInfo = skillManager.skillData.GetData(101);
+        Damage();
+    }
+    protected virtual void Damage()
+    {
+        switch (skillInfo)
+        {
+
+        }
+    }
+    protected virtual void FixedUpdate()
     {
         if (target != null)
         {
@@ -37,7 +55,7 @@ public class BaseSkill : MonoBehaviour
         if (collision.gameObject.layer == 8)
         {
             healthSystem = collision.gameObject.GetComponent<CharacterHealthSystem>();
-            healthSystem.TakeDamage(10f);
+            healthSystem.TakeDamage(damage);
         }
     }
 }
