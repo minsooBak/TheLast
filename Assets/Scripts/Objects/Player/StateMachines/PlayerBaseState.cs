@@ -94,7 +94,6 @@ public class PlayerBaseState : IState
     }
     protected virtual void OnAttackPerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        Debug.Log("1");
         stateMachine.IsAttacking = true;
         stateMachine.Player.skillHandler.SkillSolt1();
     }
@@ -104,7 +103,6 @@ public class PlayerBaseState : IState
     }
     protected virtual void OnSkill1performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        Debug.Log("2");
         stateMachine.IsAttacking = true;
         stateMachine.Player.skillHandler.SkillSolt2();
     }
@@ -114,7 +112,6 @@ public class PlayerBaseState : IState
     }
     protected virtual void OnSkill2performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        Debug.Log("3");
         stateMachine.IsAttacking = true;
         stateMachine.Player.skillHandler.SkillSolt3();
     }
@@ -124,7 +121,6 @@ public class PlayerBaseState : IState
     }
     protected virtual void OnSkill3performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        Debug.Log("4");
         stateMachine.IsAttacking = true;
         stateMachine.Player.skillHandler.SkillSolt4();
     }
