@@ -114,7 +114,7 @@ public class PlayerSkillHandler : MonoBehaviour
     }
     public void SkillSolt4()
     {
-        magicianSkill.Meteors(attackPoint);
+        magicianSkill.Meteors(target.transform,transform);
     }
 
     public void SkillLevelUp(int num)
