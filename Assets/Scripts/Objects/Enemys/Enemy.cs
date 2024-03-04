@@ -7,10 +7,8 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     // TODO Enemy데이터 추가
-    public EnemyData Data { get; private set; }
-
-    public float targetingRadius = 5f;
-    public float attackRange = 1.5f;
+    [field: Header("EnemyData")]
+    [field: SerializeField] public EnemyInfo Data;
 
     // public Animator Animator { get; private set; }
     public CharacterController Controller { get; private set; }
@@ -32,18 +30,16 @@ public class Enemy : MonoBehaviour
         Animator = GetComponent<Animator>();
         HealthSystem = GetComponent<CharacterHealthSystem>();
         stateMachine = new EnemyStateMachine(this);
+        Data = new EnemyInfo();
         stateMachine.ChangeState(stateMachine.IdleState);
-    }
-    public void SetData(int id)
-    {
-        GameManager.DataBases.TryGetDataBase(out EnemyDataBase enemyDataBase);
-        Data = enemyDataBase.GetData(id);
-        MaxHp = Data.HP;
-        Hp = Data.HP;
     }
     private void Update()
     {
         stateMachine.Update();
+    }
+    public void SetData(int ID)
+    {
+        Data.SetData(ID);
     }
     public bool IsAvaliableAttack
     {
@@ -54,7 +50,7 @@ public class Enemy : MonoBehaviour
                 return false;
             }
             float distance = Vector3.Distance(transform.position, target.position);
-            return (distance <= attackRange);
+            return (distance <= Data.AttackRange);
         }
     }
 
@@ -62,7 +58,7 @@ public class Enemy : MonoBehaviour
     {
         target = null;
         Collider[] targetInTargetingRadius = Physics.OverlapSphere(
-            transform.position, targetingRadius, targetLayer);
+            transform.position, Data.TargetingRadius, targetLayer);
         if (targetInTargetingRadius.Length > 0)
         {
             target = targetInTargetingRadius[0].transform;
@@ -72,9 +68,9 @@ public class Enemy : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, targetingRadius);
+        Gizmos.DrawWireSphere(transform.position, Data.TargetingRadius);
 
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position, Data.AttackRange);
     }
 }

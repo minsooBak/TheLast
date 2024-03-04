@@ -48,7 +48,7 @@ public class EnemyMoveState : IState
             _agent.SetDestination(_enemy.target.position);
             if (_enemy.Agent.remainingDistance > _agent.stoppingDistance)
             {
-                _enemy.Controller.Move(_agent.velocity * Time.deltaTime);
+                _enemy.Controller.Move(_agent.velocity * _enemy.Data.MoveSpeed * Time.deltaTime);
                 return;
             }
         }

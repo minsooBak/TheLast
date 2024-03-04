@@ -58,6 +58,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1696834749189059949, guid: 4a46e821c58b5cd42b14eaab6d197266,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1818926580354158373, guid: 4a46e821c58b5cd42b14eaab6d197266,
         type: 3}
       propertyPath: m_Layer
@@ -340,8 +345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb11e70fd2a43f740bcc2edb57a843d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetingRadius: 5
-  attackRange: 1.5
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
