@@ -5,7 +5,7 @@ public class DungeonManager : MonoBehaviour
     private DungeonDataBase _dungeonDB;
     private EnemyDataBase _enemyDB;
 
-    private int _level;
+    public static int SelectedLevel;
     
     [HideInInspector] public DungeonData dungeonData;
     [HideInInspector] public EnemyData enemyData;
@@ -18,16 +18,18 @@ public class DungeonManager : MonoBehaviour
     {
         GameManager.DataBases.TryGetDataBase(out _dungeonDB);
         GameManager.DataBases.TryGetDataBase(out _enemyDB);
-        _level = PlayerPrefs.GetInt("DungeonLevel", 1);
 
-        dungeonData = _dungeonDB.GetData(_level);
+        dungeonData = _dungeonDB.GetData(SelectedLevel);
 
         int spawnedEnemyID = dungeonData.ID;
         enemyData = _enemyDB.GetData(spawnedEnemyID);
     }
     public void LevelUp()
     {
-        ++_level;
-        PlayerPrefs.SetInt("DungeonLevel", _level);
+        int nextLevel = SelectedLevel + 1;
+
+        int maxLevel = GameManager.PlayerManager.PlayerInfoManager.userData.stageLv;
+        if (maxLevel < nextLevel)
+            GameManager.PlayerManager.PlayerInfoManager.userData.stageLv = nextLevel;
     }
 }

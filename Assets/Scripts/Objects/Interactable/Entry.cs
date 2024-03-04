@@ -20,6 +20,13 @@ public class Entry : MonoBehaviour, IInteractable
     public void Interaction()
     {
         // TODO 던전Info UI창 띄우기
-        GameManager.ScenesManager.ChangeScene(_sceneState);
+        if(_sceneState == Enums.SceneState.DungeonScene)
+        {
+            GameManager.ResourceManager.Instantiate("Prefabs/UI/DungeonUI");
+        }
+        else
+        {
+            GameManager.ScenesManager.ChangeScene(_sceneState);
+        }
     }
 }
