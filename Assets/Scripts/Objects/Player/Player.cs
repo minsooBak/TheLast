@@ -62,6 +62,14 @@ public class Player : MonoBehaviour
             else
                 skillUI.Active();
         }
+        else if(UnityEngine.Input.GetKeyDown(KeyCode.P))
+        {
+            var infoUI = GameManager.UIManager.GetUI<PlayerInfoUI>();
+            if (infoUI.IsActive())
+                infoUI.Disable();
+            else
+                infoUI.Active();
+        }
 
         stateMachine.HandleInput();
         stateMachine.Update();
