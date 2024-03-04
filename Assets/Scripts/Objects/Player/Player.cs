@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.UI;
 
 public class Player : MonoBehaviour
 {
@@ -43,6 +44,15 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if(UnityEngine.Input.GetKeyDown(KeyCode.I))
+        {
+            var invenUI = GameManager.UIManager.GetUI<InventoryUI>();
+            if (invenUI.IsActive())
+                invenUI.Disable();
+            else
+                invenUI.Active();
+        }
+
         stateMachine.HandleInput();
         stateMachine.Update();
     }

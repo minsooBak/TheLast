@@ -9,6 +9,7 @@ public class PlayerSkill
     {
         if (data != null)
         {
+            playerSkillInfo = new(data.ids.Count);
             for (int i = 0; i < data.ids.Count; ++i)
             {
                 playerSkillInfo.Add(data.ids[i], data.numbers[i]);

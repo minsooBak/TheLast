@@ -20,6 +20,7 @@ public class PlayerManager
 
     public void SettingData()
     {
+        if (SkillManager == null) return;
 
         PlayerData data = new PlayerData
         {

@@ -185,6 +185,7 @@ public class CharacterSelectUI : MonoBehaviour
     public void Save()
     {
         characterLoadData.loadedUserData = userDatas;
+        characterLoadData.SaveUserData();
     }
 
     public void ChangeColor(int index, List<Image> images,Color canceled, Color selected)
