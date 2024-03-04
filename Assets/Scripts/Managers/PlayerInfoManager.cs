@@ -46,14 +46,14 @@ public class PlayerInfoManager
     public void LoadLevel(float exp)
     {
         PlayerInfo.Exp += exp;
-        for (int i = 1; i < levelDB.GetLevelCount() - 1; i++)
+        for (int i = 1; i < levelDB.GetLevelCount() + 1; i++)
         {
             if (levelDB.GetData(i)._exp <= PlayerInfo.Exp
-                && PlayerInfo.Exp > levelDB.GetData(i + 1)._exp)
+                && PlayerInfo.Exp < levelDB.GetData(i + 1)._exp)
             {
+                PlayerInfo.Level = (short)i;
                 levelInfo = levelDB.GetData(PlayerInfo.Level);
 
-                PlayerInfo.Level = (short)i;
 
                 PlayerInfo.Hp += levelInfo._maxHp;
                 PlayerInfo.MaxHp += levelInfo._maxHp;
@@ -69,9 +69,9 @@ public class PlayerInfoManager
                 //PlayerInfo.IntUpPoint = PlayerInfo.intUpPoint;
                 //PlayerInfo.LukUpPoint = PlayerInfo.lukUpPoint;
 
-                int Point = (i * StatusPoint) - (int)(PlayerInfo.StatStr
-                    + PlayerInfo.StatInt
-                    + PlayerInfo.StatLuk);
+                int Point = (i * StatusPoint) - (PlayerInfo.StrUpPoint
+                    + PlayerInfo.IntUpPoint
+                    + PlayerInfo.LukUpPoint);
 
                 PlayerInfo.StatPoint = Point;
             }
@@ -90,7 +90,7 @@ public class PlayerInfoManager
         for (int i = 1; i < levelDB.GetLevelCount() - 1; i++)
         {
             if (levelDB.GetData(i)._exp <= PlayerInfo.Exp
-                && PlayerInfo.Exp > levelDB.GetData(i + 1)._exp)
+                && PlayerInfo.Exp < levelDB.GetData(i + 1)._exp)
             {
                 if (PlayerInfo.Level != (short)i)
                 {
