@@ -10,6 +10,7 @@ public class DungeonManager : MonoBehaviour
     [HideInInspector] public DungeonData dungeonData;
     [HideInInspector] public EnemyData enemyData;
     [HideInInspector] public int roomCount = 2;
+   
     private void Start()
     {
         Init();
@@ -23,13 +24,5 @@ public class DungeonManager : MonoBehaviour
 
         int spawnedEnemyID = dungeonData.ID;
         enemyData = _enemyDB.GetData(spawnedEnemyID);
-    }
-    public void LevelUp()
-    {
-        int nextLevel = SelectedLevel + 1;
-
-        int maxLevel = GameManager.PlayerManager.PlayerInfoManager.userData.stageLv;
-        if (maxLevel < nextLevel)
-            GameManager.PlayerManager.PlayerInfoManager.userData.stageLv = nextLevel;
     }
 }

@@ -43,11 +43,12 @@ public class DungeonMainRoom : MonoBehaviour
         GameManager.PlayerManager.PlayerInfoManager.AddExp(_manager.enemyData.Exp);
         if (_remainEnemy <= 0)
         {
-            EndRoom();
+            StartCoroutine(EndRoom());
         }
     }
-    private void EndRoom()
+    private IEnumerator EndRoom()
     {
+        yield return new WaitForSeconds(2.0f);
         DoorOpen();
         enabled = false;
     }
@@ -63,7 +64,6 @@ public class DungeonMainRoom : MonoBehaviour
     private void DoorOpen()
     {
         _door.DoorOpen();
-        Debug.Log("DungeonOpen");
     }
     private void DoorClose()
     {

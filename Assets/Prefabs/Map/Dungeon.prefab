@@ -18186,7 +18186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_CollectObjects: 0
+  m_CollectObjects: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
@@ -18202,7 +18202,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 60f108d8fc4c06143bff89ec010c6577, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 38f248581b8f72047a419e99d298a339, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &3245412093802041369
 GameObject:
@@ -21532,7 +21532,7 @@ Transform:
   - {fileID: 7172742189578182291}
   - {fileID: 8736337032344561729}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2464827375879143624
 MonoBehaviour:
@@ -22105,7 +22105,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: ecb85e85143738141ac9ab7f54a7ea56, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 5f9fd27481479cd4fa9600dc096e8ce5, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &3948715221703876309
 GameObject:
@@ -50924,6 +50924,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 1273396818361815341, guid: a3a4db65a81f12444a306e4227a70eb8,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.86
+      objectReference: {fileID: 0}
+    - target: {fileID: 1273396818361815341, guid: a3a4db65a81f12444a306e4227a70eb8,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

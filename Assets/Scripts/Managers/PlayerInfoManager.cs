@@ -93,7 +93,6 @@ public class PlayerInfoManager
                 }
             }
         }
-        Debug.Log("ExpGet");
     }
     private void LevelUp()
     {
