@@ -33,15 +33,12 @@ public class Enemy : MonoBehaviour
         Agent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<Animator>();
         HealthSystem = GetComponent<CharacterHealthSystem>();
+        HealthSystem.OnDie += OnDie;
         attackCollider = GetComponent<BoxCollider>();
         attackCollider.enabled = false;
         stateMachine = new EnemyStateMachine(this);
         Data = new EnemyInfo();
         stateMachine.ChangeState(stateMachine.IdleState);
-    }
-    private void Start()
-    {
-        HealthSystem.OnDie += OnDie;
     }
     private void Update()
     {

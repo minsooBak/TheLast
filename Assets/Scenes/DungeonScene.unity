@@ -534,37 +534,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1754753614451994475, guid: 14adb17bc037368498a9bd49e9b2e049,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.86
-      objectReference: {fileID: 0}
-    - target: {fileID: 1754753614451994475, guid: 14adb17bc037368498a9bd49e9b2e049,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3803137395981928162, guid: 14adb17bc037368498a9bd49e9b2e049,
         type: 3}
       propertyPath: m_Name
       value: Dungeon
-      objectReference: {fileID: 0}
-    - target: {fileID: 6770212623662558879, guid: 14adb17bc037368498a9bd49e9b2e049,
-        type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: 5f9fd27481479cd4fa9600dc096e8ce5,
-        type: 2}
-    - target: {fileID: 7705397598145539010, guid: 14adb17bc037368498a9bd49e9b2e049,
-        type: 3}
-      propertyPath: m_NavMeshData
-      value: 
-      objectReference: {fileID: 23800000, guid: 38f248581b8f72047a419e99d298a339,
-        type: 2}
-    - target: {fileID: 7705397598145539010, guid: 14adb17bc037368498a9bd49e9b2e049,
-        type: 3}
-      propertyPath: m_CollectObjects
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
