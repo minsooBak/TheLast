@@ -36,7 +36,7 @@ public class VirtualCameraController : MonoBehaviour
     private void FixedUpdate()
     {
         IsClickUI();
-        if (Input.GetMouseButton(1) || Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
         {
             if (!isClickUI)
             {
