@@ -21,5 +21,5 @@ public class EnemyInfo
         MoveSpeed = 1.0f;
         TargetingRadius = 10.0f;
         AttackRange = 1.5f;
-    }
+    }    
 }

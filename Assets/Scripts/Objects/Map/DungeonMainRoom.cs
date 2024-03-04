@@ -33,6 +33,7 @@ public class DungeonMainRoom : MonoBehaviour
                 $"Prefabs/Enemys/{_manager.enemyData.Name}", GetRandomPosition())
                 .GetComponent<Enemy>();
             enemy.SetData(_manager.enemyData.ID);
+            enemy.Data.TargetingRadius += 10;
             enemy.HealthSystem.OnDie += EnemyDie;     
         }
     }

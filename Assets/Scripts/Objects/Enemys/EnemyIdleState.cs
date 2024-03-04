@@ -39,7 +39,8 @@ public class EnemyIdleState : IState
 
     public void Update()
     {
-        _elapsedTimeInIdle += Time.deltaTime;
+        if(_enemy.CanPatrol)
+            _elapsedTimeInIdle += Time.deltaTime;
         Transform enemy = _enemy.DetectPlayer();
         if (enemy)
         {
