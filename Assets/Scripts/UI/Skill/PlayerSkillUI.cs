@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,7 +14,7 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
     [SerializeField] private Transform slotParent;
     [SerializeField] private SkillSlotUI[] _slots;
     [SerializeField] private ItemDataInfoUI _infoUI;
-
+    [SerializeField] private PlayerSkillHandler _handler;
 
     [Header("MoveItem")]
     private SkillSlotUI _curSlot;
@@ -26,13 +27,13 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
         _playerSkill = skillManager.PlayerSkill;
         _skillDB = skillManager.skillData;
         _playerInfo = GameManager.PlayerManager.PlayerInfoManager.PlayerInfo;
-
+        _handler = GameObject.Find("Player").GetComponent<PlayerSkillHandler>();
         _headerText.text = GameManager.PlayerManager.PlayerInfoManager.userData.statusId == 1 ? "마법사" : "오크전사";
 
         _slots = slotParent.GetComponentsInChildren<SkillSlotUI>();
         _infoUI = GameManager.UIManager.GetUI<ItemDataInfoUI>();
         int index = 0;
-        foreach(var skill in _playerSkill.playerSkillInfo)
+        foreach (var skill in _playerSkill.playerSkillInfo)
         {
             var data = _skillDB.GetData(skill.Key);
             data._upgrade = skill.Value;
@@ -44,7 +45,6 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
         _attackBtn.onClick.Invoke();
         Disable();
     }
-
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -81,16 +81,24 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
         if (_curSlot == null) return;
         _curSlot.IconReset();
 
-        if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out SkillSlotUI endSlot) && endSlot.transform.parent.TryGetComponent(out PlayerSkillSlotManager _))
+        if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out SkillSlotUI endSlot))
         {
+            SkillSlot();
             endSlot.SetSkill(_curSlot.Skill, _curSlot.Index);
         }
     }
-
+    private void SkillSlot()
+    {
+        Debug.Log(_slots[0].Skill._id);
+        _handler.SkillSoltChange(_slots[0].Skill._id, 0);
+        _handler.SkillSoltChange(_slots[1].Skill._id, 1);
+        _handler.SkillSoltChange(_slots[2].Skill._id, 2);
+        _handler.SkillSoltChange(_slots[3].Skill._id, 3);
+    }
     private void SkillUp()
     {
         var slot = GetComponent<SkillSlotUI>();
-        
+
         switch (slot.Index + 1)
         {
             case 1:

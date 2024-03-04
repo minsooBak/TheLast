@@ -55,7 +55,9 @@ public class PlayerInfoManager
 
                 PlayerInfo.Level = (short)i;
 
+                PlayerInfo.Hp += levelInfo._maxHp;
                 PlayerInfo.MaxHp += levelInfo._maxHp;
+                PlayerInfo.Mp += levelInfo._maxMp;
                 PlayerInfo.MaxMp += levelInfo._maxMp;
                 PlayerInfo.ADef += levelInfo._adef;
                 PlayerInfo.MDef += levelInfo._mdef;
