@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -131,16 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 817285044357523740, guid: a092ec51b017dae4fa2fd217de429f57,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3658933854488551137, guid: a092ec51b017dae4fa2fd217de429f57,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5359062214848799479, guid: a092ec51b017dae4fa2fd217de429f57,
         type: 3}
       propertyPath: m_RootOrder
@@ -196,21 +186,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7168590162475642451, guid: a092ec51b017dae4fa2fd217de429f57,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8130825422929513747, guid: a092ec51b017dae4fa2fd217de429f57,
         type: 3}
       propertyPath: m_Name
       value: DesertDungeon
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8261307568581514839, guid: a092ec51b017dae4fa2fd217de429f57, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 899335315279191722, guid: a092ec51b017dae4fa2fd217de429f57,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: a092ec51b017dae4fa2fd217de429f57, type: 3}
 --- !u!1 &1570323953
 GameObject:
