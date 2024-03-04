@@ -138,10 +138,26 @@ public class PlayerSkillHandler : MonoBehaviour
     public void SkillSolt3()
     {
         Debug.Log(slot3ID);
-        if (slot3Cooldown == 0)
+        //if (slot3Cooldown == 0)
+        //{
+        //    magicianSkill.SkillSelect(slot3ID, target, transform, attackPoint);
+        //    slot3Cooldown = skillDB.GetData(slot3ID)._coolDown;
+        //}
+        if (target != null)
         {
-            magicianSkill.SkillSelect(slot3ID, target, transform, attackPoint);
-            slot3Cooldown = skillDB.GetData(slot3ID)._coolDown;
+            if (playerInfo.Mp >= skillDB.GetData(106)._cost && skillInfo.playerSkillInfo[106] != 0)
+            {
+                playerInfo.Mp -= skillDB.GetData(106)._cost;
+                GameManager.ResourceManager.Instantiate(skillDB.GetData(106)._prefabPath).transform.position = target.transform.position;
+            }
+        }
+        else
+        {
+            if (playerInfo.Mp >= skillDB.GetData(106)._cost && skillInfo.playerSkillInfo[106] != 0)
+            {
+                playerInfo.Mp -= skillDB.GetData(106)._cost;
+                GameManager.ResourceManager.Instantiate(skillDB.GetData(106)._prefabPath).transform.position = transform.position;
+            }
         }
     }
     public void SkillSolt4()

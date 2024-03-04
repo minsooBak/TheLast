@@ -25,6 +25,9 @@ public class Meteors : BaseSkill
             case 3:
                 damage = (float)(skillManager.skillData.GetData(106)._Level3) * (playerInfo.StatInt);
                 break;
+            case 0:
+                damage = 5;
+                break;
         }
     }
     protected override void FixedUpdate()

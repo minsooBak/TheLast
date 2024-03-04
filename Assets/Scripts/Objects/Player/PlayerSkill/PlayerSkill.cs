@@ -21,13 +21,13 @@ public class PlayerSkill
             {
                 //attack
                 playerSkillInfo.Add(101, 1);
-                playerSkillInfo.Add(102, 1);
-                playerSkillInfo.Add(103, 1);
-                playerSkillInfo.Add(104, 1);
-                playerSkillInfo.Add(105, 1);
-                playerSkillInfo.Add(106, 1);
-                playerSkillInfo.Add(107, 1);
-                playerSkillInfo.Add(108, 1);
+                playerSkillInfo.Add(102, 0);
+                playerSkillInfo.Add(103, 0);
+                playerSkillInfo.Add(104, 0);
+                playerSkillInfo.Add(105, 0);
+                playerSkillInfo.Add(106, 0);
+                playerSkillInfo.Add(107, 0);
+                playerSkillInfo.Add(108, 0);
                 //buff
                 playerSkillInfo.Add(201, 0);
                 playerSkillInfo.Add(202, 0);
