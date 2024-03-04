@@ -103,6 +103,15 @@ MonoBehaviour:
     _str: 9
     _int: 45
     _luk: 9
+  - _level: 11
+    _exp: 600000
+    _maxHp: 9999
+    _maxMp: 9999
+    _adef: 9999
+    _mdef: 9999
+    _str: 9999
+    _int: 9999
+    _luk: 9999
   OrcWarriorsLevel:
   - _level: 1
     _exp: 0
