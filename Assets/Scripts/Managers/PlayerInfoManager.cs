@@ -101,6 +101,9 @@ public class PlayerInfoManager
                 }
             }
         }
+
+        userData.exp = PlayerInfo.Exp;
+        userData.Level = PlayerInfo.Level;
     }
     private void LevelUp()
     {
