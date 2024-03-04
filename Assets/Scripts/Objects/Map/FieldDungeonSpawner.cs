@@ -36,11 +36,13 @@ public class FieldDungeonSpawner : MonoBehaviour
     private void EnemyDie()
     {
         --_remainEnemy;
+        GameManager.PlayerManager.PlayerInfoManager.AddExp(_enemyData.Exp);
         if(_remainEnemy == 0)
         {
             StartCoroutine(SpawnEnemy(3));
         }
     }
+    private void 
 
     private Vector3 GetRandomPosition()
     {

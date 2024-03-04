@@ -36,6 +36,10 @@ public class Enemy : MonoBehaviour
         Data = new EnemyInfo();
         stateMachine.ChangeState(stateMachine.IdleState);
     }
+    private void Start()
+    {
+        HealthSystem.OnDie += OnDie;
+    }
     private void Update()
     {
         stateMachine.Update();
@@ -72,6 +76,10 @@ public class Enemy : MonoBehaviour
     {
         WayPoint = position;
         CanPatrol = true;
+    }
+    public void OnDie()
+    {
+        Destroy(gameObject);
     }
     private void OnDrawGizmos()
     { 
