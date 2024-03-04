@@ -8,7 +8,7 @@ public class EnemyStateMachine : StateMachine
     public EnemyIdleState IdleState { get; set; }
     public EnemyMoveState MoveState { get; set; }
     public EnemyAttackState AttackState { get; set; }
-    public bool IsAttacking { get; set; }
+    public EnemyPatrolState PatrolState { get; set; }
 
     public EnemyStateMachine(Enemy enemy)
     {
@@ -17,6 +17,7 @@ public class EnemyStateMachine : StateMachine
         IdleState = new EnemyIdleState(this);
         MoveState = new EnemyMoveState(this);
         AttackState = new EnemyAttackState(this);
+        PatrolState = new EnemyPatrolState(this);
     }
 
 }

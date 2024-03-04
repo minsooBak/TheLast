@@ -131,6 +131,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 817285044357523740, guid: a092ec51b017dae4fa2fd217de429f57,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3658933854488551137, guid: a092ec51b017dae4fa2fd217de429f57,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5359062214848799479, guid: a092ec51b017dae4fa2fd217de429f57,
         type: 3}
       propertyPath: m_RootOrder
@@ -186,12 +196,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7168590162475642451, guid: a092ec51b017dae4fa2fd217de429f57,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8130825422929513747, guid: a092ec51b017dae4fa2fd217de429f57,
         type: 3}
       propertyPath: m_Name
       value: DesertDungeon
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8261307568581514839, guid: a092ec51b017dae4fa2fd217de429f57, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -212,22 +228,27 @@ PrefabInstance:
     - target: {fileID: 1952593395385422275, guid: 10a423cef1fe1ea4cb39e9c0c984f3cc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3000002
+      value: 1.4200001
       objectReference: {fileID: 0}
     - target: {fileID: 1952593395385422275, guid: 10a423cef1fe1ea4cb39e9c0c984f3cc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -9.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 2490600930017858133, guid: 10a423cef1fe1ea4cb39e9c0c984f3cc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5403725189676573641, guid: 10a423cef1fe1ea4cb39e9c0c984f3cc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3000002
+      value: 0.42000008
       objectReference: {fileID: 0}
     - target: {fileID: 5403725189676573641, guid: 10a423cef1fe1ea4cb39e9c0c984f3cc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -9.48
       objectReference: {fileID: 0}
     - target: {fileID: 7880817034859254300, guid: 10a423cef1fe1ea4cb39e9c0c984f3cc,
         type: 3}
@@ -288,6 +309,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlayerandCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8423943134326347218, guid: 10a423cef1fe1ea4cb39e9c0c984f3cc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
