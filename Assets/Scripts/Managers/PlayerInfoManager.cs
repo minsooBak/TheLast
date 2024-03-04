@@ -29,14 +29,15 @@ public class PlayerInfoManager
     private InputData inputData;
 
     private int StatusPoint = 3;
+    private byte _id = 1;
 
     public PlayerInfo PlayerInfo { get; private set; }
     private void Init()
     {
         PlayerInfo = new PlayerInfo();
         statusDB = new PlayerStatusDB();
-        levelDB = new PlayerLevelDB(default);
-        CreateCharacterStatus(default);
+        levelDB = new PlayerLevelDB(_id);
+        CreateCharacterStatus(_id);
     }
     private void CreateCharacterStatus(byte _id)
     {

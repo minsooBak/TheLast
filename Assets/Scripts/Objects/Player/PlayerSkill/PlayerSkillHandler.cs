@@ -38,7 +38,6 @@ public class PlayerSkillHandler : MonoBehaviour
     }
     private void Start()
     {
-        Debug.Log(attackPoint);
         playerInput.PlayerActions.Attack.started += OnAttack;
 
         skillSlotCount = skillSlot.transform.childCount;
@@ -99,9 +98,7 @@ public class PlayerSkillHandler : MonoBehaviour
     }
     public void OnAttack(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        Debug.Log("SkillSolt1");
-        string i = skillDB.GetData(101)._prefabPath;
-        GameManager.ResourceManager.Instantiate(i, attackPoint);
+        GameManager.ResourceManager.Instantiate(skillDB.GetData(101)._prefabPath).transform.position = attackPoint.position;
     }
     public void SkillSolt2()
     {

@@ -7,12 +7,13 @@ public class ItemManager
 {
     private Dictionary<int, ItemEntity> _inventoryItemData = new();//index, ItemID
     private Dictionary<ItemType, ItemEntity> _equipItemData = new(Enum.GetValues(typeof(ItemType)).Length);
-    private PlayerInfoManager _playerInfoManager = GameManager.PlayerManager.PlayerInfoManager;
+    private PlayerInfoManager _playerInfoManager;
     public Dictionary<int, ItemEntity> GetInventoryItemData() { return _inventoryItemData; }
     private InventoryUI inventoryUI;
 
     public void Init(InvenData invenData)
     {
+        _playerInfoManager = GameManager.PlayerManager.PlayerInfoManager;
         _inventoryItemData = new(invenData.slotDatas.Count);
 
         foreach (SlotData slot in invenData.slotDatas)

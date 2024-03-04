@@ -4,19 +4,17 @@ using UnityEngine;
 
 public class SkillManager
 {
+    public PlayerSkillDB skillData;
+    public PlayerSkill PlayerSkill { get; private set; }
+
+    private byte id = 1;
     public SkillManager() 
     {
         Init();
     }
-
-    public PlayerSkillDB skillData;
-    public PlayerSkill PlayerSkill { get; private set; }
-
-    private Player player;
-
     private void Init()
     {
-        skillData = new PlayerSkillDB(player.id);
+        skillData = new PlayerSkillDB(id);
         PlayerSkill = new PlayerSkill();
     }
 }

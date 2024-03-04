@@ -8,12 +8,17 @@ public class PlayerManager
     public PlayerInfoManager PlayerInfoManager { get; private set; }
     public ItemManager ItemManager { get; private set; }
 
+    public PlayerManager()
+    {
+        Init();
+    }
+
     public void Init()
     {
         PlayerInfoManager = new PlayerInfoManager();
         ItemManager = new ItemManager();
+        SkillManager = new SkillManager();
     }
-
 }
 public class PlayerData
 {
