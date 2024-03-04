@@ -53,7 +53,7 @@ public class SlotUI : MonoBehaviour
         if (item != null)
         {
             Icon = item.Sprite;
-            SetAmount(item.Amount);
+            SetAmount(_amount);
         }
         else
         {

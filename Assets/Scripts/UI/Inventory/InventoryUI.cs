@@ -60,7 +60,6 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
         //인벤토리 Active
         //transform.parent.GetComponent<PlayerInput>().PlayerActions.Inventory.canceled += _ => { _canvas.enabled = !_canvas.enabled; };
         _info = GameManager.UIManager.GetUI<ItemDataInfoUI>();
-        _info.Disable();
         _dropItemPopupUI.Disable();
 
         Disable();

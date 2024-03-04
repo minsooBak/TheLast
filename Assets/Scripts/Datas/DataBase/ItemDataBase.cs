@@ -35,7 +35,6 @@ public class ItemEntity
 
     private Sprite _sprite;
 
-    public int Amount { get; set; } = 1;
     public Sprite Sprite
     {
         get

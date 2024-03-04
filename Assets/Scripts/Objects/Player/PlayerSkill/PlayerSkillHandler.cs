@@ -33,7 +33,8 @@ public class PlayerSkillHandler : MonoBehaviour
         skillInfo = GameManager.PlayerManager.SkillManager.PlayerSkill;
         skillDB = GameManager.PlayerManager.SkillManager.skillData;
 
-        skillSlot = GameObject.Find("SkillSlot");
+
+        //skillSlot = GameObject.Find("SkillSlot");
     }
     private void Start()
     {
@@ -41,16 +42,16 @@ public class PlayerSkillHandler : MonoBehaviour
         playerInput = player.Input;
         playerInput.PlayerActions.Attack.started += OnAttack;
 
-        skillSlotCount = skillSlot.transform.childCount;
-
-        skillButton = skillSlot.GetComponentsInChildren<Button>();
-
-        for (int i = 0; i < skillButton.Length; i++)
-        {
-
-            int temp = i;
-            skillButton[i].onClick.AddListener(() => SkillLevelUp(temp));
-        }
+        //skillSlotCount = skillSlot.transform.childCount;
+        //
+        //skillButton = skillSlot.GetComponentsInChildren<Button>();
+        //
+        //for (int i = 0; i < skillButton.Length; i++)
+        //{
+        //
+        //    int temp = i;
+        //    skillButton[i].onClick.AddListener(() => SkillLevelUp(temp));
+        //}
     }
     private void Update()
     {
