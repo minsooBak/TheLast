@@ -75,6 +75,12 @@ public class PlayerInfoManager
             }
         }
     }
+
+    public float GetMaxExp()
+    {
+        return levelDB.GetData(PlayerInfo.Level)._exp;
+    }
+
     public void AddExp(float exp)
     {
         PlayerInfo.Exp += exp;
