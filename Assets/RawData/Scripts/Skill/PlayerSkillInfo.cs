@@ -18,6 +18,7 @@ public class PlayerSkillInfo
     public byte _upgrade;
     public string _prefabPath;
     public string _spritePath;
+    public int _cost;
 
     private Sprite _sprite;
 
