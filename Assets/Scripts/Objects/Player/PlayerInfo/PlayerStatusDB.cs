@@ -8,8 +8,7 @@ public class PlayerStatusDB
 
     public PlayerStatusDB()
     {
-        var res = Resources.Load<PlayerBaseStatus>("Data/PlayerBaseStatus");
-        var statusSo = Object.Instantiate(res);
+        var statusSo = Resources.Load<PlayerBaseStatus>("Data/PlayerBaseStatus");
         var enriries = statusSo.PlayerStatuses;
 
         if (enriries == null || enriries.Count <= 0)

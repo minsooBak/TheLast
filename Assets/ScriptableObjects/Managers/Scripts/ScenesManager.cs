@@ -48,6 +48,9 @@ public class ScenesManager : ScriptableObject
     private void ChangScene(Scene scene, LoadSceneMode mode)
     {
         if (scene.buildIndex != (int)CurrentState) return;
+        else if(scene.buildIndex > (int)SceneState.CharaterSelectScene)
+            GameManager.CharacterLoadData.SaveUserData();
+
         _uiManager.Init();
         _lateScene?.Exit();
         _currentScene?.Init();

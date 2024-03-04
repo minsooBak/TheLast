@@ -26,7 +26,9 @@ public class GameManager : MonoBehaviour
     public static DataBases DataBases { get; private set; }
     public static PlayerManager PlayerManager { get { return _playerManager ??= new(); } } 
     public static EffectManager EffectManager { get { return _effectManager ??= new(); } }
+    public static CharacterLoadData CharacterLoadData { get { return _characterLoadData ??= new(); } }
 
+    private static CharacterLoadData _characterLoadData;
     private static PlayerManager _playerManager;
     private static EffectManager _effectManager;
 }

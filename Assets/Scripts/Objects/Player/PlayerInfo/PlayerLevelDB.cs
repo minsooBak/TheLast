@@ -9,8 +9,7 @@ public class PlayerLevelDB
 
     public PlayerLevelDB(byte _id)
     {
-        var res = Resources.Load<PlayerBaseLevel>("Data/PlayerBaseLevel");
-        var levelSo = Object.Instantiate(res);
+        var levelSo = Resources.Load<PlayerBaseLevel>("Data/PlayerBaseLevel");
 
         switch (_id)
         {
