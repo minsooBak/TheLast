@@ -84,13 +84,13 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
 
         if (obj != null && obj.TryGetComponent(out SkillSlotUI endSlot) && endSlot.transform.parent.name == "PlayerSkillSlots")
         {
+            Debug.Log("zxzx");
             SkillSlot();
             endSlot.SetSkill(_curSlot.Skill, _curSlot.Index);
         }
     }
     private void SkillSlot()
     {
-        Debug.Log(_slots[0].Skill._id);
         _handler.SkillSoltChange(_slots[0].Skill._id, 0);
         _handler.SkillSoltChange(_slots[1].Skill._id, 1);
         _handler.SkillSoltChange(_slots[2].Skill._id, 2);

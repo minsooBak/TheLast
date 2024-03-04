@@ -11,6 +11,7 @@ public class EnergyExplosion : BaseSkill
     protected override void Start()
     {
         Damage();
+        Invoke("AddDamage", 2f);
     }
     protected override void Damage()
     {
@@ -43,7 +44,6 @@ public class EnergyExplosion : BaseSkill
         if (collision.gameObject.layer == 8)
         {
             inTarget = true;
-            Invoke("AddDamage", 2f);
         }
         else
         {
@@ -59,6 +59,9 @@ public class EnergyExplosion : BaseSkill
         if (inTarget)
         {
             healthSystem.TakeDamage(damage);
+            Destroy(gameObject);
+        } else
+        {
             Destroy(gameObject);
         }
     }
