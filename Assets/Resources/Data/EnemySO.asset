@@ -38,7 +38,7 @@ MonoBehaviour:
     _exp: 20
     _itemID: 0
   - _id: 10000101
-    _path: mummy1
+    _path: mummy
     _hp: 200
     _attack: 15
     _df: 2
@@ -46,7 +46,7 @@ MonoBehaviour:
     _exp: 23
     _itemID: 0
   - _id: 10000102
-    _path: mummy2
+    _path: mummy
     _hp: 210
     _attack: 16
     _df: 2
@@ -54,7 +54,7 @@ MonoBehaviour:
     _exp: 25
     _itemID: 0
   - _id: 10000103
-    _path: mummy3
+    _path: mummy
     _hp: 220
     _attack: 17
     _df: 2
@@ -62,7 +62,7 @@ MonoBehaviour:
     _exp: 27
     _itemID: 0
   - _id: 10000104
-    _path: mummy4
+    _path: mummy
     _hp: 230
     _attack: 18
     _df: 2
@@ -70,7 +70,7 @@ MonoBehaviour:
     _exp: 29
     _itemID: 0
   - _id: 10000105
-    _path: mummy5
+    _path: mummy
     _hp: 240
     _attack: 19
     _df: 2
