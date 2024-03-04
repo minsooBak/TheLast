@@ -29,7 +29,7 @@ public class ItemManager
 
     public void AddItem(int id)
     {
-        if (inventoryUI == null) inventoryUI = GameManager.UIManager.GetUI<InventoryUI>();
+        inventoryUI = inventoryUI != null ? inventoryUI : GameManager.UIManager.GetUI<InventoryUI>();
 
         inventoryUI.UpdateItem(id, _inventoryItemData);
     }

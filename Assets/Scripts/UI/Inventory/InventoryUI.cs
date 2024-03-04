@@ -252,7 +252,7 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
             case Enums.ItemType.Consume:
                 {
                     //포션 사용
-                    Debug.Log($"{slot.Item.HP} 회복");
+                    UseConsume(slot.Item);
                     if (slot.Amount == 1)
                     {
                         _itemManager.GetInventoryItemData().Remove(slot.Index);
@@ -262,6 +262,20 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
                         slot.SetAmount(slot.Amount - 1);
                 }
                 break;
+        }
+    }
+
+    private void UseConsume(ItemEntity item)
+    {
+        if(item.HP > 0 || item.MP > 0)
+        {
+            //HP 및 MP 회복
+            Debug.Log($"{item.HP} 회복");
+            Debug.Log($"{item.MP} 회복");
+        }
+        else //TODO : 영구적으로 오르는것 or 일정 시간버프가 있겠지만 그건 추후 논의
+        {
+            //버프 or 디버프 생성
         }
     }
 }
