@@ -62,7 +62,7 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
     public void OnBeginDrag(PointerEventData eventData)
     {
         GameObject obj = eventData.pointerCurrentRaycast.gameObject;
-        if (obj == null || !obj.TryGetComponent(out _curSlot)) return;
+        if (obj == null || !obj.TryGetComponent(out _curSlot) || _curSlot.Skill._upgrade == 0) return;
 
         _infoUI.Disable();
         _curSlot.IconTransform.SetParent(slotParent);
@@ -80,8 +80,9 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
     {
         if (_curSlot == null) return;
         _curSlot.IconReset();
+        GameObject obj = eventData.pointerCurrentRaycast.gameObject;
 
-        if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out SkillSlotUI endSlot) && endSlot.transform.parent.name == "PlayerSkillSlots")
+        if (obj != null && obj.TryGetComponent(out SkillSlotUI endSlot) && endSlot.transform.parent.name == "PlayerSkillSlots")
         {
             SkillSlot();
             endSlot.SetSkill(_curSlot.Skill, _curSlot.Index);
