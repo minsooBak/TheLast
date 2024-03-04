@@ -1,3 +1,4 @@
+using Enums;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
 
     private PlayerStateMachine stateMachine;
     private PlayerInfo _playerInfo;
+    public bool isDie;
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI mpText;
     public Slider hpSlider;
@@ -93,6 +95,16 @@ public class Player : MonoBehaviour
     }
     public void Dead()
     {
-        Debug.Log("PlayerDie");
+        Debug.Log("플레이어 사망");
+        Animator.SetTrigger(AnimationData.DieParameterHash);
+        isDie = true;
+        StartCoroutine(PlayerDie());
+    }
+    IEnumerator PlayerDie()
+    {
+        yield return new WaitForSeconds(1.5f);
+        isDie = false;
+        ScenesManager scenesManager = GameManager.ScenesManager;
+        scenesManager.ChangeScene(SceneState.VillageScene);
     }
 }
