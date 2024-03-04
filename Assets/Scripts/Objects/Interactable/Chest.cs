@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +25,12 @@ public class Chest : MonoBehaviour, IInteractable
     public void Interaction()
     {
         _animation.Play();
-        
+
+        Invoke("ShowUI", 2f);
+    }
+
+    private void ShowUI()
+    {
         GameManager.ResourceManager.Instantiate("Prefabs/UI/RewardUI");
     }
 }
