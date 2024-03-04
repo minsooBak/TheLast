@@ -10,6 +10,8 @@ public class ItemManager
     private Dictionary<ItemType, ItemEntity> _equipItemData = new(Enum.GetValues(typeof(ItemType)).Length);
     private PlayerInfoManager _playerInfoManager;
     public Dictionary<int, SlotData> GetInventoryItemData() { return _inventoryItemData; }
+    public Dictionary<ItemType, ItemEntity> GetEquipItemData() { return _equipItemData; }
+
     private InventoryUI inventoryUI;
     private PlayerInfoUI playerInfoUI;
 

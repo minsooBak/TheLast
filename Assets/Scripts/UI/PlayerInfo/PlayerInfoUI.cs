@@ -44,6 +44,16 @@ public class PlayerInfoUI : UIBase, IPointerEnterHandler, IPointerExitHandler, I
 
         _info = GameManager.UIManager.GetUI<ItemDataInfoUI>();
 
+        var data = GameManager.PlayerManager.ItemManager.GetEquipItemData();
+
+        foreach( var item in data )
+        {
+            if (item.Key == ItemType.Weapon)
+                _weaponUI.SetItem(item.Value);
+            else
+                _armorUI.SetItem(item.Value);
+        }
+
         Disable();
     }
 
