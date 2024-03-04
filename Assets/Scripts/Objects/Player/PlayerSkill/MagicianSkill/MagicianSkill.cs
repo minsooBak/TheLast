@@ -39,12 +39,23 @@ public class MagicianSkill
             GameManager.ResourceManager.Instantiate(skillDB.GetData(107)._prefabPath).transform.position = player.position;
         }
     }
-    public void Meteors(Transform target)
+    public void Meteors(Transform target, Transform player)
     {
-        if (playerInfo.Mp >= skillDB.GetData(106)._cost)
+        if (target != null)
         {
-            playerInfo.Mp -= skillDB.GetData(106)._cost;
-            GameManager.ResourceManager.Instantiate(skillDB.GetData(106)._prefabPath).transform.position = target.position;
+            if (playerInfo.Mp >= skillDB.GetData(106)._cost)
+            {
+                playerInfo.Mp -= skillDB.GetData(106)._cost;
+                GameManager.ResourceManager.Instantiate(skillDB.GetData(106)._prefabPath).transform.position = target.position;
+            }
+        }
+        else
+        {
+            if (playerInfo.Mp >= skillDB.GetData(106)._cost)
+            {
+                playerInfo.Mp -= skillDB.GetData(106)._cost;
+                GameManager.ResourceManager.Instantiate(skillDB.GetData(106)._prefabPath).transform.position = player.position;
+            }
         }
     }
 }
