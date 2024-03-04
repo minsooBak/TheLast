@@ -27,29 +27,30 @@ public class Meteors : BaseSkill
                 break;
         }
     }
-    protected override void OnCollisionEnter(Collision collision)
+    protected override void FixedUpdate()
+    {
+
+    }
+    protected override void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.layer == 8)
         {
             healthSystem = collision.gameObject.GetComponent<CharacterHealthSystem>();
             count = 4;
-        }
-    }
-    protected override void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.layer == 8)
-        {
             inTarget = true;
-            InvokeRepeating("AddDamage",0.5f, count);
-        }
-        else
-        {
-            inTarget = false;
+            InvokeRepeating("AddDamage", 0.5f, 0.5f);
         }
     }
-    protected override void OnCollisionExit(Collision collision)
+    protected override void OnTriggerStay(Collider collision)
     {
 
+    }
+    protected override void OnTriggerExit(Collider collision)
+    {
+        if (collision.gameObject.layer != 8)
+        {
+            inTarget = true;
+        }
     }
     protected void AddDamage()
     {
@@ -57,10 +58,11 @@ public class Meteors : BaseSkill
         {
             count -= 1;
             healthSystem.TakeDamage(damage);
+            Invoke("SkillEnd", 2f);
         }
-        if (count == 0)
-        {
-            Destroy(gameObject);
-        }
+    }
+    protected void SkillEnd()
+    {
+        Destroy(gameObject);
     }
 }

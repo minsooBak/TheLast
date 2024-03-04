@@ -27,14 +27,14 @@ public class BlackMagic : BaseSkill
                 break;
         }
     }
-    protected override void OnCollisionEnter(Collision collision)
+    protected override void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.layer == 8)
         {
             healthSystem = collision.gameObject.GetComponent<CharacterHealthSystem>();
         }
     }
-    protected override void OnCollisionStay(Collision collision)
+    protected override void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.layer == 8)
         {
@@ -46,7 +46,7 @@ public class BlackMagic : BaseSkill
             inTarget = false;
         }
     }
-    protected override void OnCollisionExit(Collision collision)
+    protected override void OnTriggerExit(Collider collision)
     {
 
     }

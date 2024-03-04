@@ -41,7 +41,7 @@ public class IceLance : BaseSkill
             rigidbody.velocity = transform.TransformDirection(Vector3.forward) * speed;
         }
     }
-    protected override void OnCollisionEnter(Collision collision)
+    protected override void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.layer == 8)
         {

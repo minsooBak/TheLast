@@ -10,7 +10,7 @@ public class FireBall : BaseSkill
     }
     protected override void Start()
     {
-        speed = 3f;
+        speed = 4f;
         Damage();
     }
     protected override void Damage()
@@ -41,7 +41,7 @@ public class FireBall : BaseSkill
             rigidbody.velocity = transform.TransformDirection(Vector3.forward) * speed;
         }
     }  
-    protected override void OnCollisionEnter(Collision collision)
+    protected override void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.layer == 8)
         {

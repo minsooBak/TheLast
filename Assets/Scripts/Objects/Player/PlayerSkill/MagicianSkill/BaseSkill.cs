@@ -30,7 +30,7 @@ public class BaseSkill : MonoBehaviour
 
     protected virtual void Start()
     {
-        speed = 4.5f;
+        speed = 6f;
         Damage();
     }
     protected virtual void Damage()
@@ -61,20 +61,22 @@ public class BaseSkill : MonoBehaviour
             rigidbody.velocity = transform.TransformDirection(Vector3.forward) * speed;
         }
     }
-    protected virtual void OnCollisionEnter(Collision collision)
+    protected virtual void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.layer == 8)
+        Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "Enemy")
         {
+            Debug.Log(collision.gameObject.tag);
             healthSystem = collision.gameObject.GetComponent<CharacterHealthSystem>();
             healthSystem.TakeDamage(damage);
             Destroy(gameObject);
         }
     }
-    protected virtual void OnCollisionStay(Collision collision)
+    protected virtual void OnTriggerStay(Collider collision)
     {
         
     }
-    protected virtual void OnCollisionExit(Collision collision)
+    protected virtual void OnTriggerExit(Collider collision)
     {
         
     }
