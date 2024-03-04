@@ -319,7 +319,7 @@ CharacterController:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -347,6 +347,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb11e70fd2a43f740bcc2edb57a843d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data:
+    <MaxHp>k__BackingField: 0
+    <Hp>k__BackingField: 0
+    <MoveSpeed>k__BackingField: 0
+    <TargetingRadius>k__BackingField: 0
+    <AttackRange>k__BackingField: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 0
