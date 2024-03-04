@@ -3,14 +3,6 @@ using System.Collections.Generic;
 using UnityEditor.UIElements;
 using UnityEngine;
 using static Cinemachine.DocumentationSortingAttribute;
-public class InputData
-{
-    public byte ID;
-    public float Exp;
-    public int strUpPoint;
-    public int intUpPoint;
-    public int lukUpPoint;
-}
 public class PlayerInfoManager
 {
     public PlayerInfoManager(UserData data)
@@ -23,7 +15,6 @@ public class PlayerInfoManager
 
     private PlayerStatusInfo statusInfo;
     private PlayerLevelInfo levelInfo;
-    private InputData inputData;
     public UserData userData;// CharacterSelectScene에서 넘긴 데이터
     private int StatusPoint = 3;
 
@@ -72,9 +63,9 @@ public class PlayerInfoManager
                 PlayerInfo.StatInt += levelInfo._int;
                 PlayerInfo.StatLuk += levelInfo._luk;
 
-                PlayerInfo.StrUpPoint = inputData.strUpPoint;
-                PlayerInfo.IntUpPoint = inputData.intUpPoint;
-                PlayerInfo.LukUpPoint = inputData.lukUpPoint;
+                //PlayerInfo.StrUpPoint = PlayerInfo.strUpPoint;
+                //PlayerInfo.IntUpPoint = PlayerInfo.intUpPoint;
+                //PlayerInfo.LukUpPoint = PlayerInfo.lukUpPoint;
 
                 int Point = (i * StatusPoint) - (int)(PlayerInfo.StatStr
                     + PlayerInfo.StatInt
