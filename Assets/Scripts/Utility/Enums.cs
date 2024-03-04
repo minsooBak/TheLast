@@ -8,4 +8,11 @@ namespace Enums
         VillageScene,
         DungeonScene
     }
+
+    public enum ItemType
+    {
+        Weapon,
+        Armor,
+        Consume
+    }
 }

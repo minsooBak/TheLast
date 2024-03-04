@@ -32,10 +32,43 @@ public class UIManager : ScriptableObject
         return ui;
     }
 
-    public void Clear()
+    public T GetUI<T>() where T : UIBase
     {
-        _uiCanvas = null;
-        _uiBases.Clear();
+        foreach (UIBase u in _uiBases)
+        {
+            if (u is T)
+            {
+                return u as T;
+            }
+        }
+
+        if (_uiCanvas == null)
+        {
+            _uiCanvas = resource.Instantiate("Prefabs/UI/UICanvas").transform;
+        }
+
+        string path = $"Prefabs/UI/{typeof(T).Name}";
+
+        T ui = resource.Instantiate(path, _uiCanvas).GetComponent<T>();
+        _uiBases.Add(ui);
+
+        return ui;
+    }
+
+    public void Init()
+    {
+        if (_uiCanvas == null)
+        {
+            _uiCanvas = resource.Instantiate("Prefabs/UI/UICanvas").transform;
+        }
+        for (int i = 0; i < _uiBases.Count; i++)
+        {
+            if (_uiBases[i] == null)
+            {
+                _uiBases.RemoveAt(i);
+                return;
+            }
+        }
     }
 
     public void RemoveUI<T>()

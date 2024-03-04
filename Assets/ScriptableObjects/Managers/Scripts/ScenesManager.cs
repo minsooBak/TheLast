@@ -42,13 +42,13 @@ public class ScenesManager : ScriptableObject
         _lateScene = _currentScene;
         _currentScene = _scenes[(int)state];
         CurrentState = state;
-        _uiManager.Clear();
         SceneManager.LoadScene(_lodingSceneNumber);
     }
 
     private void ChangScene(Scene scene, LoadSceneMode mode)
     {
         if (scene.buildIndex != (int)CurrentState) return;
+        _uiManager.Init();
         _lateScene?.Exit();
         _currentScene?.Init();
     }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ItemData
   m_EditorClassIdentifier: 
   Entities:
-  - Name: Wood Sttaf
+  - Name: "\uB098\uBB34 \uC2A4\uD0DC\uD504"
     ID: 10001001
     ItemType: 0
     HP: 0
@@ -25,10 +25,10 @@ MonoBehaviour:
     LUK: 0
     Jump: 0
     Speed: -5
-    Description: wood sttaf!!
+    Description: "\uB098\uBB34 \uC2A4\uD0DC\uD504\uC785\uB2C8\uB2E4"
     ItemPath: Weapon/staff_0
     MaxAmount: 1
-  - Name: robe
+  - Name: "\uD5C8\uB984\uD55C \uB85C\uBE0C"
     ID: 10002001
     ItemType: 1
     HP: 20
@@ -40,10 +40,10 @@ MonoBehaviour:
     LUK: 0
     Jump: 0
     Speed: 0
-    Description: robe!!
+    Description: "\uD5C8\uB984\uD55C \uB85C\uBE0C\uC785\uB2C8\uB2E4"
     ItemPath: Armor/robe_0
     MaxAmount: 1
-  - Name: Test
+  - Name: "\uD558\uAE09 \uD68C\uBCF5 \uBB3C\uC57D"
     ID: 70001001
     ItemType: 2
     HP: 10
@@ -55,6 +55,6 @@ MonoBehaviour:
     LUK: 0
     Jump: 0
     Speed: 0
-    Description: Test heal Item
+    Description: "\uCCB4\uB825 10\uC744 \uD68C\uBCF5\uD569\uB2C8\uB2E4"
     ItemPath: Consume/Test_0
     MaxAmount: 10
