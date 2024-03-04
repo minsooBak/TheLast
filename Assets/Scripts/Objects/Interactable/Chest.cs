@@ -26,7 +26,7 @@ public class Chest : MonoBehaviour, IInteractable
     {
         _animation.Play();
 
-        Invoke("ShowUI", 2f);
+        Invoke("ShowUI", 1.5f);
     }
 
     private void ShowUI()
