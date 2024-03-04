@@ -178,6 +178,7 @@ public class CharacterSelectUI : MonoBehaviour
     public void OnButtonClickStart()
     {
         GameManager.PlayerManager.Init(userDatas[slotNum]);
+        GameManager.PlayerManager.PlayerInfoManager.LoadLevel(userDatas[slotNum].exp);
         ScenesManager scenesManager = GameManager.ScenesManager;
         scenesManager.ChangeScene(SceneState.VillageScene);
     }

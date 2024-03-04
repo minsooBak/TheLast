@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Playables;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 using UnityEngine.Windows;
 
@@ -29,10 +30,15 @@ public class PlayerSkillHandler : MonoBehaviour
 
     MagicianSkill magicianSkill;
 
-    private byte slot0ID;
     private byte slot1ID;
     private byte slot2ID;
     private byte slot3ID;
+    private byte slot4ID;
+
+    private float slot1Cooldown = 10;
+    private float slot2Cooldown;
+    private float slot3Cooldown;
+    private float slot4Cooldown;
 
     private void Awake()
     {
@@ -66,6 +72,22 @@ public class PlayerSkillHandler : MonoBehaviour
             target = null;
             monsterTarget = false;
         }
+        if (slot1Cooldown != 0)
+        {
+            slot1Cooldown = Mathf.Max((slot1Cooldown -= Time.deltaTime), 0);
+        }
+        if (slot2Cooldown != 0)
+        {
+            slot2Cooldown = Mathf.Max((slot2Cooldown -= Time.deltaTime), 0);
+        }
+        if (slot2Cooldown != 0)
+        {
+            slot4Cooldown = Mathf.Max((slot4Cooldown -= Time.deltaTime), 0);
+        }
+        if (slot2Cooldown != 0)
+        {
+            slot3Cooldown = Mathf.Max((slot3Cooldown -= Time.deltaTime), 0);
+        }
     }
     private void OnMouseClicked()
     {
@@ -97,35 +119,51 @@ public class PlayerSkillHandler : MonoBehaviour
     }
     public void SkillSolt1()
     {
-        magicianSkill.SkillSelect(slot0ID, target, transform, attackPoint);
+        if (slot1Cooldown == 0)
+        {
+            magicianSkill.SkillSelect(slot1ID, target, transform, attackPoint);
+            slot1Cooldown = skillDB.GetData(slot1ID)._coolDown;
+        }
     }
     public void SkillSolt2()
     {
-        magicianSkill.SkillSelect(slot1ID, target, transform, attackPoint);
+        if (slot2Cooldown == 0)
+        {
+            magicianSkill.SkillSelect(slot2ID, target, transform, attackPoint);
+            slot2Cooldown = skillDB.GetData(slot2ID)._coolDown;
+        }
     }
     public void SkillSolt3()
     {
-        magicianSkill.SkillSelect(slot2ID, target, transform, attackPoint);
+        if (slot3Cooldown == 0)
+        {
+            magicianSkill.SkillSelect(slot3ID, target, transform, attackPoint);
+            slot3Cooldown = skillDB.GetData(slot3ID)._coolDown;
+        }
     }
     public void SkillSolt4()
     {
-        magicianSkill.SkillSelect(slot3ID, target, transform, attackPoint);
+        if (slot4Cooldown == 0)
+        {
+            magicianSkill.SkillSelect(slot4ID, target, transform, attackPoint);
+            slot4Cooldown = skillDB.GetData(slot4ID)._coolDown;
+        }
     }
-    public void SkillSoltChange(byte id,byte slotsNum)
+    public void SkillSoltChange(byte id, byte slotsNum)
     {
         switch (slotsNum)
         {
             case 0:
-                slot0ID = id;
-                break;
-            case 1:
                 slot1ID = id;
                 break;
-            case 2:
+            case 1:
                 slot2ID = id;
                 break;
-            case 3:
+            case 2:
                 slot3ID = id;
+                break;
+            case 3:
+                slot4ID = id;
                 break;
         }
     }

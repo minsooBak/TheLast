@@ -27,7 +27,7 @@ public class PlayerSkillInfo
         get
         {
             if (_sprite == null)
-                _sprite = Resources.Load<Sprite>($"Icon/Skill/{_spritePath}");
+                _sprite = Resources.Load<Sprite>(_spritePath);
             return _sprite;
         }
     }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7583761321990689840}
   - component: {fileID: 8649272947701921343}
+  - component: {fileID: 966615272889390532}
   m_Layer: 0
   m_Name: Blizzard
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 4965828644936459144}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8649272947701921343
 MonoBehaviour:
@@ -45,6 +46,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9037cc6362d05f244b95e779146cf016, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &966615272889390532
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5376876924877746697}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2651768251320978886
 PrefabInstance:
   m_ObjectHideFlags: 0
