@@ -32,5 +32,6 @@ public class DungeonData
     public int Level { get { return _level; } }
     public int ID { get { return _id; } }
     public int Gold { get { return _gold; } }
+    public int Exp { get { return _exp; } }
     public int SpawnCount { get { return _spawnCount; } }
 }

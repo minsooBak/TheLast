@@ -59,6 +59,7 @@ public class UserData
     public int Level;
     public int exp;
     public int stageLv;
+    public int gold;
     public PlayerData playerData;
 }
 

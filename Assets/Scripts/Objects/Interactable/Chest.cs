@@ -10,11 +10,7 @@ public class Chest : MonoBehaviour, IInteractable
     {
         _animation = GetComponent<Animation>();
     }
-    // For Debug
-    void Start()
-    {
-        _animation.Play();
-    }
+
     public void InteractEnter()
     {
         return;
@@ -28,6 +24,7 @@ public class Chest : MonoBehaviour, IInteractable
     public void Interaction()
     {
         _animation.Play();
-        // TODO 보상 UI 띄우기
+        
+        GameManager.ResourceManager.Instantiate("Prefabs/UI/RewardUI");
     }
 }

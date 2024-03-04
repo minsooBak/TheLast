@@ -10,7 +10,10 @@ public class ItemManager
     private Dictionary<ItemType, ItemEntity> _equipItemData = new(Enum.GetValues(typeof(ItemType)).Length);
     private PlayerInfoManager _playerInfoManager;
     public Dictionary<int, SlotData> GetInventoryItemData() { return _inventoryItemData; }
+    public Dictionary<ItemType, ItemEntity> GetEquipItemData() { return _equipItemData; }
+
     private InventoryUI inventoryUI;
+    private PlayerInfoUI playerInfoUI;
 
     public void Init(InvenData invenData)
     {
@@ -65,8 +68,20 @@ public class ItemManager
         return index;
     }
 
+    public void UnEquipItem(ItemEntity item)
+    {
+        inventoryUI = inventoryUI != null ? inventoryUI : GameManager.UIManager.GetUI<InventoryUI>();
+
+        Assert.IsTrue(_equipItemData.ContainsKey(item.ItemType));
+        inventoryUI.UpdateItem(_equipItemData[item.ItemType].ID, _inventoryItemData);
+        _playerInfoManager.UnEquipItem(_equipItemData[item.ItemType]);
+    }
+
     public void EquipItem(ItemEntity item)
     {
+        playerInfoUI = playerInfoUI != null ? playerInfoUI : GameManager.UIManager.GetUI<PlayerInfoUI>();
+        inventoryUI = inventoryUI != null ? inventoryUI : GameManager.UIManager.GetUI<InventoryUI>();
+
         if (_equipItemData.ContainsKey(item.ItemType))
         {
             inventoryUI.UpdateItem(_equipItemData[item.ItemType].ID, _inventoryItemData);
@@ -79,6 +94,7 @@ public class ItemManager
             _equipItemData[item.ItemType] = item;
             _playerInfoManager.EquipItem(item);
         }
+        playerInfoUI.EquipItem(item);
     }
 
     public InvenData GetData()

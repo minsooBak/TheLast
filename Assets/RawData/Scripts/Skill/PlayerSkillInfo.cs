@@ -12,10 +12,29 @@ public class PlayerSkillInfo
     public float _Level2;
     public float _Level3;
     public string _damageType;
-    public string _skillType;
+    public SkllType _skillType;
     public int _skillPoint;
     public float _coolDown;
     public byte _upgrade;
     public string _prefabPath;
     public string _spritePath;
+    public int _cost;
+
+    private Sprite _sprite;
+
+    public Sprite Sprite
+    {
+        get
+        {
+            if (_sprite == null)
+                _sprite = Resources.Load<Sprite>($"Icon/Skill/{_spritePath}");
+            return _sprite;
+        }
+    }
+}
+
+public enum SkllType
+{
+    ActiveAttack,
+    ActiveBuff
 }

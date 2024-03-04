@@ -1,11 +1,9 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static UnityEditor.Progress;
 
 public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -60,7 +58,6 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
         //인벤토리 Active
         //transform.parent.GetComponent<PlayerInput>().PlayerActions.Inventory.canceled += _ => { _canvas.enabled = !_canvas.enabled; };
         _info = GameManager.UIManager.GetUI<ItemDataInfoUI>();
-        _info.Disable();
         _dropItemPopupUI.Disable();
 
         Disable();

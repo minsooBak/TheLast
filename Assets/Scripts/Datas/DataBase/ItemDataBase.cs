@@ -35,7 +35,6 @@ public class ItemEntity
 
     private Sprite _sprite;
 
-    public int Amount { get; set; } = 1;
     public Sprite Sprite
     {
         get
@@ -51,7 +50,7 @@ public class ItemEntity
         get
         {
             if (DropItem == null)
-                DropItem = Resources.Load<GameObject>($"Prefab/{ItemPath}");
+                DropItem = Resources.Load<GameObject>($"Prefab/Item/{ItemPath}");
             return DropItem;
         }
         private set { DropItem = value; }

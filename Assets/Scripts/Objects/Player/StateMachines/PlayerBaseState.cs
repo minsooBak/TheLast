@@ -50,6 +50,12 @@ public class PlayerBaseState : IState
 
         input.PlayerActions.Attack.performed += OnAttackPerformed;
         input.PlayerActions.Attack.canceled += OnAttackCanceled;
+        input.PlayerActions.Skill1.performed += OnSkill1performed;
+        input.PlayerActions.Skill1.canceled += OnSkill1Canceled;
+        input.PlayerActions.Skill2.performed += OnSkill2performed;
+        input.PlayerActions.Skill2.canceled += OnSkill2Canceled;
+        input.PlayerActions.Skill3.performed += OnSkill3performed;
+        input.PlayerActions.Skill3.canceled += OnSkill3Canceled;
     }
 
 
@@ -64,6 +70,12 @@ public class PlayerBaseState : IState
 
         input.PlayerActions.Attack.performed -= OnAttackPerformed;
         input.PlayerActions.Attack.canceled -= OnAttackCanceled;
+        input.PlayerActions.Skill1.performed -= OnSkill1performed;
+        input.PlayerActions.Skill1.canceled -= OnSkill1Canceled;
+        input.PlayerActions.Skill2.performed -= OnSkill2performed;
+        input.PlayerActions.Skill2.canceled -= OnSkill2Canceled;
+        input.PlayerActions.Skill3.performed -= OnSkill3performed;
+        input.PlayerActions.Skill3.canceled -= OnSkill3Canceled;
     }
 
     protected virtual void OnJumpStarted(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -82,9 +94,41 @@ public class PlayerBaseState : IState
     }
     protected virtual void OnAttackPerformed(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
+        Debug.Log("1");
         stateMachine.IsAttacking = true;
+        stateMachine.Player.skillHandler.SkillSolt1();
     }
     protected virtual void OnAttackCanceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        stateMachine.IsAttacking = false;
+    }
+    protected virtual void OnSkill1performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        Debug.Log("2");
+        stateMachine.IsAttacking = true;
+        stateMachine.Player.skillHandler.SkillSolt2();
+    }
+    protected virtual void OnSkill1Canceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        stateMachine.IsAttacking = false;
+    }
+    protected virtual void OnSkill2performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        Debug.Log("3");
+        stateMachine.IsAttacking = true;
+        stateMachine.Player.skillHandler.SkillSolt3();
+    }
+    protected virtual void OnSkill2Canceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        stateMachine.IsAttacking = false;
+    }
+    protected virtual void OnSkill3performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        Debug.Log("4");
+        stateMachine.IsAttacking = true;
+        stateMachine.Player.skillHandler.SkillSolt4();
+    }
+    protected virtual void OnSkill3Canceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         stateMachine.IsAttacking = false;
     }

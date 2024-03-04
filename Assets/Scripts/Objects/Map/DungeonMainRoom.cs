@@ -13,7 +13,6 @@ public class DungeonMainRoom : MonoBehaviour
     private void Start()
     {
         _collider = GetComponent<SphereCollider>();
-        DoorOpen();
     }
     private void OnTriggerEnter(Collider ohter)
     { 
@@ -42,13 +41,14 @@ public class DungeonMainRoom : MonoBehaviour
     {
         --_remainEnemy;
         GameManager.PlayerManager.PlayerInfoManager.AddExp(_manager.enemyData.Exp);
-        if (_remainEnemy == 0)
+        if (_remainEnemy <= 0)
         {
-            EndRoom();
+            StartCoroutine(EndRoom());
         }
     }
-    private void EndRoom()
+    private IEnumerator EndRoom()
     {
+        yield return new WaitForSeconds(2.0f);
         DoorOpen();
         enabled = false;
     }

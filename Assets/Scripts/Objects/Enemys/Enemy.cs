@@ -20,6 +20,7 @@ public class Enemy : MonoBehaviour
     public CharacterHealthSystem HealthSystem { get; private set; }
     public LayerMask targetLayer;
     public Transform target;
+    public BoxCollider attackCollider;
     private EnemyStateMachine stateMachine;
     public EnemyStateMachine StateMachine => stateMachine;
 
@@ -32,6 +33,8 @@ public class Enemy : MonoBehaviour
         Agent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<Animator>();
         HealthSystem = GetComponent<CharacterHealthSystem>();
+        attackCollider = GetComponent<BoxCollider>();
+        attackCollider.enabled = false;
         stateMachine = new EnemyStateMachine(this);
         Data = new EnemyInfo();
         stateMachine.ChangeState(stateMachine.IdleState);
@@ -80,6 +83,25 @@ public class Enemy : MonoBehaviour
     public void OnDie()
     {
         Destroy(gameObject,0.1f);
+    }
+
+    public void EnableAttackCollider()
+    {
+        attackCollider.enabled = true;
+    }
+
+    // 애니메이션 이벤트로 호출될 함수
+    public void DisableAttackCollider()
+    {
+        attackCollider.enabled = false;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<CharacterHealthSystem>()?.TakeDamage(Data.Attack);
+            Debug.Log("Player");
+        }
     }
     private void OnDrawGizmos()
     { 
