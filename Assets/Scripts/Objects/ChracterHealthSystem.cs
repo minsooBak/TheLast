@@ -27,6 +27,7 @@ public class CharacterHealthSystem : MonoBehaviour
         playerHash = Utility.GetHashWithString("Player");
         enemyHash = Utility.GetHashWithString("Enemy");
         Init();
+        TakeDamage(200f);
     }
 
     private void Init()
