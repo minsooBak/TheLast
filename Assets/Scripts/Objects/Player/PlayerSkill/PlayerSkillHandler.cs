@@ -119,6 +119,7 @@ public class PlayerSkillHandler : MonoBehaviour
     }
     public void SkillSolt1()
     {
+        Debug.Log(slot1ID);
         if (slot1Cooldown == 0)
         {
             magicianSkill.SkillSelect(slot1ID, target, transform, attackPoint);
@@ -127,6 +128,7 @@ public class PlayerSkillHandler : MonoBehaviour
     }
     public void SkillSolt2()
     {
+        Debug.Log(slot2ID);
         if (slot2Cooldown == 0)
         {
             magicianSkill.SkillSelect(slot2ID, target, transform, attackPoint);
@@ -135,6 +137,7 @@ public class PlayerSkillHandler : MonoBehaviour
     }
     public void SkillSolt3()
     {
+        Debug.Log(slot3ID);
         if (slot3Cooldown == 0)
         {
             magicianSkill.SkillSelect(slot3ID, target, transform, attackPoint);
@@ -143,10 +146,19 @@ public class PlayerSkillHandler : MonoBehaviour
     }
     public void SkillSolt4()
     {
-        if (slot4Cooldown == 0)
+        Debug.Log(slot4ID);
+        //if (slot4Cooldown == 0)
+        //{
+        //    magicianSkill.SkillSelect(slot4ID, target, transform, attackPoint);
+        //    slot4Cooldown = skillDB.GetData(slot4ID)._coolDown;
+        //}
+        if (target != null)
         {
-            magicianSkill.SkillSelect(slot4ID, target, transform, attackPoint);
-            slot4Cooldown = skillDB.GetData(slot4ID)._coolDown;
+            GameManager.ResourceManager.Instantiate(skillDB.GetData(106)._prefabPath).transform.position = target.transform.position;
+        }
+        else
+        {
+            GameManager.ResourceManager.Instantiate(skillDB.GetData(106)._prefabPath).transform.position = transform.position;
         }
     }
     public void SkillSoltChange(byte id, byte slotsNum)

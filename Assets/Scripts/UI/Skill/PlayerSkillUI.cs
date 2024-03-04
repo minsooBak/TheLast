@@ -84,7 +84,6 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
 
         if (obj != null && obj.TryGetComponent(out SkillSlotUI endSlot) && endSlot.transform.parent.name == "PlayerSkillSlots")
         {
-            Debug.Log("zxzx");
             SkillSlot();
             endSlot.SetSkill(_curSlot.Skill, _curSlot.Index);
         }
