@@ -11,15 +11,12 @@ public class InputData
     public int intUpPoint;
     public int lukUpPoint;
 }
-public class PlayerInfoManager :MonoBehaviour
+public class PlayerInfoManager
 {
-    public PlayerInfoManager()
+    public PlayerInfoManager(UserData data)
     {
+        userData = data;
         Init();
-        if (Utility.IsExistsFile(default))
-        {
-            //로드
-        }
     }
     private PlayerStatusDB statusDB;
     private PlayerLevelDB levelDB;
@@ -35,12 +32,6 @@ public class PlayerInfoManager :MonoBehaviour
     {
         PlayerInfo = new PlayerInfo();
         statusDB = new PlayerStatusDB();
-
-        
-        userData = new UserData();//수정
-    }
-    public void Init2()
-    {
         levelDB = new PlayerLevelDB(userData.statusId);
         CreateCharacterStatus(userData.statusId);
     }

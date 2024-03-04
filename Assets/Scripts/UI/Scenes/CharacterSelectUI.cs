@@ -33,7 +33,7 @@ public class CharacterSelectUI : MonoBehaviour
 
     protected virtual void Awake()
     {
-        characterLoadData = new CharacterLoadData();
+        characterLoadData = GameManager.CharacterLoadData;
         characterLoadData.Init();
         slotPos[0] = new Vector3(-7, 0, 2);
         slotPos[1] = new Vector3(0, 0, 2);
@@ -177,8 +177,7 @@ public class CharacterSelectUI : MonoBehaviour
     }
     public void OnButtonClickStart()
     {
-        GameManager.PlayerManager.PlayerInfoManager.userData = userDatas[slotNum];
-        GameManager.PlayerManager.PlayerInfoManager.Init2();
+        GameManager.PlayerManager.Init(userDatas[slotNum]);
         ScenesManager scenesManager = GameManager.ScenesManager;
         scenesManager.ChangeScene(SceneState.VillageScene);
     }

@@ -1,23 +1,26 @@
 using System.Collections.Generic;
 using Enums;
 using System;
+using UnityEngine.Assertions;
 
 [System.Serializable]
 public class ItemManager
 {
-    private Dictionary<int, ItemEntity> _inventoryItemData = new();//index, ItemID
+    private Dictionary<int, SlotData> _inventoryItemData = new();//index, ItemID
     private Dictionary<ItemType, ItemEntity> _equipItemData = new(Enum.GetValues(typeof(ItemType)).Length);
     private PlayerInfoManager _playerInfoManager;
-    public Dictionary<int, ItemEntity> GetInventoryItemData() { return _inventoryItemData; }
+    public Dictionary<int, SlotData> GetInventoryItemData() { return _inventoryItemData; }
     private InventoryUI inventoryUI;
 
     public void Init(InvenData invenData)
     {
+        if (invenData == null) return;
+
         _inventoryItemData = new(invenData.slotDatas.Count);
 
         foreach (SlotData slot in invenData.slotDatas)
         {
-            _inventoryItemData.Add(slot.index, slot.item);
+            _inventoryItemData.Add(slot.index, slot);
         }
 
         foreach(EquipData equip in invenData.equipDatas)
@@ -33,6 +36,33 @@ public class ItemManager
         inventoryUI = inventoryUI != null ? inventoryUI : GameManager.UIManager.GetUI<InventoryUI>();
 
         inventoryUI.UpdateItem(id, _inventoryItemData);
+    }
+
+    public int GetConsumeAmount(int id)
+    {
+        int amount = 0;
+        foreach(var item in _inventoryItemData)
+        {
+            if(item.Value.item.ID == id)
+            {
+                amount += item.Value.amount;
+            }
+        }
+        return amount;
+    }
+
+    public int GetLastConsume(int id)
+    {
+        int index = -1;
+        foreach(var item in _inventoryItemData)
+        {
+            if(item.Value.item.ID == id)
+            {
+                index = item.Key;
+            }
+        }
+        Assert.IsTrue(index != -1);
+        return index;
     }
 
     public void EquipItem(ItemEntity item)
@@ -51,8 +81,31 @@ public class ItemManager
         }
     }
 
-}
+    public InvenData GetData()
+    {
+        InvenData data = new InvenData
+        {
+            slotDatas = new(_inventoryItemData.Count),
+            equipDatas = new(_equipItemData.Count)
+        };
+        foreach(var item in _inventoryItemData)
+        {
+            data.slotDatas.Add(item.Value);
+        }
+        foreach (var equip in _equipItemData)
+        {
+            EquipData equipData = new EquipData
+            {
+                type = equip.Key,
+                item = equip.Value
+            };
+            data.equipDatas.Add(equipData);
+        }
+        return data;
+    }
 
+}
+[System.Serializable]
 public class InvenData
 {
     public List<SlotData> slotDatas;
@@ -70,5 +123,6 @@ public class EquipData
 public class SlotData
 {
     public int index;
+    public int amount;
     public ItemEntity item;
 }

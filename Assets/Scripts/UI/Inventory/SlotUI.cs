@@ -8,9 +8,11 @@ public class SlotUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _amountText;
     [SerializeField] private Image _highlight;
     private RectTransform _rectTransform;
+    private int _amount = 0;
+
     public int Index { get; private set; }
     public ItemEntity Item { get; private set; }
-    public int Amount { get { return Item.Amount; } }
+    public int Amount { get { return _amount; } }
     public Transform IconTransform { get { return _icon.transform; } }
     public bool IsMaxAmount { get { return Amount == Item.MaxAmount; } }
 
@@ -64,7 +66,7 @@ public class SlotUI : MonoBehaviour
     {
         if (Item == null) return;
 
-        Item.Amount = amount;
+        _amount = amount;
         if (Amount <= 1)
         {
             _amountText.enabled = false;
@@ -77,7 +79,7 @@ public class SlotUI : MonoBehaviour
 
     public void AddAmount()
     {
-        if (++Item.Amount <= 1)
+        if (++_amount <= 1)
         {
             _amountText.enabled = false;
             return;

@@ -737,6 +737,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 837387698}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &837387700 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5385392623595000621, guid: 10a423cef1fe1ea4cb39e9c0c984f3cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 837387698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &837387708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,7 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  attackPoint: {fileID: 0}
+  attackPoint: {fileID: 837387700}
 --- !u!1 &1341348137
 GameObject:
   m_ObjectHideFlags: 0

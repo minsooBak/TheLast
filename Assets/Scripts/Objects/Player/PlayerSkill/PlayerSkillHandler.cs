@@ -32,13 +32,13 @@ public class PlayerSkillHandler : MonoBehaviour
         playerInfo = GameManager.PlayerManager.PlayerInfoManager.PlayerInfo;
         skillInfo = GameManager.PlayerManager.SkillManager.PlayerSkill;
         skillDB = GameManager.PlayerManager.SkillManager.skillData;
-        player = GetComponent<Player>();
-        playerInput = player.Input;
+
         skillSlot = GameObject.Find("SkillSlot");
     }
     private void Start()
     {
-        Debug.Log(attackPoint);
+        player = GetComponent<Player>();
+        playerInput = player.Input;
         playerInput.PlayerActions.Attack.started += OnAttack;
 
         skillSlotCount = skillSlot.transform.childCount;

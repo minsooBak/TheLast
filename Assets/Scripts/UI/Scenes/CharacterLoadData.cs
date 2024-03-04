@@ -25,30 +25,20 @@ public class CharacterLoadData
     public void SaveUserData()
     {
         userDataList.user.Clear();
-        foreach (KeyValuePair<int, UserData> pair in loadedUserData)
+        GameManager.PlayerManager.SettingData();
+        foreach (var pair in loadedUserData)
         {
-            if (loadedUserData.ContainsKey(pair.Key))
-                userDataList.user.Add(pair.Value);
+            userDataList.user.Add(pair.Value);
         }
-        string jsonData = JsonUtility.ToJson(userDataList, true);
-        string path = Path.Combine(Application.dataPath, $"UserData.json");
-        File.WriteAllText(path, jsonData);
+        Utility.SaveToJsonFile(userDataList, "UserData.json");
         Debug.Log("데이터 저장했음");
     }
 
     [ContextMenu("From Json Data")]
     private void LoadUserData()
     {
-        string path = Path.Combine(Application.dataPath, $"UserData.json");
-        if (!File.Exists(path))
-        {
-            Debug.Log("No File");
-            //userDataList = new UserDataList();
-            return;
-        }
-        string jsonData = File.ReadAllText(path);
-
-        userDataList = JsonUtility.FromJson<UserDataList>(jsonData);
+        if (!Utility.IsExistsFile("UserData.json")) return;
+        userDataList = Utility.LoadJsonFile<UserDataList>("UserData.json");
         for (int i = 0; i < userDataList.user.Count; i++)
         {
             if (userDataList.user[i]!= null)
@@ -69,11 +59,7 @@ public class UserData
     public int Level;
     public int exp;
     public int stageLv;
-    //플레이어인벤토리,스킬업글,스텟업글
-}
-public class PlayData
-{
-
+    public PlayerData playerData;
 }
 
 [System.Serializable]
