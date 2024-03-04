@@ -41,6 +41,7 @@ public class DungeonMainRoom : MonoBehaviour
     private void EnemyDie()
     {
         --_remainEnemy;
+        GameManager.PlayerManager.PlayerInfoManager.AddExp(_manager.enemyData.Exp);
         if (_remainEnemy == 0)
         {
             EndRoom();

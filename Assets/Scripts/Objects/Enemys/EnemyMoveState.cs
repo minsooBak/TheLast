@@ -19,14 +19,12 @@ public class EnemyMoveState : IState
     {
         _agent?.SetDestination(_enemy.target.position);
         _stateMachine.Enemy.Animator.SetBool(moveParameterName, true);
-        Debug.Log("MoveEnter");
     }
 
     public void Exit()
     {
         _agent.ResetPath();
         _stateMachine.Enemy.Animator.SetBool(moveParameterName, false);
-        Debug.Log("MoveExit");
     }
 
     public void HandleInput()

@@ -102,12 +102,17 @@ public class PlayerInfoManager
                 }
             }
         }
+        Debug.Log("ExpGet");
     }
     private void LevelUp()
     {
         levelInfo = levelDB.GetData(PlayerInfo.Level - 1);
-
-        PlayerInfo.MaxHp -= levelInfo._maxHp;
+        if (levelInfo == null)
+        {
+            Debug.Log("존재하지 않는 레벨입니다");
+            return;
+        }
+            PlayerInfo.MaxHp -= levelInfo._maxHp;
         PlayerInfo.MaxMp -= levelInfo._maxMp;
         PlayerInfo.ADef -= levelInfo._adef;
         PlayerInfo.MDef -= levelInfo._mdef;

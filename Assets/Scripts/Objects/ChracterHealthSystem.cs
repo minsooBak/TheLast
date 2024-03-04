@@ -27,8 +27,7 @@ public class CharacterHealthSystem : MonoBehaviour
         playerHash = Utility.GetHashWithString("Player");
         enemyHash = Utility.GetHashWithString("Enemy");
         Init();
-        TakeDamage(10f);
-        TakeDamage(10f);
+        TakeDamage(200f);
     }
 
     private void Init()
@@ -60,8 +59,6 @@ public class CharacterHealthSystem : MonoBehaviour
         {
             if (enemy.Data.Hp == 0) return;
             enemy.Data.Hp = Mathf.Min(enemy.Data.MaxHp, Mathf.Max(enemy.Data.Hp - damage, 0));
-            Debug.Log(enemy.Data.Hp);
-
             if (enemy.Data.Hp <= 0)
                 OnDie?.Invoke();
         }

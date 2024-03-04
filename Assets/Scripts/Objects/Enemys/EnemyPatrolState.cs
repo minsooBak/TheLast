@@ -2,29 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyIdleState : IState
+public class EnemyPatrolState : IState
 {
     private EnemyStateMachine _stateMachine;
     private Enemy _enemy;
-    private string idleParameterName = "Idle";
-
-    private float _elapsedTimeInIdle;
-    private float _maxIdleTime;
-    public EnemyIdleState(EnemyStateMachine stateMachine)
+    private string moveParameterName = "Move";
+    public EnemyPatrolState(EnemyStateMachine stateMachine)
     {
         _stateMachine = stateMachine;
         _enemy = _stateMachine.Enemy;
-        _maxIdleTime = 1f;
     }
     public void Enter()
     {
-        _enemy.Controller?.Move(Vector3.zero);
-        _elapsedTimeInIdle = 0;
+        _enemy.Agent?.SetDestination(_enemy.WayPoint);
+        if(_enemy.Agent.remainingDistance > _enemy.Agent.stoppingDistance)
+            _enemy.Animator.SetBool(moveParameterName, true);
     }
 
     public void Exit()
     {
-
+        _enemy.Animator.SetBool(moveParameterName, false);
+        _enemy.Agent.ResetPath();
     }
 
     public void HandleInput()
@@ -39,7 +37,6 @@ public class EnemyIdleState : IState
 
     public void Update()
     {
-        _elapsedTimeInIdle += Time.deltaTime;
         Transform enemy = _enemy.DetectPlayer();
         if (enemy)
         {
@@ -52,9 +49,16 @@ public class EnemyIdleState : IState
                 _stateMachine.ChangeState(_stateMachine.MoveState);
             }
         }
-        else if (_enemy.CanPatrol && _elapsedTimeInIdle >= _maxIdleTime)
+        else
         {
-            _stateMachine.ChangeState(_stateMachine.PatrolState);
+            if(!_enemy.Agent.pathPending && (_enemy.Agent.remainingDistance <= _enemy.Agent.stoppingDistance))
+            {
+                _stateMachine.ChangeState(_stateMachine.IdleState);
+            }
+            else
+            {
+                _enemy.Controller.Move(_enemy.Agent.velocity * Time.deltaTime * _enemy.Data.MoveSpeed);
+            }
         }
     }
 }

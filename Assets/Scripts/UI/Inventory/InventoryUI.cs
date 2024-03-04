@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -52,7 +54,7 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
         {
             foreach(var data in slotDatas)
             {
-                _slots[data.Key].SetItem(data.Value);
+                _slots[data.Key].SetItem(data.Value.item);
             }
         }
         //인벤토리 Active
@@ -64,13 +66,14 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
         Disable();
     }
 
-    public void UpdateItem(int id, in Dictionary<int, ItemEntity> itemData)
+    public void UpdateItem(int id, in Dictionary<int, SlotData> itemData)
     {
         foreach (var pair in itemData)
         {
-            if(pair.Value.ID == id && !_slots[pair.Key].IsMaxAmount)
+            if(pair.Value.item.ID == id && !_slots[pair.Key].IsMaxAmount)
             {
                 _slots[pair.Key].AddAmount();
+                pair.Value.amount = _slots[pair.Key].Amount;
                 return;
             }
         }
@@ -89,7 +92,13 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
             if (!_slots[i].HasItem())
             {
                 _slots[i].SetItem(item);
-                itemData.Add(i, item);
+                SlotData slotData = new()
+                {
+                    index = i,
+                    item = item,
+                    amount = 1
+                };
+                itemData.Add(i, slotData);
                 return;
             }
         }
@@ -124,31 +133,34 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
         Rect baseRect = (transform.GetChild(0) as RectTransform).rect;
         _curSlot.IconReset();
 
-        if (pos.x < baseRect.xMin || pos.x > baseRect.xMax
-            || pos.y < baseRect.yMin || pos.y > baseRect.yMax)
+        if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out SlotUI endSlot))
         {
-            _dropIndex = _curSlot.Index;
-            _dropItemPopupUI.Active();
-            if (_curSlot.Amount == 1)
-            {
-                _dropItemPopupUI.Init("Itme Popup", "Are you sure you want to discard this?", DropItem);
-            }
-            else
-            {
-                _dropItemPopupUI.Init("Item Popup", "How many would you like to discard?", DropItems, _curSlot.Amount);
-            }
-        }
-        else
-        {
-            if (!eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out SlotUI endSlot)) return;
-
             if (endSlot.transform.parent.parent.parent.TryGetComponent(out InventoryUI _))
             {
                 DropInventory(endSlot);
             }
+            else if (_curSlot.Item.ItemType == Enums.ItemType.Consume && endSlot.transform.parent.TryGetComponent(out PlayerConsumeSlotsManager _))
+            {
+                endSlot.SetItem(_curSlot.Item);
+                endSlot.SetAmount(_itemManager.GetConsumeAmount(_curSlot.Item.ID));
+            }
             //장비 장착
-            //소모품 슬롯 배치
-            
+
+        }
+        else
+        {
+            {
+                _dropIndex = _curSlot.Index;
+                _dropItemPopupUI.Active();
+                if (_curSlot.Amount == 1)
+                {
+                    _dropItemPopupUI.Init("Itme Popup", $"아이템 {_curSlot.Item.Name}을 정말로 버리시겠습니까?", DropItem);
+                }
+                else
+                {
+                    _dropItemPopupUI.Init("Item Popup", $"아이템 {_curSlot.Item.Name}을 몇개 버리시겠습니까?", DropItems, _curSlot.Amount);
+                }
+            }
         }
     }
 
@@ -160,18 +172,26 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
 
         _curSlot.SetItem(endSlot.Item);
         if (_curSlot.HasItem()) _curSlot.SetAmount(endSlot.Amount);
+
         endSlot.SetItem(item);
         endSlot.SetAmount(amount);
 
         if (data.ContainsKey(endSlot.Index))
         {
+            SlotData slotData = data[endSlot.Index];
             data[endSlot.Index] = data[_curSlot.Index];
-            data[_curSlot.Index] = item;
+            data[_curSlot.Index] = slotData;
         }
         else
         {
             data.Remove(_curSlot.Index);
-            data.Add(endSlot.Index, item);
+            SlotData slotData = new()
+            {
+                index = endSlot.Index,
+                item = endSlot.Item,
+                amount = endSlot.Amount
+            };
+            data.Add(endSlot.Index, slotData);
         }
     }
 
@@ -236,7 +256,7 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
         }
     }
 
-    private void UseItem(SlotUI slot)
+    public void UseItem(SlotUI slot)
     {
         switch(slot.Item.ItemType)
         {
@@ -253,13 +273,35 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
                 {
                     //포션 사용
                     UseConsume(slot.Item);
-                    if (slot.Amount == 1)
+                    if (slot.transform.parent.TryGetComponent(out PlayerConsumeSlotsManager _))
                     {
-                        _itemManager.GetInventoryItemData().Remove(slot.Index);
-                        slot.SetItem(null);
+                        var last = _itemManager.GetLastConsume(slot.Item.ID);
+                        if(_slots[last].Amount == 1)
+                        {
+                            _itemManager.GetInventoryItemData().Remove(last);
+                            _slots[last].SetItem(null);
+                            slot.SetAmount(_itemManager.GetConsumeAmount(slot.Item.ID));
+                            if (slot.Amount == 0)
+                                slot.SetItem(null);
+                        }
+                        else
+                        {
+                            _slots[last].SetAmount(_slots[last].Amount - 1);
+                            slot.SetAmount(slot.Amount - 1);
+                        }
                     }
                     else
-                        slot.SetAmount(slot.Amount - 1);
+                    {
+                        if (slot.Amount == 1)
+                        {
+                            _itemManager.GetInventoryItemData().Remove(slot.Index);
+                            slot.SetItem(null);
+                        }
+                        else
+                        {
+                            slot.SetAmount(slot.Amount - 1);
+                        }
+                    }
                 }
                 break;
         }
