@@ -542,7 +542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c702137012588824fa4ed137f482f062, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _icon: {fileID: 4070022475904077787}
+  _icon: {fileID: 7658708194002786366}
   _amountText: {fileID: 886669410738416241}
   _upBtn: {fileID: 5206815535045320956}
 --- !u!222 &4187862050047615690

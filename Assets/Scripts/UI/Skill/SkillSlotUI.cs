@@ -18,14 +18,22 @@ public class SkillSlotUI : MonoBehaviour
     public PlayerSkillInfo Skill { get { return _skill; } }
     public Transform IconTransform { get { return _icon.transform; } }
 
+    private PlayerInfo _playerInfo;
+    private PlayerSkill _playerSkill;
+    private PlayerSkillDB _skillDB;
+
     private void Awake()
     {
         _rectTransform = _icon.GetComponent<RectTransform>();
+
     }
 
-    public void Init(Action upBtn)
+    public void Init(PlayerInfo info, PlayerSkill skill, PlayerSkillDB skillDB)
     {
-        _upBtn.onClick.AddListener(() => upBtn());
+        _playerInfo = info;
+        _playerSkill = skill;
+        _skillDB = skillDB;
+        _upBtn.onClick.AddListener(SkillUp);
     }
 
     public void IconReset()
@@ -66,5 +74,156 @@ public class SkillSlotUI : MonoBehaviour
         if (!_amountText.enabled) _amountText.enabled = true;
 
         _amountText.text = amount.ToString();
+    }
+
+    private void SkillUp()
+    {
+        switch (Index + 1)
+        {
+            case 1:
+                if (_playerSkill.playerSkillInfo[101] > 3
+                    && _playerInfo.SkillPoint <= _skillDB.GetData(101)._skillPoint)
+                {
+                    _playerSkill.playerSkillInfo[101] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(101)._skillPoint;
+                }
+                break;
+            case 2:
+                if (_playerSkill.playerSkillInfo[102] > 3
+                    && _playerInfo.SkillPoint <= _skillDB.GetData(102)._skillPoint
+                    && _playerSkill.playerSkillInfo[101] >= 1)
+                {
+                    _playerSkill.playerSkillInfo[102] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(102)._skillPoint;
+                }
+                break;
+            case 3:
+                if (_playerSkill.playerSkillInfo[103] > 3
+                    && _playerInfo.SkillPoint <= _skillDB.GetData(103)._skillPoint
+                    && _playerSkill.playerSkillInfo[101] >= 1)
+                {
+                    _playerSkill.playerSkillInfo[103] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(103)._skillPoint;
+                }
+                break;
+            case 4:
+                if (_playerSkill.playerSkillInfo[104] > 3
+                && _playerInfo.SkillPoint <= _skillDB.GetData(104)._skillPoint
+                && _playerSkill.playerSkillInfo[101] >= 1)
+                {
+                    _playerSkill.playerSkillInfo[104] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(104)._skillPoint;
+                }
+                break;
+            case 5:
+                if (_playerSkill.playerSkillInfo[105] > 3
+                && _playerInfo.SkillPoint <= _skillDB.GetData(105)._skillPoint
+                && _playerSkill.playerSkillInfo[104] >= 1)
+                {
+                    _playerSkill.playerSkillInfo[105] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(105)._skillPoint;
+                }
+                break;
+            case 6:
+                if (_playerSkill.playerSkillInfo[106] > 3
+                && _playerInfo.SkillPoint <= _skillDB.GetData(106)._skillPoint
+                && _playerSkill.playerSkillInfo[102] >= 1)
+                {
+                    _playerSkill.playerSkillInfo[106] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(106)._skillPoint;
+                }
+                break;
+            case 7:
+                if (_playerSkill.playerSkillInfo[107] > 3
+                && _playerInfo.SkillPoint <= _skillDB.GetData(107)._skillPoint
+                && _playerSkill.playerSkillInfo[103] >= 1)
+                {
+                    _playerSkill.playerSkillInfo[107] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(107)._skillPoint;
+                }
+                break;
+            case 8:
+                if (_playerSkill.playerSkillInfo[108] > 3
+                && _playerInfo.SkillPoint <= _skillDB.GetData(108)._skillPoint
+                && _playerSkill.playerSkillInfo[105] >= 1
+                && _playerSkill.playerSkillInfo[106] >= 1
+                && _playerSkill.playerSkillInfo[107] >= 1)
+                {
+                    _playerSkill.playerSkillInfo[108] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(108)._skillPoint;
+                }
+                break;
+            case 9:
+                if (_playerSkill.playerSkillInfo[201] > 3
+                && _playerInfo.SkillPoint <= _skillDB.GetData(201)._skillPoint)
+                {
+                    _playerSkill.playerSkillInfo[201] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(201)._skillPoint;
+                }
+                break;
+            case 10:
+                if (_playerSkill.playerSkillInfo[202] > 3
+                && _playerInfo.SkillPoint <= _skillDB.GetData(202)._skillPoint
+                && _playerSkill.playerSkillInfo[201] >= 1)
+                {
+                    _playerSkill.playerSkillInfo[202] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(202)._skillPoint;
+                }
+                break;
+            case 11:
+                if (_playerSkill.playerSkillInfo[203] > 3
+                && _playerInfo.SkillPoint <= _skillDB.GetData(203)._skillPoint
+                && _playerSkill.playerSkillInfo[202] >= 1)
+                {
+                    _playerSkill.playerSkillInfo[203] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(203)._skillPoint;
+                }
+                break;
+            case 12:
+                if (_playerSkill.playerSkillInfo[204] > 3
+                && _playerInfo.SkillPoint <= _skillDB.GetData(204)._skillPoint)
+                {
+                    _playerSkill.playerSkillInfo[204] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(204)._skillPoint;
+                }
+                break;
+            case 13:
+                if (_playerSkill.playerSkillInfo[205] > 3
+                && _playerInfo.SkillPoint <= _skillDB.GetData(205)._skillPoint
+                && _playerSkill.playerSkillInfo[204] >= 1)
+                {
+                    _playerSkill.playerSkillInfo[205] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(205)._skillPoint;
+                }
+                break;
+            case 14:
+                if (_playerSkill.playerSkillInfo[206] > 3
+                && _playerInfo.SkillPoint <= _skillDB.GetData(206)._skillPoint
+                && _playerSkill.playerSkillInfo[203] >= 1)
+                {
+                    _playerSkill.playerSkillInfo[206] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(206)._skillPoint;
+                }
+                break;
+            case 15:
+                if (_playerSkill.playerSkillInfo[207] > 3
+                && _playerInfo.SkillPoint <= _skillDB.GetData(207)._skillPoint
+                && _playerSkill.playerSkillInfo[203] >= 1)
+                {
+                    _playerSkill.playerSkillInfo[207] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(207)._skillPoint;
+                }
+                break;
+            case 16:
+                if (_playerSkill.playerSkillInfo[208] > 3
+                && _playerInfo.SkillPoint <= _skillDB.GetData(208)._skillPoint
+                && _playerSkill.playerSkillInfo[205] >= 1)
+                {
+                    _playerSkill.playerSkillInfo[208] += 1;
+                    _playerInfo.SkillPoint -= _skillDB.GetData(208)._skillPoint;
+                }
+                break;
+        }
+
     }
 }
