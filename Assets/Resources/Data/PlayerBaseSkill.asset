@@ -23,7 +23,7 @@ MonoBehaviour:
     _damageType: 'physical '
     _skillType: 0
     _skillPoint: 1
-    _coolDown: 1
+    _coolDown: 0.5
     _upgrade: 1
     _prefabPath: Prefabs/Skill/Magician/EnergyVolt
     _spritePath: Icon/Skill/Magician/EnergyVolt
