@@ -29,7 +29,7 @@ public class PlayerInfoManager
     private void CreateCharacterStatus(byte _id)
     {
         statusInfo = statusDB.GetData(_id);
-
+        PlayerInfo.PlayerName = userData.characterName;
         PlayerInfo.Job += statusInfo._job;
         PlayerInfo.Hp += statusInfo._hp;
         PlayerInfo.MaxHp += statusInfo._hp;
