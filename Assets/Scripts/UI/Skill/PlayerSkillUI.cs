@@ -81,7 +81,7 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
         if (_curSlot == null) return;
         _curSlot.IconReset();
 
-        if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out SkillSlotUI endSlot))
+        if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out SkillSlotUI endSlot) && endSlot.transform.parent.name == "PlayerSkillSlots")
         {
             SkillSlot();
             endSlot.SetSkill(_curSlot.Skill, _curSlot.Index);
