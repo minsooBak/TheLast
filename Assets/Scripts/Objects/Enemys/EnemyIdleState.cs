@@ -20,16 +20,11 @@ public class EnemyIdleState : IState
     {
         _enemy.Controller?.Move(Vector3.zero);
         _elapsedTimeInIdle = 0;
-        //_stateMachine.Enemy.Animator.SetBool(idleParameterName, true);
-        //TODO Idle 애니메이션 off
-        Debug.Log("IdleEnter");
     }
 
     public void Exit()
     {
-        //TODO Idle 애니메이션 off
-        //_stateMachine.Enemy.Animator.SetBool(idleParameterName, false);
-        Debug.Log("IdleExit");
+
     }
 
     public void HandleInput()

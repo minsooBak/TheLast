@@ -39,10 +39,10 @@ public class FieldDungeonSpawner : MonoBehaviour
         GameManager.PlayerManager.PlayerInfoManager.AddExp(_enemyData.Exp);
         if(_remainEnemy == 0)
         {
-            StartCoroutine(SpawnEnemy(3));
+            Debug.Log("EnemySpawned");
+            StartCoroutine(SpawnEnemy(5));
         }
     }
-    private void 
 
     private Vector3 GetRandomPosition()
     {

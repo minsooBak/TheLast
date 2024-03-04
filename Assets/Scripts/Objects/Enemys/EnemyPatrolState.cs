@@ -17,14 +17,12 @@ public class EnemyPatrolState : IState
         _enemy.Agent?.SetDestination(_enemy.WayPoint);
         if(_enemy.Agent.remainingDistance > _enemy.Agent.stoppingDistance)
             _enemy.Animator.SetBool(moveParameterName, true);
-        Debug.Log("PatrolEnter");
     }
 
     public void Exit()
     {
         _enemy.Animator.SetBool(moveParameterName, false);
         _enemy.Agent.ResetPath();
-        Debug.Log("PatrolExit");
     }
 
     public void HandleInput()

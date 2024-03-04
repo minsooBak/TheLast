@@ -14,14 +14,11 @@ public class EnemyAttackState : IState
     }
     public void Enter()
     {
-        Debug.Log("AttackEnter");
         _stateMachine.Enemy.Animator.SetTrigger(attackParameterName);
     }
 
     public void Exit()
     {
-        Debug.Log("AttackExit");
-       
     }
 
     public void HandleInput()

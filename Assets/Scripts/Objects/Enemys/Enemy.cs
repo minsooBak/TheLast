@@ -79,7 +79,7 @@ public class Enemy : MonoBehaviour
     }
     public void OnDie()
     {
-        Destroy(gameObject);
+        Destroy(gameObject,0.1f);
     }
     private void OnDrawGizmos()
     { 
