@@ -17,7 +17,9 @@ public abstract class DataBase<T> : ScriptableObject, IDataBaseable
 
     public virtual T GetData(int key)
     {
-        return _data[key];
+        if(_data.ContainsKey(key))
+            return _data[key];
+        return default;
     }
 
     public void Init()
