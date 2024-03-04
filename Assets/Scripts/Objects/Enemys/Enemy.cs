@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(CharacterController)), RequireComponent(typeof(NavMeshAgent)),
+    RequireComponent(typeof(Animator)), RequireComponent(typeof(CharacterHealthSystem))]
 public class Enemy : MonoBehaviour
 {
     // TODO Enemy데이터 추가
     [field: Header("EnemyData")]
     [field: SerializeField] public EnemyInfo Data;
 
+    public bool CanPatrol { get; private set; }
     // public Animator Animator { get; private set; }
     public CharacterController Controller { get; private set; }
     public NavMeshAgent Agent { get; private set; }
@@ -20,9 +23,9 @@ public class Enemy : MonoBehaviour
     private EnemyStateMachine stateMachine;
     public EnemyStateMachine StateMachine => stateMachine;
 
-    [field: Header("data")]
-    public float MaxHp { get; set; }
-    public float Hp { get; set; }
+    //TODO 돌아올 장소    
+    public Vector3 WayPoint { get; private set; }
+
     private void Awake()
     {
         Controller = GetComponent<CharacterController>();
@@ -65,8 +68,13 @@ public class Enemy : MonoBehaviour
         }
         return target;
     }
-    private void OnDrawGizmos()
+    public void SetWayPoint(Vector3 position)
     {
+        WayPoint = position;
+        CanPatrol = true;
+    }
+    private void OnDrawGizmos()
+    { 
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, Data.TargetingRadius);
 

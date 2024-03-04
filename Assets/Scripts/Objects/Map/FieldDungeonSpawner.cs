@@ -22,10 +22,12 @@ public class FieldDungeonSpawner : MonoBehaviour
         _remainEnemy = spawnCount;
         for (int i = 0; i < spawnCount; i++)
         {
+            Vector3 randomPosition = GetRandomPosition();
             Enemy enemy = GameManager.ResourceManager.Instantiate(
-                $"Prefabs/Enemys/{_enemyData.Name}", GetRandomPosition())
+                $"Prefabs/Enemys/{_enemyData.Name}", randomPosition)
                 .GetComponent<Enemy>();
             enemy.SetData(_enemyData.ID);
+            enemy.SetWayPoint(randomPosition);
             enemy.HealthSystem.OnDie += EnemyDie;
         }
         yield return null;
