@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public static ScenesManager ScenesManager { get; private set; }
     public static DataBases DataBases { get; private set; }
     public static PlayerManager PlayerManager { get { return _playerManager ??= new(); } }
-    public static EffectManager EffectManager { get { return _effectManager??= new(); } }
+    public static EffectManager EffectManager { get { return _effectManager ??= new(); } }
 
     private static PlayerManager _playerManager;
     private static EffectManager _effectManager;
