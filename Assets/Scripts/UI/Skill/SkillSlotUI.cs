@@ -16,6 +16,7 @@ public class SkillSlotUI : MonoBehaviour
     public int Index { get; private set; } 
 
     public PlayerSkillInfo Skill { get { return _skill; } }
+    public Transform IconTransform { get { return _icon.transform; } }
 
     private void Awake()
     {
@@ -30,6 +31,7 @@ public class SkillSlotUI : MonoBehaviour
     public void IconReset()
     {
         _icon.transform.SetParent(transform);
+        _icon.transform.SetAsFirstSibling();
         _rectTransform.anchoredPosition = Vector2.zero;
     }
 

@@ -2,15 +2,23 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler
+public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     private PlayerSkill _playerSkill;
     private PlayerSkillDB _skillDB;
     private PlayerInfo _playerInfo;
+
+    [SerializeField] private TMPro.TextMeshProUGUI _headerText;
     [SerializeField] private Button _attackBtn;
     [SerializeField] private Transform slotParent;
     [SerializeField] private SkillSlotUI[] _slots;
     [SerializeField] private ItemDataInfoUI _infoUI;
+
+
+    [Header("MoveItem")]
+    private SkillSlotUI _curSlot;
+    private Vector2 _startPos;
+    private Vector2 _endPos;
 
     private void Awake()
     {
@@ -18,6 +26,8 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler
         _playerSkill = skillManager.PlayerSkill;
         _skillDB = skillManager.skillData;
         _playerInfo = GameManager.PlayerManager.PlayerInfoManager.PlayerInfo;
+
+        _headerText.text = GameManager.PlayerManager.PlayerInfoManager.userData.statusId == 1 ? "마법사" : "오크전사";
 
         _slots = slotParent.GetComponentsInChildren<SkillSlotUI>();
         _infoUI = GameManager.UIManager.GetUI<ItemDataInfoUI>();
@@ -48,6 +58,35 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler
     {
         _infoUI.Disable();
     }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        GameObject obj = eventData.pointerCurrentRaycast.gameObject;
+        if (obj == null || !obj.TryGetComponent(out _curSlot)) return;
+
+        _infoUI.Disable();
+        _curSlot.IconTransform.SetParent(slotParent);
+        _startPos = _curSlot.transform.position;
+        _endPos = eventData.position;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (_curSlot == null) return;
+        _curSlot.IconTransform.position = _startPos + (eventData.position - _endPos);
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        if (_curSlot == null) return;
+        _curSlot.IconReset();
+
+        if (eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out SkillSlotUI endSlot) && endSlot.transform.parent.TryGetComponent(out PlayerSkillSlotManager _))
+        {
+            endSlot.SetSkill(_curSlot.Skill, _curSlot.Index);
+        }
+    }
+
     private void SkillUp()
     {
         var slot = GetComponent<SkillSlotUI>();
