@@ -22,7 +22,7 @@ public class RewardUI : MonoBehaviour
         _goldText.text = $"{dungeonData.Gold}";
         _expText.text = $"{dungeonData.Exp}";
         GameManager.PlayerManager.PlayerInfoManager.userData.gold += dungeonData.Gold;
-        GameManager.PlayerManager.PlayerInfoManager.userData.exp += dungeonData.Exp;
+        GameManager.PlayerManager.PlayerInfoManager.AddExp(dungeonData.Exp);
         _ExitButton.onClick.AddListener(Exit);
 
     }

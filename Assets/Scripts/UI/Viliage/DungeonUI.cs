@@ -11,6 +11,7 @@ public class DungeonUI : MonoBehaviour
     void Start()
     {
         _maxStage = GameManager.PlayerManager.PlayerInfoManager.userData.stageLv;
+        if (_maxStage > 3) _maxStage = 3;
         if(_maxStage == 0)
         {
             _maxStage = 1;
