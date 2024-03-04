@@ -97,7 +97,7 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
     }
     private void SkillUp()
     {
-        var slot = GetComponent<SkillSlotUI>();
+        var slot = GetComponent<Button>().transform.parent.GetComponent<SkillSlotUI>();
 
         switch (slot.Index + 1)
         {
