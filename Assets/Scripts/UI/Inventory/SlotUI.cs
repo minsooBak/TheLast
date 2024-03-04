@@ -10,14 +10,14 @@ public class SlotUI : MonoBehaviour
     private RectTransform _rectTransform;
     public int Index { get; private set; }
     public ItemEntity Item { get; private set; }
-    public int Amount { get; private set; } = 1;
+    public int Amount { get { return Item.Amount; } }
     public Transform IconTransform { get { return _icon.transform; } }
     public bool IsMaxAmount { get { return Amount == Item.MaxAmount; } }
 
     public void Init(int index)
     {
         Index = index;
-    }
+    }   
 
     public void IconReset()
     {
@@ -49,14 +49,22 @@ public class SlotUI : MonoBehaviour
     {
         Item = item;
         if (item != null)
+        {
             Icon = item.Sprite;
+            SetAmount(item.Amount);
+        }
         else
+        {
             Icon = null;
+            _amountText.enabled = false;
+        }
     }
 
     public void SetAmount(int amount)
     {
-        Amount = amount;
+        if (Item == null) return;
+
+        Item.Amount = amount;
         if (Amount <= 1)
         {
             _amountText.enabled = false;
@@ -69,7 +77,7 @@ public class SlotUI : MonoBehaviour
 
     public void AddAmount()
     {
-        if (++Amount <= 1)
+        if (++Item.Amount <= 1)
         {
             _amountText.enabled = false;
             return;

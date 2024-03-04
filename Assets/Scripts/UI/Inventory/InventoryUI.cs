@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventoryUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler
+public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [SerializeField] private Transform _slotParent;
     [SerializeField] private Transform _dropItemParent;
@@ -13,7 +13,7 @@ public class InventoryUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private SlotUI[] _slots;
     private Canvas _canvas;
     private ItemDataInfoUI _info;
-    private Dictionary<int, int> _itemData;//index, ItemID
+    private ItemManager _itemManager;
     public int Gold { get; private set; }
 
     [Header("MoveItem")]
@@ -24,7 +24,12 @@ public class InventoryUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
     private int _dropIndex;
     private Transform _inventoryTransform;
 
-    private void Start()
+    [Header("Item Click")]
+    private SlotUI _lateSlot;
+    [SerializeField] private float _interval = 0.25f;
+    private float _doubleClickedTime = -1f;
+
+    private void Awake()
     {
         _canvas = GetComponent<Canvas>();
         _inventoryTransform = _slotParent.parent;
@@ -41,38 +46,29 @@ public class InventoryUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             var rect = _slots[i].GetComponent<RectTransform>();
             rect.anchoredPosition = new Vector2(x, y);
         }
-
-        if (Utility.IsExistsFile("InvenData.json"))
+        _itemManager = GameManager.PlayerManager.ItemManager;
+        var slotDatas = _itemManager.GetInventoryItemData();
+        if (slotDatas.Count != 0)
         {
-            var data = Utility.LoadJsonFile<InvenData>("InvenData.json");
-            _itemData = new(data.slotDatas.Count);
-            GameManager.DataBases.TryGetDataBase(out ItemDataBase database);
-            for (int i = 0; i < data.slotDatas.Count; ++i)
+            foreach(var data in slotDatas)
             {
-                SlotData slotData = data.slotDatas[i];
-                var item = database.GetData(slotData.id);
-                _slots[slotData.index].SetItem(item);
-                _slots[slotData.index].SetAmount(slotData.amount);
-                _itemData.Add(slotData.index, slotData.id);
+                _slots[data.Key].SetItem(data.Value);
             }
         }
-        else
-        {
-            _itemData = new();
-        }
-
         //인벤토리 Active
         //transform.parent.GetComponent<PlayerInput>().PlayerActions.Inventory.canceled += _ => { _canvas.enabled = !_canvas.enabled; };
-        _info = GameManager.UIManager.ShowUI<ItemDataInfoUI>();
+        _info = GameManager.UIManager.GetUI<ItemDataInfoUI>();
         _info.Disable();
         _dropItemPopupUI.Disable();
+
+        Disable();
     }
 
-    public void AddItem(int id)
+    public void UpdateItem(int id, in Dictionary<int, ItemEntity> itemData)
     {
-        foreach(var pair in _itemData)
+        foreach (var pair in itemData)
         {
-            if(pair.Value == id && !_slots[pair.Key].IsMaxAmount)
+            if(pair.Value.ID == id && !_slots[pair.Key].IsMaxAmount)
             {
                 _slots[pair.Key].AddAmount();
                 return;
@@ -80,45 +76,24 @@ public class InventoryUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         }
         GameManager.DataBases.TryGetDataBase(out ItemDataBase data);
         var item = data.GetData(id);
-        if (_itemData.Count == _slots.Length)
+
+        if (itemData.Count == _slots.Length)
         {
             Instantiate(item.DropItem, _dropItemParent);
             Debug.Log("Inventory Full");
             return;
         }
+
         for (int i = 0; i < _slots.Length; ++i)
         {
             if (!_slots[i].HasItem())
             {
                 _slots[i].SetItem(item);
-                _itemData.Add(i, item.ID);
+                itemData.Add(i, item);
                 return;
             }
         }
     }
-
-    private void OnApplicationQuit()
-    {
-        if (_itemData.Count == 0) return;
-
-        InvenData data = new()
-        {
-            slotDatas = new(_itemData.Count)
-        };
-        foreach (var item in _itemData)
-        {
-            SlotData slotData = new()
-            {
-                id = item.Value,
-                index = item.Key,
-                amount = _slots[item.Key].Amount
-            };
-            data.slotDatas.Add(slotData);
-        }
-
-        Utility.SaveToJsonFile(data, "InvenData.json");
-    }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
         GameObject obj = eventData.pointerCurrentRaycast.gameObject;
@@ -167,41 +142,50 @@ public class InventoryUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         {
             if (!eventData.pointerCurrentRaycast.gameObject.TryGetComponent(out SlotUI endSlot)) return;
 
-            ItemEntity item = _curSlot.Item;
-            int amount = _curSlot.Amount;
-
-            _curSlot.SetItem(endSlot.Item);
-            _curSlot.SetAmount(endSlot.Amount);
-            endSlot.SetItem(item);
-            endSlot.SetAmount(amount);
-
-            if (_itemData.ContainsKey(endSlot.Index))
+            if (endSlot.transform.parent.parent.parent.TryGetComponent(out InventoryUI _))
             {
-                int ID = _itemData[endSlot.Index];
-                _itemData[endSlot.Index] = _itemData[_curSlot.Index];
-                _itemData[_curSlot.Index] = ID;
+                DropInventory(endSlot);
             }
-            else
-            {
-                int id = _itemData[_curSlot.Index];
-                _itemData.Remove(_curSlot.Index);
-                _itemData.Add(endSlot.Index, id);
-            }
+            //장비 장착
+            //소모품 슬롯 배치
+            
+        }
+    }
+
+    private void DropInventory(SlotUI endSlot)
+    {
+        var data = _itemManager.GetInventoryItemData();
+        ItemEntity item = _curSlot.Item;
+        int amount = _curSlot.Amount;
+
+        _curSlot.SetItem(endSlot.Item);
+        if (_curSlot.HasItem()) _curSlot.SetAmount(endSlot.Amount);
+        endSlot.SetItem(item);
+        endSlot.SetAmount(amount);
+
+        if (data.ContainsKey(endSlot.Index))
+        {
+            data[endSlot.Index] = data[_curSlot.Index];
+            data[_curSlot.Index] = item;
+        }
+        else
+        {
+            data.Remove(_curSlot.Index);
+            data.Add(endSlot.Index, item);
         }
     }
 
     private void DropItem()
     {
         _slots[_dropIndex].SetItem(null);
-        _itemData.Remove(_dropIndex);
+        _itemManager.GetInventoryItemData().Remove(_dropIndex);
     }
 
     private void DropItems(int amount)
     {
         int result = _slots[_dropIndex].Amount - amount;
-        if(result == 0 || result == 1)
+        if(result == 0)
         {
-            _slots[_dropIndex].SetAmount(1);
             DropItem();
         }
         else
@@ -223,16 +207,75 @@ public class InventoryUI : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
         _info.Disable();
     }
 
-    private class InvenData
+    public void OnPointerClick(PointerEventData eventData)
     {
-        public List<SlotData> slotDatas;
+        GameObject obj = eventData.pointerCurrentRaycast.gameObject;
+        if (obj == null || !obj.TryGetComponent(out SlotUI slot) || slot.Item == null) return;
+
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            if((Time.time - _doubleClickedTime) < _interval && slot == _lateSlot)
+            {
+                _doubleClickedTime = -1f;
+
+                //Item Use
+                UseItem(slot);
+                Debug.Log("Item Left Use");
+            }
+            else
+            {
+                _lateSlot = slot;
+                _doubleClickedTime = Time.time;
+            }
+        }
+        else if(eventData.button == PointerEventData.InputButton.Right)
+        {
+            //Item Use
+            UseItem(slot);
+            Debug.Log("Item Right Use");
+        }
     }
 
-    [System.Serializable]
-    private class SlotData
+    private void UseItem(SlotUI slot)
     {
-        public int index;
-        public int id;
-        public int amount;
+        switch(slot.Item.ItemType)
+        {
+            case Enums.ItemType.Weapon:
+            case Enums.ItemType.Armor:
+                {
+                    ItemEntity item = slot.Item;
+                    slot.SetItem(null);
+                    _itemManager.GetInventoryItemData().Remove(slot.Index);
+                    _itemManager.EquipItem(item);
+                }
+                break;
+            case Enums.ItemType.Consume:
+                {
+                    //포션 사용
+                    UseConsume(slot.Item);
+                    if (slot.Amount == 1)
+                    {
+                        _itemManager.GetInventoryItemData().Remove(slot.Index);
+                        slot.SetItem(null);
+                    }
+                    else
+                        slot.SetAmount(slot.Amount - 1);
+                }
+                break;
+        }
+    }
+
+    private void UseConsume(ItemEntity item)
+    {
+        if(item.HP > 0 || item.MP > 0)
+        {
+            //HP 및 MP 회복
+            Debug.Log($"{item.HP} 회복");
+            Debug.Log($"{item.MP} 회복");
+        }
+        else //TODO : 영구적으로 오르는것 or 일정 시간버프가 있겠지만 그건 추후 논의
+        {
+            //버프 or 디버프 생성
+        }
     }
 }
