@@ -146,6 +146,8 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
         }
         else
         {
+            if (pos.x < baseRect.xMin || pos.x > baseRect.xMax
+            || pos.y < baseRect.yMin || pos.y > baseRect.yMax)
             {
                 _dropIndex = _curSlot.Index;
                 _dropItemPopupUI.Active();

@@ -57,18 +57,8 @@ public class UIManager : ScriptableObject
 
     public void Init()
     {
-        if (_uiCanvas == null)
-        {
-            _uiCanvas = resource.Instantiate("Prefabs/UI/UICanvas").transform;
-        }
-        for (int i = 0; i < _uiBases.Count; i++)
-        {
-            if (_uiBases[i] == null)
-            {
-                _uiBases.RemoveAt(i);
-                return;
-            }
-        }
+        _uiCanvas = resource.Instantiate("Prefabs/UI/UICanvas").transform;
+        _uiBases.Clear();
     }
 
     public void RemoveUI<T>()
