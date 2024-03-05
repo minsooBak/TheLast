@@ -12,6 +12,20 @@ public class ItemDataBase : DataBase<ItemEntity>
             _data.Add((item.ID), item);
         }
     }
+
+    public GameObject GetRandomItem()
+    {
+        int r = Random.Range(0, _data.Count);
+        int index = 0;
+        foreach(var data in _data)
+        {
+            if(index == r)
+            {
+                return data.Value.DropItem;
+            }
+        }
+        return null;
+    }
 }
 
 [System.Serializable]
@@ -34,6 +48,7 @@ public class ItemEntity
     public int MaxAmount;
 
     private Sprite _sprite;
+    private GameObject _dropItem;
 
     public Sprite Sprite
     {
@@ -49,10 +64,9 @@ public class ItemEntity
     {
         get
         {
-            if (DropItem == null)
-                DropItem = Resources.Load<GameObject>($"Prefab/Item/{ItemPath}");
-            return DropItem;
+            if (_dropItem == null)
+                _dropItem = Resources.Load<GameObject>($"Prefab/Item/{ItemPath}");
+            return _dropItem;
         }
-        private set { DropItem = value; }
     }
 }

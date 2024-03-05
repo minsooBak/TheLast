@@ -108,4 +108,12 @@ public class Player : MonoBehaviour
         ScenesManager scenesManager = GameManager.ScenesManager;
         scenesManager.ChangeScene(SceneState.VillageScene);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Item"))
+        {
+            GameManager.PlayerManager.ItemManager.AddItem(other.GetComponent<DropItem>().ItemID);
+        }
+    }
 }

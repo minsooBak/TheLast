@@ -311,8 +311,8 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
         if(item.HP > 0 || item.MP > 0)
         {
             //HP 및 MP 회복
-            Debug.Log($"{item.HP} 회복");
-            Debug.Log($"{item.MP} 회복");
+            GameManager.PlayerManager.PlayerInfoManager.PlayerInfo.Hp = Mathf.Clamp(item.HP + GameManager.PlayerManager.PlayerInfoManager.PlayerInfo.Hp, 0, GameManager.PlayerManager.PlayerInfoManager.PlayerInfo.MaxHp);
+            GameManager.PlayerManager.PlayerInfoManager.PlayerInfo.Mp = Mathf.Clamp(item.MP + GameManager.PlayerManager.PlayerInfoManager.PlayerInfo.Mp, 0, GameManager.PlayerManager.PlayerInfoManager.PlayerInfo.MaxMp);
         }
         else //TODO : 영구적으로 오르는것 or 일정 시간버프가 있겠지만 그건 추후 논의
         {

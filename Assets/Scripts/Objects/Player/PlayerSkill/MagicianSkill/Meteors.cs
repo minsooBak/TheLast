@@ -27,7 +27,6 @@ public class Meteors : BaseSkill
                 damage = (float)(skillManager.skillData.GetData(106)._Level3) * (playerInfo.StatInt);
                 break;
             case 0:
-                damage = 5;
                 break;
         }
     }
@@ -38,15 +37,15 @@ public class Meteors : BaseSkill
     }
     protected override void FixedUpdate()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 10, 8);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 10);
 
         foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag("Enemy"))
+            if (collider.gameObject.tag == "Enemy")
             {
-                CharacterHealthSystem healthSystem = collider.GetComponent<CharacterHealthSystem>();
+                healthSystem = collider.gameObject.GetComponent<CharacterHealthSystem>();
                 InvokeRepeating("AddDamage", 0.5f, 0.5f);
-            } 
+            }
         }
     }
     protected override void OnTriggerEnter(Collider collision)

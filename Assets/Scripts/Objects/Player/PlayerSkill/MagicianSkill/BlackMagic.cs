@@ -30,13 +30,13 @@ public class BlackMagic : BaseSkill
     }
     protected override void FixedUpdate()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 13f, 8);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 13f);
 
         foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag("Enemy"))
+            if (collider.gameObject.tag == "Enemy")
             {
-                CharacterHealthSystem healthSystem = collider.GetComponent<CharacterHealthSystem>();
+                healthSystem = collider.gameObject.GetComponent<CharacterHealthSystem>();
                 Invoke("AddDamage", 1.9f);
             }
         }

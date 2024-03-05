@@ -16,6 +16,7 @@ public class BaseSkill : MonoBehaviour
     protected PlayerInfo playerInfo;
     protected PlayerSkill playerSkill;
 
+    protected LayerMask enemyLayer;
     protected GameObject target;
 
     protected virtual void Awake()
@@ -26,6 +27,7 @@ public class BaseSkill : MonoBehaviour
         skillManager = GameManager.PlayerManager.SkillManager;
         playerInfo = GameManager.PlayerManager.PlayerInfoManager.PlayerInfo;
         playerSkill = GameManager.PlayerManager.SkillManager.PlayerSkill;
+        enemyLayer = LayerMask.NameToLayer("Enemy");
     }
 
     protected virtual void Start()
@@ -70,10 +72,6 @@ public class BaseSkill : MonoBehaviour
             Debug.Log(collision.gameObject.tag);
             healthSystem = collision.gameObject.GetComponent<CharacterHealthSystem>();
             healthSystem.TakeDamage(damage);
-            Destroy(gameObject);
-        }
-        else
-        {
             Destroy(gameObject);
         }
     }
