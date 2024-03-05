@@ -9,9 +9,22 @@ public class PlayerConsumeSlotsManager : MonoBehaviour
     {
         _slots = GetComponentsInChildren<SlotUI>();
         int i = 0;
-        foreach(SlotUI slot in _slots)
+        var slots = GameManager.PlayerManager.PlayerInfoManager.userData.playerData.slots;
+        if (slots != null && slots.Length > 0)
         {
-            slot.Init(i++);
+            foreach (SlotUI slot in _slots)
+            {
+                slot.SetItem(slots[i].Item);
+                slot.Init(i++);
+                slot.SetAmount(slot.Amount);
+            }
+        }
+        else
+        {
+            foreach (SlotUI slot in _slots)
+            {
+                slot.Init(i++);
+            }
         }
     }
 
@@ -65,5 +78,10 @@ public class PlayerConsumeSlotsManager : MonoBehaviour
                 _inventoryUI.UseItem(_slots[3]);
                 break;
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.PlayerManager.PlayerInfoManager.userData.playerData.slots = _slots;
     }
 }

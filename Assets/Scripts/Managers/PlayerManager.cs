@@ -38,4 +38,6 @@ public class PlayerData
 {
     public InvenData invenData;
     public SkillData skillData;
+    public SkillSlotUI[] skillSlots;
+    public SlotUI[] slots;
 }

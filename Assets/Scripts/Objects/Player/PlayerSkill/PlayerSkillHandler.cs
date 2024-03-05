@@ -59,6 +59,12 @@ public class PlayerSkillHandler : MonoBehaviour
         }
 
         skillSlotUIs = skillSlot.GetComponentsInChildren<SkillSlotUI>();
+        var slots = GameManager.PlayerManager.PlayerInfoManager.userData.playerData.skillSlots;
+        int index = 0;
+        foreach( var slot in slots)
+        {
+            skillSlotUIs[index++].SetSkill(slot.Skill, slot.Index);
+        }
     }
     private void Update()
     {
@@ -151,5 +157,10 @@ public class PlayerSkillHandler : MonoBehaviour
             magicianSkill.SkillSelect(slot4ID, target, transform, attackPoint);
             slot4Cooldown = skillDB.GetData(slot4ID)._coolDown;
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.PlayerManager.PlayerInfoManager.userData.playerData.skillSlots = skillSlotUIs;
     }
 }
