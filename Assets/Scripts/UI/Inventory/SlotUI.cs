@@ -8,7 +8,7 @@ public class SlotUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _amountText;
     [SerializeField] private Image _highlight;
     private RectTransform _rectTransform;
-    private int _amount = 0;
+    private int _amount = 1;
 
     public int Index { get; private set; }
     public ItemEntity Item { get; private set; }
