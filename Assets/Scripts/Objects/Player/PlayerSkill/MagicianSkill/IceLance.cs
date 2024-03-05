@@ -44,7 +44,7 @@ public class IceLance : BaseSkill
     }
     protected override void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.layer == 8)
+        if (collision.gameObject.tag == "Enemy")
         {
             healthSystem = collision.gameObject.GetComponent<CharacterHealthSystem>();
             healthSystem.TakeDamage(damage);

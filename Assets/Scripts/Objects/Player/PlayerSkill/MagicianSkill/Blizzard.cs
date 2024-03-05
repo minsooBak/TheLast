@@ -30,13 +30,13 @@ public class Blizzard : BaseSkill
     }
     protected override void FixedUpdate()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 3.5f, 8);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 3.5f);
 
         foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag("Enemy"))
+            if (collider.gameObject.tag == "Enemy")
             {
-                CharacterHealthSystem healthSystem = collider.GetComponent<CharacterHealthSystem>();
+                healthSystem = collider.gameObject.GetComponent<CharacterHealthSystem>();
                 collider.gameObject.AddComponent<Slow>();
                 InvokeRepeating("AddDamage", 0.5f, 1f);
             }
