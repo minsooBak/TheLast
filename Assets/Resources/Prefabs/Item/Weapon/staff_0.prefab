@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 2325513426062200141}
   - component: {fileID: 8694666981742612234}
   - component: {fileID: 7872858327686174342}
+  - component: {fileID: -4098765145717072483}
   m_Layer: 6
-  m_Name: staff_01
+  m_Name: staff_0
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2704533625779807884}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100.000046, z: 100.00007}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -146,4 +147,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76720df0b9984384ab8effffb00dea0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemID: 1
+  ItemID: 10001001
+--- !u!65 &-4098765145717072483
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2704533625779807884}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1556401, y: 2.2778962, z: 0.1670935}
+  m_Center: {x: 0.0006347634, y: -0.11817639, z: -0.004294738}

@@ -8,7 +8,7 @@ public class SlotUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _amountText;
     [SerializeField] private Image _highlight;
     private RectTransform _rectTransform;
-    private int _amount = 0;
+    private int _amount = 1;
 
     public int Index { get; private set; }
     public ItemEntity Item { get; private set; }
@@ -32,7 +32,7 @@ public class SlotUI : MonoBehaviour
         _rectTransform = _icon.GetComponent<RectTransform>();
     }
 
-    public bool HasItem() { return _icon.enabled; } 
+    public bool HasItem() { return Item != null; } 
 
     public Sprite Icon {
         get 
@@ -42,8 +42,6 @@ public class SlotUI : MonoBehaviour
         private set 
         {
             _icon.sprite = value; 
-            if (value == null) _icon.enabled = false;
-            else _icon.enabled = true;
         } 
     }
 

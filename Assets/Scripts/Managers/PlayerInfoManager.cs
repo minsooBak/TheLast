@@ -138,7 +138,9 @@ public class PlayerInfoManager
         levelInfo = levelDB.GetData(PlayerInfo.Level);
 
         PlayerInfo.MaxHp += levelInfo._maxHp;
+        PlayerInfo.Hp = levelInfo._maxHp;
         PlayerInfo.MaxMp += levelInfo._maxMp;
+        PlayerInfo.Mp = levelInfo._maxHp;
         PlayerInfo.ADef += levelInfo._adef;
         PlayerInfo.MDef += levelInfo._mdef;
         PlayerInfo.StatStr += levelInfo._str;

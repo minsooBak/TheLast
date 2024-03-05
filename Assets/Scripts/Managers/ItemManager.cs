@@ -74,6 +74,7 @@ public class ItemManager
 
         Assert.IsTrue(_equipItemData.ContainsKey(item.ItemType));
         inventoryUI.UpdateItem(_equipItemData[item.ItemType].ID, _inventoryItemData);
+        _equipItemData.Remove(item.ItemType);
         _playerInfoManager.UnEquipItem(_equipItemData[item.ItemType]);
     }
 
