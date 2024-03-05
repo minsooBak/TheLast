@@ -10,8 +10,9 @@ public class IceLance : BaseSkill
     }
     protected override void Start()
     {
-        speed = 3f;
+        speed = 10f;
         Damage();
+        Invoke("SkillEnd", 10f);
     }
     protected override void Damage()
     {
@@ -48,6 +49,11 @@ public class IceLance : BaseSkill
             healthSystem = collision.gameObject.GetComponent<CharacterHealthSystem>();
             healthSystem.TakeDamage(damage);
             Destroy(gameObject);
+            collision.gameObject.AddComponent<Slow>();
         }
+    }
+    protected override void SkillEnd()
+    {
+        Destroy(gameObject);
     }
 }

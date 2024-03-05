@@ -11,6 +11,7 @@ public class Meteors : BaseSkill
     protected override void Start()
     {
         Damage();
+        Invoke("SkillEnd", 4f);
     }
     protected override void Damage()
     {
@@ -45,7 +46,7 @@ public class Meteors : BaseSkill
             {
                 CharacterHealthSystem healthSystem = collider.GetComponent<CharacterHealthSystem>();
                 InvokeRepeating("AddDamage", 0.5f, 0.5f);
-            }
+            } 
         }
     }
     protected override void OnTriggerEnter(Collider collision)
@@ -63,9 +64,8 @@ public class Meteors : BaseSkill
     protected void AddDamage()
     {
         healthSystem.TakeDamage(damage);
-        Invoke("SkillEnd", 2f);
     }
-    protected void SkillEnd()
+    protected override void SkillEnd()
     {
         Destroy(gameObject);
     }

@@ -11,6 +11,7 @@ public class Cataclysm : BaseSkill
     protected override void Start()
     {
         Damage();
+        Invoke("SkillEnd", 2f);
     }
     protected override void Damage()
     {
@@ -26,6 +27,10 @@ public class Cataclysm : BaseSkill
                 damage = (float)(skillManager.skillData.GetData(105)._Level3) * (playerInfo.StatInt);
                 break;
         }
+    }
+    protected override void FixedUpdate()
+    {
+   
     }
     protected override void OnTriggerEnter(Collider collision)
     {
@@ -43,5 +48,9 @@ public class Cataclysm : BaseSkill
     protected override void OnTriggerExit(Collider collision)
     {
 
+    }
+    protected override void SkillEnd()
+    {
+        Destroy(gameObject);
     }
 }

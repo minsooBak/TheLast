@@ -10,7 +10,8 @@ public class Blizzard : BaseSkill
     }
     protected override void Start()
     {
-        Damage();
+        Damage(); 
+        Invoke("SkillEnd", 4f);
     }
     protected override void Damage()
     {
@@ -37,7 +38,7 @@ public class Blizzard : BaseSkill
             {
                 CharacterHealthSystem healthSystem = collider.GetComponent<CharacterHealthSystem>();
                 collider.gameObject.AddComponent<Slow>();
-                InvokeRepeating("AddDamage", 0.5f, 0.5f);
+                InvokeRepeating("AddDamage", 0.5f, 1f);
             }
         }
     }
@@ -56,9 +57,8 @@ public class Blizzard : BaseSkill
     protected void AddDamage()
     {
         healthSystem.TakeDamage(damage);
-        Invoke("SkillEnd", 2f);
     }
-    protected void SkillEnd()
+    protected override void SkillEnd()
     {
         Destroy(gameObject);
     }

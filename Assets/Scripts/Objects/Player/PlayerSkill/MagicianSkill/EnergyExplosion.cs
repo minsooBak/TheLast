@@ -11,6 +11,7 @@ public class EnergyExplosion : BaseSkill
     protected override void Start()
     {
         Damage();
+        Invoke("SkillEnd", 1.6f);
     }
     protected override void Damage()
     {
@@ -37,7 +38,7 @@ public class EnergyExplosion : BaseSkill
             {
                 CharacterHealthSystem healthSystem = collider.GetComponent<CharacterHealthSystem>();
                 Invoke("AddDamage", 1.5f);
-            }
+            } 
         }
     }
     protected override void OnTriggerEnter(Collider collision)
@@ -55,6 +56,10 @@ public class EnergyExplosion : BaseSkill
     protected void AddDamage()
     {
         healthSystem.TakeDamage(damage);
+        Destroy(gameObject);
+    }
+    protected override void SkillEnd()
+    {
         Destroy(gameObject);
     }
 }

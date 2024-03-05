@@ -12,6 +12,7 @@ public class FireBall : BaseSkill
     {
         speed = 4f;
         Damage();
+        Invoke("SkillEnd", 10f);
     }
     protected override void Damage()
     {
@@ -49,5 +50,9 @@ public class FireBall : BaseSkill
             healthSystem.TakeDamage(damage);
             Destroy(gameObject);
         }
+    }
+    protected override void SkillEnd()
+    {
+        Destroy(gameObject);
     }
 }
