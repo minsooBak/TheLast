@@ -1074,6 +1074,8 @@ MonoBehaviour:
     attackParameterName: '@Attack'
     comboAttackParameterName: ComboAttack
     baseAttackParameterName: BaseAttack
+    dieParameterName: Die
+  isDie: 0
   hpText: {fileID: 4034345934539809610}
   mpText: {fileID: 2819586588773751888}
   hpSlider: {fileID: 7770821695612530281}
@@ -1169,6 +1171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   attackPoint: {fileID: 4398094546588239646}
+  skillSlot: {fileID: 232390810730359083}
 --- !u!1 &679811057529289043
 GameObject:
   m_ObjectHideFlags: 0
