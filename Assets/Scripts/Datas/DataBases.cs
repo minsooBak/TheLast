@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class DataBases
 {
@@ -17,6 +18,7 @@ public class DataBases
         }
 
         var data = ScriptableObject.CreateInstance<T>();
+        Assert.IsTrue(data is IDataBaseable);
         var baseData = data as IDataBaseable;
         baseData.Init();
         _databases.Add(baseData);

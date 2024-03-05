@@ -98,4 +98,10 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
             endSlot.SetSkill(_curSlot.Skill, _curSlot.Index);
         }
     }
+
+    private void OnDisable()
+    {
+        if (_infoUI.IsActive())
+            _infoUI.Disable();
+    }
 }
