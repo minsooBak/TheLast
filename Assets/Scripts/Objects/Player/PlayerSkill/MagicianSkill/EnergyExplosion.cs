@@ -37,7 +37,7 @@ public class EnergyExplosion : BaseSkill
             if (collider.gameObject.tag == "Enemy")
             {
                 healthSystem = collider.gameObject.GetComponent<CharacterHealthSystem>();
-                Invoke("AddDamage", 1.5f);
+                Invoke("AddDamage", 1.2f);
             } 
         }
     }
@@ -56,7 +56,6 @@ public class EnergyExplosion : BaseSkill
     protected void AddDamage()
     {
         healthSystem.TakeDamage(damage);
-        Destroy(gameObject);
     }
     protected override void SkillEnd()
     {
