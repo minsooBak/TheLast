@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     public Slider hpSlider;
     public Slider mpSlider;
     public byte id = 1;
+    private float speed = 1f;
 
     private void Awake()
     {
@@ -58,7 +59,7 @@ public class Player : MonoBehaviour
     {
         hpText.text = _playerInfo.Hp.ToString("F0") + " / " + _playerInfo.MaxHp.ToString("F0");
         mpText.text = _playerInfo.Mp.ToString() + " / " + _playerInfo.MaxMp.ToString();
-        hpSlider.value = _playerInfo.Hp / _playerInfo.MaxHp;
+        hpSlider.value = Mathf.Lerp(hpSlider.value, _playerInfo.Hp / _playerInfo.MaxHp,speed*Time.deltaTime);
         mpSlider.value = _playerInfo.Mp / _playerInfo.MaxMp;
 
         if (UnityEngine.Input.GetKeyDown(KeyCode.I))
