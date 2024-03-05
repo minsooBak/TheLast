@@ -10,6 +10,7 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
     private PlayerInfo _playerInfo;
 
     [SerializeField] private TMPro.TextMeshProUGUI _headerText;
+    [SerializeField] private TMPro.TextMeshProUGUI _skillPoint;
     [SerializeField] private Button _attackBtn;
     [SerializeField] private Transform slotParent;
     [SerializeField] private SkillSlotUI[] _slots;
@@ -27,7 +28,6 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
         _skillDB = skillManager.skillData;
         _playerInfo = GameManager.PlayerManager.PlayerInfoManager.PlayerInfo;
         _headerText.text = GameManager.PlayerManager.PlayerInfoManager.userData.statusId == 1 ? "마법사" : "오크전사";
-
         _slots = slotParent.GetComponentsInChildren<SkillSlotUI>();
         _infoUI = GameManager.UIManager.GetUI<ItemDataInfoUI>();
         int index = 0;
@@ -38,15 +38,22 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
             _slots[index].Init(_playerInfo, _playerSkill, _skillDB);
             _slots[index].SetSkill(data, index++);
         }
+        UpdateSkillPoint();
 
         _infoUI.transform.SetAsLastSibling();
         _attackBtn.onClick.Invoke();
         Disable();
     }
 
+    public void UpdateSkillPoint()
+    {
+        _skillPoint.text = $"Skill Point : {_playerInfo.SkillPoint}";
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         GameObject obj = eventData.pointerCurrentRaycast.gameObject;
+        UpdateSkillPoint();
         if (obj == null || !obj.TryGetComponent(out SkillSlotUI slot) || slot.Skill == null) return;
         _infoUI.Init(slot.Skill);
         _infoUI.Active();

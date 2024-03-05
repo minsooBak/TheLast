@@ -45,7 +45,7 @@ public class UIManager : ScriptableObject
         if (_uiCanvas == null)
         {
             _uiCanvas = resource.Instantiate("Prefabs/UI/UICanvas").transform;
-        }
+        } 
 
         string path = $"Prefabs/UI/{typeof(T).Name}";
 
@@ -57,7 +57,8 @@ public class UIManager : ScriptableObject
 
     public void Init()
     {
-        _uiCanvas = resource.Instantiate("Prefabs/UI/UICanvas").transform;
+        //if (_uiCanvas != null)
+        //    _uiCanvas = resource.Instantiate("Prefabs/UI/UICanvas").transform;
         _uiBases.Clear();
     }
 
