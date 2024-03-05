@@ -10,11 +10,11 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
     private PlayerInfo _playerInfo;
 
     [SerializeField] private TMPro.TextMeshProUGUI _headerText;
+    [SerializeField] private TMPro.TextMeshProUGUI _skillPoint;
     [SerializeField] private Button _attackBtn;
     [SerializeField] private Transform slotParent;
     [SerializeField] private SkillSlotUI[] _slots;
     [SerializeField] private ItemDataInfoUI _infoUI;
-    [SerializeField] private PlayerSkillHandler _handler;
 
     [Header("MoveItem")]
     private SkillSlotUI _curSlot;
@@ -27,9 +27,7 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
         _playerSkill = skillManager.PlayerSkill;
         _skillDB = skillManager.skillData;
         _playerInfo = GameManager.PlayerManager.PlayerInfoManager.PlayerInfo;
-        _handler = GameObject.Find("Player").GetComponent<PlayerSkillHandler>();
         _headerText.text = GameManager.PlayerManager.PlayerInfoManager.userData.statusId == 1 ? "마법사" : "오크전사";
-
         _slots = slotParent.GetComponentsInChildren<SkillSlotUI>();
         _infoUI = GameManager.UIManager.GetUI<ItemDataInfoUI>();
         int index = 0;
@@ -40,15 +38,22 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
             _slots[index].Init(_playerInfo, _playerSkill, _skillDB);
             _slots[index].SetSkill(data, index++);
         }
+        UpdateSkillPoint();
 
         _infoUI.transform.SetAsLastSibling();
         _attackBtn.onClick.Invoke();
         Disable();
     }
 
+    public void UpdateSkillPoint()
+    {
+        _skillPoint.text = $"Skill Point : {_playerInfo.SkillPoint}";
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         GameObject obj = eventData.pointerCurrentRaycast.gameObject;
+        UpdateSkillPoint();
         if (obj == null || !obj.TryGetComponent(out SkillSlotUI slot) || slot.Skill == null) return;
         _infoUI.Init(slot.Skill);
         _infoUI.Active();
@@ -62,7 +67,13 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
     public void OnBeginDrag(PointerEventData eventData)
     {
         GameObject obj = eventData.pointerCurrentRaycast.gameObject;
-        if (obj == null || !obj.TryGetComponent(out _curSlot) || _curSlot.Skill._upgrade == 0) return;
+        if (obj == null || !obj.TryGetComponent(out _curSlot)) return;
+
+        if (_curSlot.Skill._upgrade == 0)
+        {
+            _curSlot = null;
+            return;
+        }
 
         _infoUI.Disable();
         _curSlot.IconTransform.SetParent(slotParent);
@@ -84,15 +95,7 @@ public class PlayerSkillUI : UIBase, IPointerEnterHandler, IPointerExitHandler, 
 
         if (obj != null && obj.TryGetComponent(out SkillSlotUI endSlot) && endSlot.transform.parent.name == "PlayerSkillSlots")
         {
-            SkillSlot();
             endSlot.SetSkill(_curSlot.Skill, _curSlot.Index);
         }
-    }
-    private void SkillSlot()
-    {
-        _handler.SkillSoltChange(_slots[0].Skill._id, 0);
-        _handler.SkillSoltChange(_slots[1].Skill._id, 1);
-        _handler.SkillSoltChange(_slots[2].Skill._id, 2);
-        _handler.SkillSoltChange(_slots[3].Skill._id, 3);
     }
 }
