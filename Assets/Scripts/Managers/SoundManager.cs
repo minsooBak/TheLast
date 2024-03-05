@@ -6,7 +6,7 @@ public class SoundManager : MonoBehaviour
 
     public static SoundManager Instance {  get { return _instance; } }
 
-    [SerializeField] private ObjectPooling _bgmPooling;
+    [SerializeField] private AudioSource _bgm;
     [SerializeField] private ObjectPooling _sfxPooling;
 
     public void Awake()
@@ -24,12 +24,16 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBGM(AudioClip clip, Vector3 position, float minDir, float maxDir)
     {
-        AudioSource source = _bgmPooling.GetObject(position).GetComponent<AudioSource>();
-        _bgmPooling.ReturnObject(source.gameObject);
-        source.clip = clip;
-        source.minDistance = minDir;
-        source.maxDistance = maxDir;
-        source.Play();
+        _bgm.transform.position = position;
+        //_bgmPooling.ReturnObject(source.gameObject);
+        _bgm.clip = clip;
+        _bgm.minDistance = minDir;
+        _bgm.maxDistance = maxDir;
+        _bgm.Play();
+    }
+    public void StopBGM()
+    {
+        _bgm.Stop();
     }
 
     public void PlaySFX(AudioClip clip, Vector3 position, float minDir, float maxDir)
