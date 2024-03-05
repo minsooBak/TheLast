@@ -37,7 +37,7 @@ public class PlayerSkillHandler : MonoBehaviour
     private byte slot3ID;
     private byte slot4ID;
 
-    private float slot1Cooldown = 10;
+    private float slot1Cooldown;
     private float slot2Cooldown;
     private float slot3Cooldown;
     private float slot4Cooldown;

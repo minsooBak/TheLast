@@ -121,9 +121,9 @@ MonoBehaviour:
   - _id: 108
     _name: "\uD751\uB9C8\uBC95"
     _description: "\uAD81\uADF9\uC758 \uB9C8\uBC95"
-    _Level1: 6
-    _Level2: 8
-    _Level3: 10
+    _Level1: 20
+    _Level2: 30
+    _Level3: 40
     _damageType: 'Magic '
     _skillType: 0
     _skillPoint: 10

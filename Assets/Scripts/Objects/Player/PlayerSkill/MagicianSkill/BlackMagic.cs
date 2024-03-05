@@ -37,7 +37,7 @@ public class BlackMagic : BaseSkill
             if (collider.gameObject.tag == "Enemy")
             {
                 healthSystem = collider.gameObject.GetComponent<CharacterHealthSystem>();
-                Invoke("AddDamage", 1.9f);
+                InvokeRepeating("AddDamage", 0.5f, 0.5f);
             }
         }
     }
