@@ -20,7 +20,6 @@ public class PlayerSkillHandler : MonoBehaviour
     Player player;
     private PlayerInput playerInput;
 
-    private GameObject skillSlot;
 
     private PlayerSkill skillInfo;
     private PlayerSkillDB skillDB;
@@ -29,6 +28,9 @@ public class PlayerSkillHandler : MonoBehaviour
     public Transform attackPoint;
 
     MagicianSkill magicianSkill;
+    private SkillSlotUI[] skillSlotUIs;
+    [SerializeField] private GameObject skillSlot;
+    
 
     private byte slot1ID;
     private byte slot2ID;
@@ -55,11 +57,8 @@ public class PlayerSkillHandler : MonoBehaviour
 
                 break;
         }
-    }
-    private void Start()
-    {
 
-
+        skillSlotUIs = skillSlot.GetComponentsInChildren<SkillSlotUI>();
     }
     private void Update()
     {
@@ -119,52 +118,38 @@ public class PlayerSkillHandler : MonoBehaviour
     }
     public void SkillSolt1()
     {
-        if (slot1Cooldown == 0)
+        if (slot1Cooldown == 0 && skillSlotUIs[0].Skill != null)
         {
+            slot1ID = skillSlotUIs[0].Skill._id;
             magicianSkill.SkillSelect(slot1ID, target, transform, attackPoint);
             slot1Cooldown = skillDB.GetData(slot1ID)._coolDown;
         }
     }
     public void SkillSolt2()
     {
-        if (slot2Cooldown == 0)
+        if (slot2Cooldown == 0 && skillSlotUIs[1].Skill != null)
         {
+            slot2ID = skillSlotUIs[1].Skill._id;
             magicianSkill.SkillSelect(slot2ID, target, transform, attackPoint);
             slot2Cooldown = skillDB.GetData(slot2ID)._coolDown;
         }
     }
     public void SkillSolt3()
     {
-        if (slot3Cooldown == 0)
+        if (slot3Cooldown == 0 && skillSlotUIs[2].Skill != null)
         {
+            slot3ID = skillSlotUIs[2].Skill._id;
             magicianSkill.SkillSelect(slot3ID, target, transform, attackPoint);
             slot3Cooldown = skillDB.GetData(slot3ID)._coolDown;
         }
     }
     public void SkillSolt4()
     {
-        if (slot4Cooldown == 0)
+        if (slot4Cooldown == 0 && skillSlotUIs[3].Skill != null)
         {
+            slot4ID = skillSlotUIs[3].Skill._id;
             magicianSkill.SkillSelect(slot4ID, target, transform, attackPoint);
             slot4Cooldown = skillDB.GetData(slot4ID)._coolDown;
-        }
-    }
-    public void SkillSoltChange(byte id, byte slotsNum)
-    {
-        switch (slotsNum)
-        {
-            case 0:
-                slot1ID = id;
-                break;
-            case 1:
-                slot2ID = id;
-                break;
-            case 2:
-                slot3ID = id;
-                break;
-            case 3:
-                slot4ID = id;
-                break;
         }
     }
 }
