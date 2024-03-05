@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class AudioMixerController : UIBase
@@ -9,12 +10,10 @@ public class AudioMixerController : UIBase
     [SerializeField] private Slider _bgmSlider;
     [SerializeField] private Slider _sfxSlider;
 
-    private void Awake()
+    private void Start()
     {
         GetVolume();
-        _masterSlider.onValueChanged.AddListener(SetMasterVolume);
-        _bgmSlider.onValueChanged.AddListener(SetBGMVolume);
-        _sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+        Disable();
     }
 
     private void SetMasterVolume(float volume)
@@ -34,6 +33,10 @@ public class AudioMixerController : UIBase
 
     private void GetVolume()
     {
+        _masterSlider.onValueChanged.AddListener(SetMasterVolume);
+        _bgmSlider.onValueChanged.AddListener(SetBGMVolume);
+        _sfxSlider.onValueChanged.AddListener(SetSFXVolume);
+
         _masterSlider.value = PlayerPrefs.HasKey("MasterVolume") ? PlayerPrefs.GetFloat("MasterVolume") : 1;
         _bgmSlider.value = PlayerPrefs.HasKey("BGMVolume") ? PlayerPrefs.GetFloat("BGMVolume") : 1;
         _sfxSlider.value = PlayerPrefs.HasKey("SFXVolume") ? PlayerPrefs.GetFloat("SFXVolume") : 1;

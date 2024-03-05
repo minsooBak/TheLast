@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     public Slider hpSlider;
     public Slider mpSlider;
     public byte id = 1;
-    private float speed = 1f;
+    private float speed = 5f;
 
     private void Awake()
     {

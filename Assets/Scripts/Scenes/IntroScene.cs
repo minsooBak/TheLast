@@ -13,5 +13,7 @@ public class IntroScene : IBaseScene
         ScenesManager scenesManager = GameManager.ScenesManager;
         Assert.IsTrue(GameObject.Find("IntroUI").TryGetComponent(out IntroUI introUI));
         introUI.AddListener(() => { scenesManager.ChangeScene(SceneState.CharaterSelectScene); });
+
+        GameManager.UIManager.GetUI<AudioMixerController>();
     }
 }

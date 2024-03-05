@@ -17,7 +17,6 @@ public class CharacterHealthSystem : MonoBehaviour
     public event Action OnDie;
     public event Action OnSkill;
     public PlayerInfo playerInfo;
-    float speed = 8f;
     //public event Action NotEnoughMana;
 
 
@@ -50,8 +49,7 @@ public class CharacterHealthSystem : MonoBehaviour
         if (playerHash == characterType)
         {
             if (playerInfo.Hp == 0) return;
-            playerInfo.Hp = Mathf.Min(playerInfo.MaxHp, 
-                Mathf.Lerp(playerInfo.Hp, Mathf.Max(playerInfo.Hp - damage, 0),speed*Time.deltaTime));
+            playerInfo.Hp = Mathf.Min(playerInfo.MaxHp, Mathf.Max(playerInfo.Hp - damage, 0));
             Debug.Log(playerInfo.Hp);
 
             if (playerInfo.Hp == 0)
