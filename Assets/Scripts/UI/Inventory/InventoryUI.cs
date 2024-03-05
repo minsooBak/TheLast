@@ -319,4 +319,10 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
             //버프 or 디버프 생성
         }
     }
+
+    private void OnDisable()
+    {
+        if (_info.IsActive())
+            _info.Disable();
+    }
 }
