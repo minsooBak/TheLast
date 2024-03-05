@@ -4,16 +4,17 @@ public class DungeonManager : MonoBehaviour
 {
     private DungeonDataBase _dungeonDB;
     private EnemyDataBase _enemyDB;
-
+    [SerializeField] private AudioClip _bgm;
     public static int SelectedLevel;
     
     [HideInInspector] public DungeonData dungeonData;
     [HideInInspector] public EnemyData enemyData;
     [HideInInspector] public int roomCount = 2;
-   
+
     private void Start()
     {
         Init();
+        SoundManager.Instance.PlayBGM(_bgm, Camera.main.transform.position, 10f, 10f);
     }
     private void Init()
     {
@@ -24,5 +25,7 @@ public class DungeonManager : MonoBehaviour
 
         int spawnedEnemyID = dungeonData.ID;
         enemyData = _enemyDB.GetData(spawnedEnemyID);
+
+        
     }
 }
