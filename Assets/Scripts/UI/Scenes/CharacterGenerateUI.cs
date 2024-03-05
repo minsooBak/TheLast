@@ -14,6 +14,8 @@ public class CharacterGenerateUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI description;
     [SerializeField] private TextMeshProUGUI characterName;
     [SerializeField] private Transform cameraTransform;
+    [SerializeField] private Animator wizardAnim;
+    [SerializeField] private Animator gruntAnim;
     public byte statusId;
     private int classIndex;
     private bool isValid;
@@ -54,11 +56,13 @@ public class CharacterGenerateUI : MonoBehaviour
         {
             statusId = 1;
             cameraTransform.transform.localPosition = wizardPos;
+            wizardAnim.SetTrigger(Animator.StringToHash("Selected"));
         }
         else
         {
             statusId = 2;
             cameraTransform.transform.localPosition = gruntPos;
+            gruntAnim.SetTrigger(Animator.StringToHash("Selected"));
         }
         classIndex = index;
         classImage[0].color = classImage[1].color = new Color(1, 1, 1, 0.5f);

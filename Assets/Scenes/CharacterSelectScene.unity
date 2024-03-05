@@ -5708,6 +5708,14 @@ MonoBehaviour:
     Level: 0
     exp: 0
     stageLv: 0
+    gold: 0
+    playerData:
+      invenData:
+        slotDatas: []
+        equipDatas: []
+      skillData:
+        ids: 
+        numbers: 
   statusText:
   - {fileID: 1057649730}
   - {fileID: 1741977873}
@@ -5723,6 +5731,8 @@ MonoBehaviour:
   description: {fileID: 1690177729}
   characterName: {fileID: 669973312}
   cameraTransform: {fileID: 1960855184}
+  wizardAnim: {fileID: 1794162991}
+  gruntAnim: {fileID: 1873627461}
   statusId: 0
 --- !u!1 &1003604264
 GameObject:
@@ -8392,7 +8402,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh107574
+  m_Name: pb_Mesh69444
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -10195,6 +10205,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1794162989}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1794162991 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95538263452871118, guid: ccd8c3b89aa02e943a08ab9238a8a70c,
+    type: 3}
+  m_PrefabInstance: {fileID: 1794162989}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1808204505
 GameObject:
   m_ObjectHideFlags: 0
@@ -11357,6 +11373,12 @@ PrefabInstance:
 --- !u!4 &1873627460 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400050, guid: aad05534a7ba0dd49b8c54ce188308ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 1873627459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1873627461 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: aad05534a7ba0dd49b8c54ce188308ec,
     type: 3}
   m_PrefabInstance: {fileID: 1873627459}
   m_PrefabAsset: {fileID: 0}
