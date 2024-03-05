@@ -29,27 +29,25 @@ public class Blizzard : BaseSkill
     }
     protected override void FixedUpdate()
     {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 3.5f, 8);
 
+        foreach (Collider collider in colliders)
+        {
+            if (collider.CompareTag("Enemy"))
+            {
+                CharacterHealthSystem healthSystem = collider.GetComponent<CharacterHealthSystem>();
+                collider.gameObject.AddComponent<Slow>();
+                InvokeRepeating("AddDamage", 0.5f, 0.5f);
+            }
+        }
     }
     protected override void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.layer == 8)
-        {
-            healthSystem = collision.gameObject.GetComponent<CharacterHealthSystem>();
-            count = 4;
-        }
+
     }
     protected override void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.layer == 8)
-        {
-            inTarget = true;
-            InvokeRepeating("AddDamage", 0.5f, count);
-        }
-        else
-        {
-            inTarget = false;
-        }
+
     }
     protected override void OnTriggerExit(Collider collision)
     {
@@ -57,14 +55,11 @@ public class Blizzard : BaseSkill
     }
     protected void AddDamage()
     {
-        if (inTarget)
-        {
-            count -= 1;
-            healthSystem.TakeDamage(damage);
-        }
-        if (count == 0)
-        {
-            Destroy(gameObject);
-        }
+        healthSystem.TakeDamage(damage);
+        Invoke("SkillEnd", 2f);
+    }
+    protected void SkillEnd()
+    {
+        Destroy(gameObject);
     }
 }

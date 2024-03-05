@@ -27,24 +27,26 @@ public class BlackMagic : BaseSkill
                 break;
         }
     }
+    protected override void FixedUpdate()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 13f, 8);
+
+        foreach (Collider collider in colliders)
+        {
+            if (collider.CompareTag("Enemy"))
+            {
+                CharacterHealthSystem healthSystem = collider.GetComponent<CharacterHealthSystem>();
+                Invoke("AddDamage", 1);
+            }
+        }
+    }
     protected override void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.layer == 8)
-        {
-            healthSystem = collision.gameObject.GetComponent<CharacterHealthSystem>();
-        }
+
     }
     protected override void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.layer == 8)
-        {
-            inTarget = true;
-            Invoke("AddDamage",1);
-        }
-        else
-        {
-            inTarget = false;
-        }
+
     }
     protected override void OnTriggerExit(Collider collision)
     {
@@ -52,10 +54,7 @@ public class BlackMagic : BaseSkill
     }
     protected void AddDamage()
     {
-        if (inTarget)
-        {
-            healthSystem.TakeDamage(damage);
-            Destroy(gameObject);
-        }
+        healthSystem.TakeDamage(damage);
+        Destroy(gameObject);
     }
 }

@@ -11,7 +11,6 @@ public class EnergyExplosion : BaseSkill
     protected override void Start()
     {
         Damage();
-        Invoke("AddDamage", 2f);
     }
     protected override void Damage()
     {
@@ -30,25 +29,24 @@ public class EnergyExplosion : BaseSkill
     }
     protected override void FixedUpdate()
     {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 3.5f, 8);
 
+        foreach (Collider collider in colliders)
+        {
+            if (collider.CompareTag("Enemy"))
+            {
+                CharacterHealthSystem healthSystem = collider.GetComponent<CharacterHealthSystem>();
+                Invoke("AddDamage", 1.5f);
+            }
+        }
     }
     protected override void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.layer == 8)
-        {
-            healthSystem = collision.gameObject.GetComponent<CharacterHealthSystem>();
-        }
+
     }
     protected override void OnTriggerStay(Collider collision)
     {
-        if (collision.gameObject.layer == 8)
-        {
-            inTarget = true;
-        }
-        else
-        {
-            inTarget = false;
-        }
+
     }
     protected override void OnTriggerExit(Collider collision)
     {
@@ -56,13 +54,7 @@ public class EnergyExplosion : BaseSkill
     }
     protected void AddDamage()
     {
-        if (inTarget)
-        {
-            healthSystem.TakeDamage(damage);
-            Destroy(gameObject);
-        } else
-        {
-            Destroy(gameObject);
-        }
+        healthSystem.TakeDamage(damage);
+        Destroy(gameObject);
     }
 }

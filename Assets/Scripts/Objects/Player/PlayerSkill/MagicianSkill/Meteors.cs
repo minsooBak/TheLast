@@ -30,19 +30,27 @@ public class Meteors : BaseSkill
                 break;
         }
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, 10);
+    }
     protected override void FixedUpdate()
     {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 10, 8);
 
+        foreach (Collider collider in colliders)
+        {
+            if (collider.CompareTag("Enemy"))
+            {
+                CharacterHealthSystem healthSystem = collider.GetComponent<CharacterHealthSystem>();
+                InvokeRepeating("AddDamage", 0.5f, 0.5f);
+            }
+        }
     }
     protected override void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.layer == 8)
-        {
-            healthSystem = collision.gameObject.GetComponent<CharacterHealthSystem>();
-            count = 4;
-            inTarget = true;
-            InvokeRepeating("AddDamage", 0.5f, 0.5f);
-        }
+
     }
     protected override void OnTriggerStay(Collider collision)
     {
@@ -50,19 +58,12 @@ public class Meteors : BaseSkill
     }
     protected override void OnTriggerExit(Collider collision)
     {
-        if (collision.gameObject.layer != 8)
-        {
-            inTarget = true;
-        }
+
     }
     protected void AddDamage()
     {
-        if (inTarget)
-        {
-            count -= 1;
-            healthSystem.TakeDamage(damage);
-            Invoke("SkillEnd", 2f);
-        }
+        healthSystem.TakeDamage(damage);
+        Invoke("SkillEnd", 2f);
     }
     protected void SkillEnd()
     {
