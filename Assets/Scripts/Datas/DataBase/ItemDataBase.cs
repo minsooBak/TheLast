@@ -23,6 +23,7 @@ public class ItemDataBase : DataBase<ItemEntity>
             {
                 return data.Value.DropItem;
             }
+            ++index;
         }
         return null;
     }
@@ -65,7 +66,7 @@ public class ItemEntity
         get
         {
             if (_dropItem == null)
-                _dropItem = Resources.Load<GameObject>($"Prefab/Item/{ItemPath}");
+                _dropItem = Resources.Load<GameObject>($"Prefabs/Item/{ItemPath}");
             return _dropItem;
         }
     }

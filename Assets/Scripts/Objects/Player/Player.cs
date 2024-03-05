@@ -114,6 +114,7 @@ public class Player : MonoBehaviour
         if(other.gameObject.CompareTag("Item"))
         {
             GameManager.PlayerManager.ItemManager.AddItem(other.GetComponent<DropItem>().ItemID);
+            Destroy(other.gameObject);
         }
     }
 }

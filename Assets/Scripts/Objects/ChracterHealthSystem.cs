@@ -64,7 +64,7 @@ public class CharacterHealthSystem : MonoBehaviour
                 OnDie?.Invoke();
                 GameManager.DataBases.TryGetDataBase(out ItemDataBase itemData);
                 var dropItem = itemData.GetRandomItem();
-                Instantiate(dropItem).transform.position = new Vector3(0, 5, 0);
+                Instantiate(dropItem).transform.position = transform.position + new Vector3(0, 5, 0);
             }
         }
 

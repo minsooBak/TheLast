@@ -11,7 +11,6 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
     [SerializeField] private Transform _dropItemParent;
     [SerializeField] private TextMeshProUGUI _goldText;
     private SlotUI[] _slots;
-    private Canvas _canvas;
     private ItemDataInfoUI _info;
     private ItemManager _itemManager;
     public int Gold { get; private set; }
@@ -31,7 +30,6 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
 
     private void Awake()
     {
-        _canvas = GetComponent<Canvas>();
         _inventoryTransform = _slotParent.parent;
         var prefab = GameManager.ResourceManager.LoadPrefab("Prefabs/UI/Slot");
         _slots = new SlotUI[20];
@@ -75,7 +73,7 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
             }
         }
         GameManager.DataBases.TryGetDataBase(out ItemDataBase data);
-        var item = data.GetData(id);
+        var item = data.GetData(id); 
 
         if (itemData.Count == _slots.Length)
         {
@@ -95,6 +93,7 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
                     item = item,
                     amount = 1
                 };
+                Assert.IsNotNull(slotData.item);
                 itemData.Add(i, slotData);
                 return;
             }
@@ -266,6 +265,7 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
                     slot.SetItem(null);
                     _itemManager.GetInventoryItemData().Remove(slot.Index);
                     _itemManager.EquipItem(item);
+                    _slots[slot.Index].SetItem(null);
                 }
                 break;
             case Enums.ItemType.Consume:
@@ -322,7 +322,7 @@ public class InventoryUI : UIBase, IBeginDragHandler, IDragHandler, IEndDragHand
 
     private void OnDisable()
     {
-        if (_info.IsActive())
+        if (_info != null && _info.IsActive())
             _info.Disable();
     }
 }
