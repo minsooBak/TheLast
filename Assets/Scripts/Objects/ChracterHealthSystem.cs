@@ -62,7 +62,12 @@ public class CharacterHealthSystem : MonoBehaviour
             if (enemy.Data.Hp == 0) return;
             enemy.Data.Hp = Mathf.Min(enemy.Data.MaxHp,  Mathf.Max(enemy.Data.Hp - damage, 0));
             if (enemy.Data.Hp <= 0)
+            {
                 OnDie?.Invoke();
+                GameManager.DataBases.TryGetDataBase(out ItemDataBase itemData);
+                var dropItem = itemData.GetRandomItem();
+                Instantiate(dropItem).transform.position = new Vector3(0, 5, 0);
+            }
         }
 
     }

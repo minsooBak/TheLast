@@ -72,10 +72,6 @@ public class BaseSkill : MonoBehaviour
             healthSystem.TakeDamage(damage);
             Destroy(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
     protected virtual void OnTriggerStay(Collider collision)
     {
