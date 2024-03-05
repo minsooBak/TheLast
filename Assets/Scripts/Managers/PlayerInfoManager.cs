@@ -19,6 +19,8 @@ public class PlayerInfoManager
     private int statusPoint = 3;
     private int skillsPoint = 5;
 
+    private PlayerSkill playerSkill;
+
     public PlayerInfo PlayerInfo { get; private set; }
     private void Init()
     {
@@ -46,6 +48,7 @@ public class PlayerInfoManager
     }
     public void LoadLevel(float exp)
     {
+        playerSkill = GameManager.PlayerManager.SkillManager.PlayerSkill;
         PlayerInfo.Exp += exp;
         for (int i = 1; i < levelDB.GetLevelCount() + 1; i++)
         {
@@ -70,11 +73,21 @@ public class PlayerInfoManager
                 //PlayerInfo.IntUpPoint = PlayerInfo.intUpPoint;
                 //PlayerInfo.LukUpPoint = PlayerInfo.lukUpPoint;
 
-                int Point = (i * statusPoint) - (PlayerInfo.StrUpPoint
+                int statPoint = (i * statusPoint) - (PlayerInfo.StrUpPoint
                     + PlayerInfo.IntUpPoint
                     + PlayerInfo.LukUpPoint);
 
-                PlayerInfo.StatPoint = Point;
+                int skillPoint = (i * skillsPoint) - (playerSkill.playerSkillInfo[101] - 1)
+                    + (playerSkill.playerSkillInfo[102])
+                    + (playerSkill.playerSkillInfo[103])
+                    + (playerSkill.playerSkillInfo[104])
+                    + (playerSkill.playerSkillInfo[105])
+                    + (playerSkill.playerSkillInfo[106])
+                    + (playerSkill.playerSkillInfo[107])
+                    + (playerSkill.playerSkillInfo[108]);
+
+                PlayerInfo.StatPoint = statPoint;
+                PlayerInfo.SkillPoint = skillPoint;
             }
         }
     }

@@ -32,6 +32,7 @@ public class BaseSkill : MonoBehaviour
     {
         speed = 6f;
         Damage();
+        Invoke("SkillEnd", 10f);
     }
     protected virtual void Damage()
     {
@@ -83,5 +84,9 @@ public class BaseSkill : MonoBehaviour
     protected virtual void OnTriggerExit(Collider collision)
     {
         
+    }
+    protected virtual void SkillEnd()
+    {
+        Destroy(gameObject);
     }
 }

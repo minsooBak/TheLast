@@ -11,6 +11,7 @@ public class BlackMagic : BaseSkill
     protected override void Start()
     {
         Damage();
+        Invoke("SkillEnd", 2.0f);
     }
     protected override void Damage()
     {
@@ -36,7 +37,7 @@ public class BlackMagic : BaseSkill
             if (collider.CompareTag("Enemy"))
             {
                 CharacterHealthSystem healthSystem = collider.GetComponent<CharacterHealthSystem>();
-                Invoke("AddDamage", 1);
+                Invoke("AddDamage", 1.9f);
             }
         }
     }
@@ -55,6 +56,9 @@ public class BlackMagic : BaseSkill
     protected void AddDamage()
     {
         healthSystem.TakeDamage(damage);
+    }
+    protected override void SkillEnd()
+    {
         Destroy(gameObject);
     }
 }
