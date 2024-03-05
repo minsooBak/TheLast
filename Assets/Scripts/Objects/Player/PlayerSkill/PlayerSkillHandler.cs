@@ -61,9 +61,12 @@ public class PlayerSkillHandler : MonoBehaviour
         skillSlotUIs = skillSlot.GetComponentsInChildren<SkillSlotUI>();
         var slots = GameManager.PlayerManager.PlayerInfoManager.userData.playerData.skillSlots;
         int index = 0;
-        foreach( var slot in slots)
+        if(slots != null && slots.Length > 0)
         {
-            skillSlotUIs[index++].SetSkill(slot.Skill, slot.Index);
+            foreach (var slot in slots)
+            {
+                skillSlotUIs[index++].SetSkill(slot.Skill, slot.Index);
+            }
         }
     }
     private void Update()
